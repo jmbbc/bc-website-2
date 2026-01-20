@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Banjaria Court Portal - Borang Digital</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#347969",
+                        "secondary": "#E8F3F1",
+                        "accent": "#F4A261",
+                        "background-light": "#fbfaf9",
+                        "background-dark": "#213131",
+                        "text-primary": "#111816",
+                        "text-secondary": "#60857d"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-primary transition-colors duration-300">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#eaf0ef] dark:border-[#3a4d49] px-6 lg:px-40 py-4 bg-background-light dark:bg-background-dark sticky top-0 z-50 transition-all duration-300 shadow-sm">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary cursor-pointer hover:opacity-90 transition-opacity">
+<div class="size-8">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-text-primary dark:text-white text-lg font-extrabold leading-tight tracking-[-0.015em]">Banjaria Court</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8 ml-4">
+<a class="text-text-primary dark:text-[#d1dcd9] text-sm font-medium hover:text-primary transition-colors relative group" href="#">
+                            Home
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+</a>
+<a class="text-text-primary dark:text-[#d1dcd9] text-sm font-medium hover:text-primary transition-colors relative group" href="#">
+                            Announcements
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary" href="#">Digital Forms</a>
+<a class="text-text-primary dark:text-[#d1dcd9] text-sm font-medium hover:text-primary transition-colors relative group" href="#">
+                            My Requests
+                            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<label class="hidden sm:flex flex-col min-w-40 !h-10 max-w-64 transition-all focus-within:ring-2 ring-primary/20 rounded-xl">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full">
+<div class="text-[#60857d] flex border-none bg-[#eaf0ef] dark:bg-[#2d3e3b] items-center justify-center pl-4 rounded-l-xl">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-[#eaf0ef] dark:bg-[#2d3e3b] text-text-primary dark:text-white focus:ring-0 h-full placeholder:text-[#60857d] rounded-r-xl pl-2 text-sm" placeholder="Search forms..."/>
+</div>
+</label>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20 cursor-pointer hover:border-primary transition-colors shadow-sm" data-alt="Avatar of the logged in user" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDfxdka4S-O2D3XI-rdjYsCxTBEzvgwymKF7uKw-TILWmMh5wL4Bew3w29lZpFMm5uJu7Yp3FHxcr1A8ljXKlrN-ckBFVT_JNkr-Lu3t7KY2D9i160maXW1wFypAaUb33oA6LOWKL8zwx8cJRFSlVCJ8cw7tNswP3zTn6bluVvW5KMNTnP7STxgPDXXBJOUzGCfK45Cv01VnZBGWRg9-znk1Ob7N3wj8ZDc5zf1ERufYOjj8uiNZ9bbump4p-h9_iDe7JP4fh4LWZQ");'></div>
+</div>
+</header>
+<main class="flex-1 bg-background-light dark:bg-background-dark">
+<div class="px-6 lg:px-40 py-10">
+<div class="@container">
+<div class="flex min-h-[360px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-2xl items-center justify-center p-10 relative overflow-hidden group shadow-xl" data-alt="Serene garden aerial view for background" style='background-image: linear-gradient(to bottom, rgba(35, 69, 61, 0.85), rgba(33, 49, 49, 0.9)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuA_e7qth9yjvpJaQ4rUeHzWrELBoL2VY9IkLMxE0XBR8JHRDF7_zu5iFIFePAVUiZG6jW25RqzZZnXCtwKdZSttbFe1mXsWuNC3PW-PkQvql95ss_wAWD3qFetU5UlsL8TT2EZJTQnssN-Jbzy_FwqhF9VmYKtOoQiNR8IMS6C1hZNfZWZYQEuan8LtwOW2DX5oerYG_BaWxpEIR3x13U2HdicJr_p1vF_SB0UCt_NHMGdA-Po17Bc4ijPLiXlqBiv447XNYcVdTEs");'>
+<div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+<div class="flex flex-col gap-4 text-center relative z-10 max-w-3xl">
+<span class="text-white/80 uppercase tracking-widest text-xs font-bold mb-2">Resident Services</span>
+<h1 class="text-white text-4xl font-black leading-tight tracking-tight @[480px]:text-6xl drop-shadow-sm">
+                                    Portal Borang Digital
+                                </h1>
+<p class="text-white/90 text-lg max-w-xl mx-auto font-light leading-relaxed">
+                                    Simplify your living experience. Manage all your residential applications and permits from one centralized, serene hub.
+                                </p>
+</div>
+<button class="mt-4 flex min-w-[200px] cursor-pointer items-center justify-center rounded-xl h-14 px-8 bg-white text-primary text-base font-bold transition-all hover:bg-[#f0f9f7] hover:-translate-y-1 hover:shadow-lg relative z-10 border border-transparent hover:border-white/50">
+<span class="truncate">View My Applications</span>
+</button>
+</div>
+</div>
+</div>
+<div class="px-6 lg:px-40 flex flex-col mb-8">
+<div class="flex items-center justify-between px-1 pb-6 pt-2">
+<div>
+<h2 class="text-text-primary dark:text-white text-2xl font-bold leading-tight tracking-tight">Select a Form Category</h2>
+<p class="text-text-secondary dark:text-[#a1b5b0] text-sm mt-1">Choose the type of application you wish to submit.</p>
+</div>
+<span class="text-primary text-sm font-semibold flex items-center gap-1 cursor-pointer hover:underline underline-offset-4 decoration-2">
+                            View All Categories <span class="material-symbols-outlined text-base">arrow_forward</span>
+</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="flex flex-1 gap-4 rounded-xl border border-[#d6e1de] dark:border-[#3a4d49] bg-white dark:bg-[#2d3e3b] p-6 flex-col hover:border-primary hover:shadow-[0_4px_20px_rgba(52,121,105,0.1)] transition-all cursor-pointer group h-full justify-between">
+<div>
+<div class="text-primary bg-primary/10 size-14 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors mb-4">
+<span class="material-symbols-outlined text-3xl">construction</span>
+</div>
+<div class="flex flex-col gap-1">
+<h2 class="text-text-primary dark:text-white text-lg font-bold leading-tight">Renovation Permit</h2>
+<p class="text-text-secondary dark:text-[#a1b5b0] text-sm font-normal leading-normal">Apply for unit modifications or repairs.</p>
+</div>
+</div>
+<div class="w-full flex justify-end">
+<span class="material-symbols-outlined text-gray-300 group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+<div class="flex flex-1 gap-4 rounded-xl border-2 border-primary/20 bg-[#f0f9f7] dark:bg-primary/20 p-6 flex-col shadow-sm cursor-pointer relative overflow-hidden h-full justify-between ring-1 ring-primary/10">
+<div class="absolute top-0 right-0 p-3">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Popular</span>
+</div>
+<div>
+<div class="text-white bg-primary size-14 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined text-3xl">calendar_month</span>
+</div>
+<div class="flex flex-col gap-1">
+<h2 class="text-text-primary dark:text-white text-lg font-bold leading-tight">Facility Booking</h2>
+<p class="text-primary dark:text-[#a1b5b0] text-sm font-bold leading-normal">BBQ Pit, Court, or Hall</p>
+</div>
+</div>
+<div class="w-full flex justify-end">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+</div>
+</div>
+<div class="flex flex-1 gap-4 rounded-xl border border-[#d6e1de] dark:border-[#3a4d49] bg-white dark:bg-[#2d3e3b] p-6 flex-col hover:border-primary hover:shadow-[0_4px_20px_rgba(52,121,105,0.1)] transition-all cursor-pointer group h-full justify-between">
+<div>
+<div class="text-primary bg-primary/10 size-14 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors mb-4">
+<span class="material-symbols-outlined text-3xl">local_shipping</span>
+</div>
+<div class="flex flex-col gap-1">
+<h2 class="text-text-primary dark:text-white text-lg font-bold leading-tight">Moving Notice</h2>
+<p class="text-text-secondary dark:text-[#a1b5b0] text-sm font-normal leading-normal">Schedule move-in/out logistics.</p>
+</div>
+</div>
+<div class="w-full flex justify-end">
+<span class="material-symbols-outlined text-gray-300 group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+<div class="flex flex-1 gap-4 rounded-xl border border-[#d6e1de] dark:border-[#3a4d49] bg-white dark:bg-[#2d3e3b] p-6 flex-col hover:border-primary hover:shadow-[0_4px_20px_rgba(52,121,105,0.1)] transition-all cursor-pointer group h-full justify-between">
+<div>
+<div class="text-primary bg-primary/10 size-14 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors mb-4">
+<span class="material-symbols-outlined text-3xl">badge</span>
+</div>
+<div class="flex flex-col gap-1">
+<h2 class="text-text-primary dark:text-white text-lg font-bold leading-tight">Access Card</h2>
+<p class="text-text-secondary dark:text-[#a1b5b0] text-sm font-normal leading-normal">Request new or replacement cards.</p>
+</div>
+</div>
+<div class="w-full flex justify-end">
+<span class="material-symbols-outlined text-gray-300 group-hover:text-primary transition-colors">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-6 lg:px-40 py-10 pb-20 bg-[#f4f7f6] dark:bg-[#1a2626] border-t border-[#eaf0ef] dark:border-[#3a4d49]">
+<div class="max-w-[800px] mx-auto bg-white dark:bg-[#2d3e3b] rounded-2xl shadow-lg border border-[#eaf0ef] dark:border-[#3a4d49] overflow-hidden">
+<div class="bg-gradient-to-r from-primary/5 to-transparent dark:from-primary/10 p-8 border-b border-[#eaf0ef] dark:border-[#3a4d49]">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary text-2xl">edit_document</span>
+<h3 class="text-text-primary dark:text-white text-2xl font-bold">Facility Booking Application</h3>
+</div>
+<p class="text-text-secondary dark:text-[#a1b5b0] text-sm pl-9">Please fill in the details below to reserve a facility. Fields marked with <span class="text-red-500">*</span> are mandatory.</p>
+</div>
+<form class="p-8 lg:p-10 space-y-8">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-2 group">
+<label class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1 group-focus-within:text-primary transition-colors">
+                                        Full Name <span class="text-red-500">*</span>
+</label>
+<input class="w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-[#fbfaf9] dark:bg-[#213131] dark:text-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-400" placeholder="e.g. Ahmad bin Ali" type="text"/>
+</div>
+<div class="flex flex-col gap-2 group">
+<label class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1 group-focus-within:text-primary transition-colors">
+                                        Unit Number <span class="text-red-500">*</span>
+</label>
+<input class="w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-[#fbfaf9] dark:bg-[#213131] dark:text-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-400" placeholder="e.g. A-12-03" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex flex-col gap-2 group">
+<label class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1 group-focus-within:text-primary transition-colors">
+                                        Select Facility <span class="text-red-500">*</span>
+</label>
+<div class="relative">
+<select class="w-full appearance-none rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-[#fbfaf9] dark:bg-[#213131] dark:text-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all cursor-pointer">
+<option disabled="" selected="" value="">Select an option</option>
+<option>BBQ Pit (Zone A)</option>
+<option>Multipurpose Hall</option>
+<option>Badminton Court 1</option>
+<option>Badminton Court 2</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-text-secondary">
+<span class="material-symbols-outlined text-xl">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2 group">
+<label class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1 group-focus-within:text-primary transition-colors">
+                                        Date <span class="text-red-500">*</span>
+</label>
+<input class="w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-[#fbfaf9] dark:bg-[#213131] dark:text-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all cursor-pointer" type="date"/>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<label class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1">
+                                    Time Slot <span class="text-red-500">*</span>
+</label>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<label class="cursor-pointer relative">
+<input checked="" class="peer sr-only" name="timeslot" type="radio"/>
+<div class="h-12 w-full rounded-xl border border-primary bg-primary/5 text-primary peer-checked:bg-primary peer-checked:text-white peer-checked:shadow-md flex items-center justify-center text-sm font-bold transition-all hover:bg-primary/10 peer-checked:hover:bg-primary">
+                                            09:00 - 12:00
+                                        </div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="timeslot" type="radio"/>
+<div class="h-12 w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-white dark:bg-[#213131] text-text-secondary peer-checked:border-primary peer-checked:bg-primary peer-checked:text-white peer-checked:shadow-md flex items-center justify-center text-sm font-bold transition-all hover:border-primary/50 hover:text-primary peer-checked:hover:bg-primary peer-checked:hover:border-primary">
+                                            14:00 - 17:00
+                                        </div>
+</label>
+<label class="cursor-pointer relative">
+<input class="peer sr-only" name="timeslot" type="radio"/>
+<div class="h-12 w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-white dark:bg-[#213131] text-text-secondary peer-checked:border-primary peer-checked:bg-primary peer-checked:text-white peer-checked:shadow-md flex items-center justify-center text-sm font-bold transition-all hover:border-primary/50 hover:text-primary peer-checked:hover:bg-primary peer-checked:hover:border-primary">
+                                            19:00 - 22:00
+                                        </div>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-2 group">
+<label class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1 group-focus-within:text-primary transition-colors">
+                                    Additional Notes (Optional)
+                                </label>
+<textarea class="w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-[#fbfaf9] dark:bg-[#213131] dark:text-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-400 min-h-[120px]" placeholder="State any special requirements or number of guests..." rows="3"></textarea>
+</div>
+<div class="pt-6 flex flex-col md:flex-row items-center justify-between gap-6 border-t border-[#eaf0ef] dark:border-[#3a4d49] mt-2">
+<div class="flex items-start gap-3 text-text-secondary bg-[#fffbef] dark:bg-[#3d3d2e] px-5 py-3 rounded-xl border border-[#f0e6c5] dark:border-[#4d4d3a] w-full md:w-auto md:max-w-sm">
+<span class="material-symbols-outlined text-amber-600 mt-0.5">info</span>
+<span class="text-xs font-medium leading-relaxed">A refundable deposit of <strong>RM50.00</strong> is required upon approval. Please pay at the management office.</span>
+</div>
+<div class="flex w-full md:w-auto gap-4">
+<button class="flex-1 md:flex-none px-6 py-3 rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] text-text-secondary dark:text-[#a1b5b0] font-bold hover:bg-gray-50 dark:hover:bg-gray-800 transition-all text-sm" type="button">Cancel</button>
+<button class="flex-1 md:flex-none px-8 py-3 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/30 hover:bg-[#2a6356] hover:shadow-primary/40 hover:-translate-y-0.5 transition-all transform active:scale-95 text-sm flex items-center justify-center gap-2" type="submit">
+<span>Submit Request</span>
+<span class="material-symbols-outlined text-lg">send</span>
+</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</main>
+<footer class="px-6 lg:px-40 py-16 bg-white dark:bg-[#1a2626] border-t border-[#eaf0ef] dark:border-[#3a4d49]">
+<div class="flex flex-col md:flex-row justify-between gap-12">
+<div class="flex flex-col gap-6 max-w-sm">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl">nature_people</span>
+<h2 class="text-text-primary dark:text-white text-2xl font-bold tracking-tight">Banjaria Court</h2>
+</div>
+<p class="text-text-secondary dark:text-[#a1b5b0] text-sm leading-relaxed">
+                            Professional management dedicated to creating a peaceful, safe, and harmonious community living experience for all residents.
+                        </p>
+<div class="flex gap-4 mt-2">
+<div class="size-10 rounded-full bg-[#f0f9f7] dark:bg-[#2d3e3b] flex items-center justify-center text-primary cursor-pointer hover:bg-primary hover:text-white transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">social_leaderboard</span>
+</div>
+<div class="size-10 rounded-full bg-[#f0f9f7] dark:bg-[#2d3e3b] flex items-center justify-center text-primary cursor-pointer hover:bg-primary hover:text-white transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">mail</span>
+</div>
+<div class="size-10 rounded-full bg-[#f0f9f7] dark:bg-[#2d3e3b] flex items-center justify-center text-primary cursor-pointer hover:bg-primary hover:text-white transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">chat</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-10 md:gap-16">
+<div class="flex flex-col gap-4">
+<h3 class="font-bold text-text-primary dark:text-white text-base">Quick Links</h3>
+<div class="flex flex-col gap-2">
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Directory</a>
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Events</a>
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Emergency</a>
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Feedback</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h3 class="font-bold text-text-primary dark:text-white text-base">Support</h3>
+<div class="flex flex-col gap-2">
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Help Center</a>
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Contact Office</a>
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Report Issue</a>
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">FAQs</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h3 class="font-bold text-text-primary dark:text-white text-base">Legal</h3>
+<div class="flex flex-col gap-2">
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Privacy Policy</a>
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Terms of Service</a>
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">House Rules</a>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-16 pt-8 border-t border-[#eaf0ef] dark:border-[#3a4d49] flex flex-col sm:flex-row justify-between items-center gap-4">
+<p class="text-text-secondary dark:text-[#a1b5b0] text-xs">© 2024 Banjaria Court Management. All rights reserved.</p>
+<p class="text-text-secondary dark:text-[#a1b5b0] text-xs flex items-center gap-1">
+                        Made with <span class="material-symbols-outlined text-[14px] text-red-400">favorite</span> for the community
+                    </p>
+</div>
+</footer>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html class="light" lang="ms"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Senarai Vendor Berdaftar | Banjaria Court</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#347969",
+                        "primary-dark": "#2a6255",
+                        "accent-coral": "#E68A7D",
+                        "background-light": "#fbfaf9",
+                        "background-dark": "#1a2424",
+                        "surface-light": "#eaf0ef",
+                        "surface-dark": "#2a3a3a",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "1.75rem",
+                        "3xl": "2.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(52, 121, 105, 0.08)',
+                        'hover': '0 10px 25px -5px rgba(52, 121, 105, 0.15)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .garden-border {
+            border: 1px solid rgba(52, 121, 105, 0.15);
+        }.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }.no-scrollbar {
+            -ms-overflow-style: none;scrollbar-width: none;}
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111816] dark:text-gray-100 min-h-screen flex flex-col selection:bg-primary/20">
+<div class="mx-auto w-full">
+<div class="bg-primary/5 py-2 px-4 text-center border-b border-primary/10">
+<p class="text-xs md:text-sm font-medium text-primary flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">spa</span>
+<span>Notis: Penjagaan taman tahunan dijalankan hujung minggu ini.</span>
+</p>
+</div>
+<header class="sticky top-0 z-50 bg-[#FDFCF8]/90 backdrop-blur-md border-b border-stone-200/60">
+<div class="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="bg-primary text-white p-2 rounded-xl">
+<span class="material-symbols-outlined block">yard</span>
+</div>
+<div class="leading-tight">
+<h1 class="text-xl font-bold tracking-tight text-primary">Banjaria<span class="font-light text-[#2C3333] ml-1">Court</span></h1>
+<p class="text-[0.65rem] font-medium tracking-widest uppercase text-[#2C3333]/50">Urban Sanctuary</p>
+</div>
+</div>
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="index.html">Utama</a>
+<a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="halaman_notis_kediaman.html">Notis</a>
+<a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="kemudahan_banjaria_court.html">Kemudahan</a>
+<a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="aktiviti_komuniti_banjaria.html">Komuniti</a>
+</nav>
+<div class="flex items-center gap-4">
+<a class="hidden md:flex bg-white border border-stone-200 text-primary px-5 py-2.5 rounded-full text-sm font-bold hover:shadow-soft hover:-translate-y-0.5 transition-all items-center gap-2" href="portal_borang_digital.html">
+<span class="material-symbols-outlined text-lg">person</span>
+                        Log Masuk Penduduk
+                    </a>
+<button class="lg:hidden text-[#2C3333] p-1">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+</div>
+<main class="flex-1 max-w-7xl mx-auto w-full px-6 md:px-20 py-10">
+<section class="mb-12">
+<div class="relative overflow-hidden rounded-3xl bg-primary/5 p-8 md:p-16 flex flex-col items-center text-center border border-primary/5">
+<div class="absolute top-0 right-0 p-8 opacity-[0.07] pointer-events-none select-none">
+<span class="material-symbols-outlined !text-[240px]">eco</span>
+</div>
+<div class="absolute bottom-0 left-0 p-8 opacity-[0.07] pointer-events-none rotate-180 select-none">
+<span class="material-symbols-outlined !text-[240px]">spa</span>
+</div>
+<div class="relative z-10 max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-surface-dark border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
+<span class="material-symbols-outlined !text-[14px]">verified_user</span>
+                        Direktori Diiktiraf
+                    </div>
+<h1 class="text-4xl md:text-5xl font-extrabold text-[#111816] dark:text-white mb-6 tracking-tight leading-tight">
+                        Senarai Vendor Berdaftar
+                    </h1>
+<p class="text-lg text-gray-600 dark:text-gray-300 font-medium mb-8 leading-relaxed">
+                        Profesional dipercayai yang disemak kualiti dan kebolehpercayaan bagi menyelenggara kediaman anda di Banjaria Court. Cari bantuan yang anda perlukan dengan segera.
+                    </p>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="bg-primary text-white px-8 py-3.5 rounded-xl font-bold hover:scale-[1.02] hover:bg-primary-dark transition-all shadow-soft flex items-center gap-2" href="hubungi_pengurusan_banjaria.html">
+<span class="material-symbols-outlined">person_add</span>
+                            Daftar Sebagai Vendor
+                        </a>
+<a class="bg-white dark:bg-surface-dark border border-primary/20 px-8 py-3.5 rounded-xl font-bold hover:bg-primary/5 transition-all text-primary flex items-center gap-2" href="portal_borang_digital.html">
+<span class="material-symbols-outlined">description</span>
+                            Muat Turun Garis Panduan
+                        </a>
+</div>
+</div>
+</div>
+</section>
+<section class="mb-10">
+<div class="flex items-center gap-3 pb-4 overflow-x-auto no-scrollbar">
+<button class="flex h-11 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary text-white px-6 shadow-md transition-transform hover:scale-105">
+<span class="text-sm font-bold">Semua Servis</span>
+</button>
+<button class="flex h-11 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white border border-primary/10 dark:bg-surface-dark text-gray-600 dark:text-gray-300 hover:bg-primary/5 hover:border-primary/30 px-6 transition-all hover:text-primary">
+<span class="material-symbols-outlined !text-[18px]">plumbing</span>
+<span class="text-sm font-semibold">Paip</span>
+</button>
+<button class="flex h-11 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white border border-primary/10 dark:bg-surface-dark text-gray-600 dark:text-gray-300 hover:bg-primary/5 hover:border-primary/30 px-6 transition-all hover:text-primary">
+<span class="material-symbols-outlined !text-[18px]">bolt</span>
+<span class="text-sm font-semibold">Elektrik</span>
+</button>
+<button class="flex h-11 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white border border-primary/10 dark:bg-surface-dark text-gray-600 dark:text-gray-300 hover:bg-primary/5 hover:border-primary/30 px-6 transition-all hover:text-primary">
+<span class="material-symbols-outlined !text-[18px]">ac_unit</span>
+<span class="text-sm font-semibold">Penyaman Udara</span>
+</button>
+<button class="flex h-11 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white border border-primary/10 dark:bg-surface-dark text-gray-600 dark:text-gray-300 hover:bg-primary/5 hover:border-primary/30 px-6 transition-all hover:text-primary">
+<span class="material-symbols-outlined !text-[18px]">cleaning_services</span>
+<span class="text-sm font-semibold">Pembersihan</span>
+</button>
+<button class="flex h-11 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white border border-primary/10 dark:bg-surface-dark text-gray-600 dark:text-gray-300 hover:bg-primary/5 hover:border-primary/30 px-6 transition-all hover:text-primary">
+<span class="material-symbols-outlined !text-[18px]">format_paint</span>
+<span class="text-sm font-semibold">Renovasi</span>
+</button>
+</div>
+</section>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+<h2 class="text-2xl font-bold tracking-tight text-primary-dark dark:text-primary">Penyedia Disyorkan</h2>
+<div class="flex items-center gap-2 text-sm font-medium text-primary/60 bg-primary/5 px-4 py-2 rounded-full">
+<span class="material-symbols-outlined !text-[18px]">verified</span>
+<span>Menunjukkan 24 vendor disahkan</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+<div class="group bg-white dark:bg-surface-dark rounded-2xl p-6 garden-border shadow-sm hover:shadow-hover hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700"></div>
+<div class="relative flex justify-between items-start mb-5">
+<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" data-alt="Corporate logo for Syarikat Paip Jitu">
+<span class="material-symbols-outlined !text-[32px]">plumbing</span>
+</div>
+<div class="bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full flex items-center gap-1 border border-green-100 dark:border-green-800">
+<span class="material-symbols-outlined !text-[14px] fill-current">verified</span>
+<span class="text-[10px] font-extrabold uppercase tracking-wider">Verified</span>
+</div>
+</div>
+<div class="relative">
+<h3 class="text-lg font-bold mb-1 text-gray-800 dark:text-white group-hover:text-primary transition-colors">Syarikat Paip Jitu</h3>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Paip &amp; Sanitari</p>
+<div class="flex items-center gap-1.5 text-accent-coral mb-5 bg-accent-coral/5 w-fit px-3 py-1 rounded-lg">
+<span class="material-symbols-outlined !text-[18px] font-variation-settings-fill">star</span>
+<span class="text-sm font-bold text-gray-800 dark:text-gray-100">4.8</span>
+<span class="text-xs text-gray-500 font-medium ml-1">(120 ulasan)</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
+<div class="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-[16px]">call</span>
+</div>
+<span class="font-medium font-mono tracking-tight">+60 12-345 6789</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
+<div class="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-[16px]">history</span>
+</div>
+<span class="font-medium">12 tahun berkhidmat</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl text-sm font-bold hover:brightness-110 transition-all shadow-sm">
+<span class="material-symbols-outlined !text-[18px]">chat</span>
+                            WhatsApp
+                        </button>
+<button class="flex items-center justify-center gap-2 border border-primary/20 bg-white dark:bg-surface-dark text-primary py-3 rounded-xl text-sm font-bold hover:bg-primary/5 transition-all">
+                            Profil
+                        </button>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-surface-dark rounded-2xl p-6 garden-border shadow-sm hover:shadow-hover hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700"></div>
+<div class="relative flex justify-between items-start mb-5">
+<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" data-alt="Corporate logo for Arus Elektrik Enterprise">
+<span class="material-symbols-outlined !text-[32px]">bolt</span>
+</div>
+<div class="bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full flex items-center gap-1 border border-green-100 dark:border-green-800">
+<span class="material-symbols-outlined !text-[14px] fill-current">verified</span>
+<span class="text-[10px] font-extrabold uppercase tracking-wider">Verified</span>
+</div>
+</div>
+<div class="relative">
+<h3 class="text-lg font-bold mb-1 text-gray-800 dark:text-white group-hover:text-primary transition-colors">Arus Elektrik Enterprise</h3>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Elektrik &amp; Pendawaian</p>
+<div class="flex items-center gap-1.5 text-accent-coral mb-5 bg-accent-coral/5 w-fit px-3 py-1 rounded-lg">
+<span class="material-symbols-outlined !text-[18px] font-variation-settings-fill">star</span>
+<span class="text-sm font-bold text-gray-800 dark:text-gray-100">4.5</span>
+<span class="text-xs text-gray-500 font-medium ml-1">(85 ulasan)</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
+<div class="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-[16px]">call</span>
+</div>
+<span class="font-medium font-mono tracking-tight">+60 13-987 6543</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
+<div class="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-[16px]">history</span>
+</div>
+<span class="font-medium">8 tahun berkhidmat</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl text-sm font-bold hover:brightness-110 transition-all shadow-sm">
+<span class="material-symbols-outlined !text-[18px]">chat</span>
+                            WhatsApp
+                        </button>
+<button class="flex items-center justify-center gap-2 border border-primary/20 bg-white dark:bg-surface-dark text-primary py-3 rounded-xl text-sm font-bold hover:bg-primary/5 transition-all">
+                            Profile
+                        </button>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-surface-dark rounded-2xl p-6 garden-border shadow-sm hover:shadow-hover hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700"></div>
+<div class="relative flex justify-between items-start mb-5">
+<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" data-alt="Corporate logo for CoolAir Solutions">
+<span class="material-symbols-outlined !text-[32px]">ac_unit</span>
+</div>
+<div class="bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full flex items-center gap-1 border border-green-100 dark:border-green-800">
+<span class="material-symbols-outlined !text-[14px] fill-current">verified</span>
+<span class="text-[10px] font-extrabold uppercase tracking-wider">Verified</span>
+</div>
+</div>
+<div class="relative">
+<h3 class="text-lg font-bold mb-1 text-gray-800 dark:text-white group-hover:text-primary transition-colors">CoolAir Solutions</h3>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Servis Penyaman Udara</p>
+<div class="flex items-center gap-1.5 text-accent-coral mb-5 bg-accent-coral/5 w-fit px-3 py-1 rounded-lg">
+<span class="material-symbols-outlined !text-[18px] font-variation-settings-fill">star</span>
+<span class="text-sm font-bold text-gray-800 dark:text-gray-100">4.9</span>
+<span class="text-xs text-gray-500 font-medium ml-1">(200 ulasan)</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
+<div class="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-[16px]">call</span>
+</div>
+<span class="font-medium font-mono tracking-tight">+60 17-555 1234</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
+<div class="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-[16px]">history</span>
+</div>
+<span class="font-medium">15 tahun berkhidmat</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl text-sm font-bold hover:brightness-110 transition-all shadow-sm">
+<span class="material-symbols-outlined !text-[18px]">chat</span>
+                            WhatsApp
+                        </button>
+<button class="flex items-center justify-center gap-2 border border-primary/20 bg-white dark:bg-surface-dark text-primary py-3 rounded-xl text-sm font-bold hover:bg-primary/5 transition-all">
+                            Profile
+                        </button>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-surface-dark rounded-2xl p-6 garden-border shadow-sm hover:shadow-hover hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700"></div>
+<div class="relative flex justify-between items-start mb-5">
+<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" data-alt="Corporate logo for CleanHome Services">
+<span class="material-symbols-outlined !text-[32px]">cleaning_services</span>
+</div>
+</div>
+<div class="relative">
+<h3 class="text-lg font-bold mb-1 text-gray-800 dark:text-white group-hover:text-primary transition-colors">CleanHome Services</h3>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Pembersihan &amp; Pengemasan</p>
+<div class="flex items-center gap-1.5 text-accent-coral mb-5 bg-accent-coral/5 w-fit px-3 py-1 rounded-lg">
+<span class="material-symbols-outlined !text-[18px] font-variation-settings-fill">star</span>
+<span class="text-sm font-bold text-gray-800 dark:text-gray-100">4.7</span>
+<span class="text-xs text-gray-500 font-medium ml-1">(50 ulasan)</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
+<div class="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-[16px]">call</span>
+</div>
+<span class="font-medium font-mono tracking-tight">+60 11-232 4455</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
+<div class="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-[16px]">history</span>
+</div>
+<span class="font-medium">5 tahun berkhidmat</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl text-sm font-bold hover:brightness-110 transition-all shadow-sm">
+<span class="material-symbols-outlined !text-[18px]">chat</span>
+                            WhatsApp
+                        </button>
+<button class="flex items-center justify-center gap-2 border border-primary/20 bg-white dark:bg-surface-dark text-primary py-3 rounded-xl text-sm font-bold hover:bg-primary/5 transition-all">
+                            Profile
+                        </button>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-surface-dark rounded-2xl p-6 garden-border shadow-sm hover:shadow-hover hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700"></div>
+<div class="relative flex justify-between items-start mb-5">
+<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" data-alt="Corporate logo for BuildRight Reno">
+<span class="material-symbols-outlined !text-[32px]">format_paint</span>
+</div>
+<div class="bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full flex items-center gap-1 border border-green-100 dark:border-green-800">
+<span class="material-symbols-outlined !text-[14px] fill-current">verified</span>
+<span class="text-[10px] font-extrabold uppercase tracking-wider">Verified</span>
+</div>
+</div>
+<div class="relative">
+<h3 class="text-lg font-bold mb-1 text-gray-800 dark:text-white group-hover:text-primary transition-colors">BuildRight Reno</h3>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Renovasi &amp; Dalaman</p>
+<div class="flex items-center gap-1.5 text-accent-coral mb-5 bg-accent-coral/5 w-fit px-3 py-1 rounded-lg">
+<span class="material-symbols-outlined !text-[18px] font-variation-settings-fill">star</span>
+<span class="text-sm font-bold text-gray-800 dark:text-gray-100">4.6</span>
+<span class="text-xs text-gray-500 font-medium ml-1">(90 ulasan)</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
+<div class="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-[16px]">call</span>
+</div>
+<span class="font-medium font-mono tracking-tight">+60 19-333 4444</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
+<div class="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-[16px]">history</span>
+</div>
+<span class="font-medium">10 tahun berkhidmat</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl text-sm font-bold hover:brightness-110 transition-all shadow-sm">
+<span class="material-symbols-outlined !text-[18px]">chat</span>
+                            WhatsApp
+                        </button>
+<button class="flex items-center justify-center gap-2 border border-primary/20 bg-white dark:bg-surface-dark text-primary py-3 rounded-xl text-sm font-bold hover:bg-primary/5 transition-all">
+                            Profile
+                        </button>
+</div>
+</div>
+</div>
+<div class="group bg-white dark:bg-surface-dark rounded-2xl p-6 garden-border shadow-sm hover:shadow-hover hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700"></div>
+<div class="relative flex justify-between items-start mb-5">
+<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" data-alt="Corporate logo for PlumbMaster Pro">
+<span class="material-symbols-outlined !text-[32px]">construction</span>
+</div>
+</div>
+<div class="relative">
+<h3 class="text-lg font-bold mb-1 text-gray-800 dark:text-white group-hover:text-primary transition-colors">PlumbMaster Pro</h3>
+<p class="text-sm font-medium text-gray-500 dark:text-gray-400 mb-3">Baik Pulih Am</p>
+<div class="flex items-center gap-1.5 text-accent-coral mb-5 bg-accent-coral/5 w-fit px-3 py-1 rounded-lg">
+<span class="material-symbols-outlined !text-[18px] font-variation-settings-fill">star</span>
+<span class="text-sm font-bold text-gray-800 dark:text-gray-100">4.4</span>
+<span class="text-xs text-gray-500 font-medium ml-1">(75 ulasan)</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
+<div class="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-[16px]">call</span>
+</div>
+<span class="font-medium font-mono tracking-tight">+60 14-221 3322</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-300">
+<div class="w-8 h-8 rounded-full bg-gray-50 dark:bg-gray-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined !text-[16px]">history</span>
+</div>
+<span class="font-medium">6 tahun berkhidmat</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl text-sm font-bold hover:brightness-110 transition-all shadow-sm">
+<span class="material-symbols-outlined !text-[18px]">chat</span>
+                            WhatsApp
+                        </button>
+<button class="flex items-center justify-center gap-2 border border-primary/20 bg-white dark:bg-surface-dark text-primary py-3 rounded-xl text-sm font-bold hover:bg-primary/5 transition-all">
+                            Profile
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<section class="mt-20 py-16 border-t border-primary/10 flex flex-col items-center text-center">
+<div class="mb-8 p-6 rounded-full bg-accent-coral/5 text-accent-coral ring-1 ring-accent-coral/20">
+<span class="material-symbols-outlined !text-[48px]">handyman</span>
+</div>
+<h2 class="text-3xl font-bold mb-4 text-[#111816] dark:text-white">Tiada vendor tersenarai?</h2>
+<p class="max-w-lg text-gray-600 dark:text-gray-300 mb-8 font-medium leading-relaxed">
+                Jika anda penyedia perkhidmatan atau ingin mencadangkan vendor kepada pengurusan Banjaria Court, sila daftar melalui portal rasmi kami untuk pengesahan.
+            </p>
+<button class="bg-accent-coral hover:bg-[#d97d71] text-white px-10 py-4 rounded-2xl font-bold transition-all shadow-lg shadow-accent-coral/20 hover:shadow-xl hover:-translate-y-0.5">
+                Mohon Sebagai Vendor Disahkan
+            </button>
+</section>
+</main>
+<footer class="bg-surface-light dark:bg-surface-dark px-6 md:px-20 py-16 mt-auto border-t border-primary/5">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12">
+<div class="max-w-sm">
+<div class="flex items-center gap-2 text-primary mb-6">
+<span class="material-symbols-outlined !text-[28px]">eco</span>
+<h3 class="text-xl font-bold tracking-tight">Banjaria Court</h3>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-300 font-medium leading-relaxed">
+                    Laman pengurusan kediaman rasmi. Memperkasa komuniti melalui ketelusan digital, amalan lestari, dan perkhidmatan dipercayai untuk semua penduduk.
+                </p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-10 md:gap-20">
+<div>
+<h4 class="font-bold mb-5 text-[#111816] dark:text-white">Perkhidmatan</h4>
+<ul class="text-sm space-y-3 text-gray-600 dark:text-gray-400 font-medium">
+<li><a class="hover:text-primary transition-colors" href="#">Cari Vendor</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Tempahan Fasiliti</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Yuran Penyelenggaraan</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-5 text-[#111816] dark:text-white">Sokongan</h4>
+<ul class="text-sm space-y-3 text-gray-600 dark:text-gray-400 font-medium">
+<li><a class="hover:text-primary transition-colors" href="#">Pusat Bantuan</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Pejabat Pengurusan</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Keselamatan</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-5 text-[#111816] dark:text-white">Legal</h4>
+<ul class="text-sm space-y-3 text-gray-600 dark:text-gray-400 font-medium">
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Use</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Sitemap</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto pt-10 mt-12 border-t border-primary/10 text-center text-xs text-primary/40 font-bold uppercase tracking-widest">
+            © 2024 Banjaria Court Residential Association. All rights reserved.
+        </div>
+</footer>
+
+</body></html>
