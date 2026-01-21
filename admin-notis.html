@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html class="light" lang="ms">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Admin Notis | Banjaria Court</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4A6741",
+            "accent-warm": "#D4A373",
+            "cream": "#FDFCF8",
+            "stone-surface": "#F5F2EB",
+            "text-main": "#2C3333",
+          },
+          fontFamily: { display: ["Manrope", "sans-serif"] },
+          borderRadius: { "2xl": "1.5rem", "3xl": "2rem" },
+          boxShadow: { soft: '0 10px 30px rgba(0,0,0,0.06)' }
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Manrope', sans-serif; }
+    .sidebar-collapsed { width: 4.5rem; }
+    .sidebar-collapsed .nav-label { display: none; }
+    .sidebar-collapsed .section-title { display: none; }
+    .sidebar-collapsed .nav-link { justify-content: center; padding-left: 0.75rem; padding-right: 0.75rem; }
+    .sidebar-collapsed .collapse-chevron { transform: rotate(180deg); }
+    .nav-link.active { background-color: rgba(74, 103, 65, 0.12); color: #4A6741; border: 1px solid rgba(74, 103, 65, 0.25); }
+  </style>
+</head>
+<body class="bg-cream text-text-main">
+  <div class="min-h-screen flex bg-cream">
+    <aside id="adminSidebar" class="w-72 shrink-0 border-r border-stone-200 bg-white/80 backdrop-blur-md shadow-soft transition-all duration-300">
+      <div class="p-5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="bg-primary text-white p-2 rounded-xl">
+            <span class="material-symbols-outlined">dashboard</span>
+          </div>
+          <div class="leading-tight nav-label">
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Admin</p>
+            <h2 class="text-base font-bold text-text-main">Panel</h2>
+          </div>
+        </div>
+        <button data-sidebar-toggle class="p-2 rounded-lg border border-stone-200 hover:bg-stone-50" aria-label="Toggle sidebar">
+          <span class="material-symbols-outlined text-base collapse-chevron">menu_open</span>
+        </button>
+      </div>
+      <div class="px-3 pb-6 space-y-4">
+        <p class="section-title text-xs font-semibold uppercase tracking-[0.2em] text-text-main/60 px-3">Navigasi</p>
+        <nav class="space-y-1" id="navLinks">
+          <button data-page="home" class="nav-link flex w-full items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
+            <span class="material-symbols-outlined text-base">home</span>
+            <span class="nav-label">Utama</span>
+          </button>
+          <button data-page="notis-admin" class="nav-link active flex w-full items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold" type="button">
+            <span class="material-symbols-outlined text-base">campaign</span>
+            <span class="nav-label">Notis (Admin)</span>
+          </button>
+          <button data-page="notis-public" class="nav-link flex w-full items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
+            <span class="material-symbols-outlined text-base">feed</span>
+            <span class="nav-label">Papan Notis</span>
+          </button>
+          <button data-page="kemudahan" class="nav-link flex w-full items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
+            <span class="material-symbols-outlined text-base">calendar_month</span>
+            <span class="nav-label">Kemudahan</span>
+          </button>
+          <button data-page="komuniti" class="nav-link flex w-full items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
+            <span class="material-symbols-outlined text-base">groups</span>
+            <span class="nav-label">Komuniti</span>
+          </button>
+          <button data-page="laporan" class="nav-link flex w-full items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
+            <span class="material-symbols-outlined text-base">description</span>
+            <span class="nav-label">Laporan AGM/EGM</span>
+          </button>
+          <button data-page="tender" class="nav-link flex w-full items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
+            <span class="material-symbols-outlined text-base">gavel</span>
+            <span class="nav-label">Tender</span>
+          </button>
+          <button data-page="vendor" class="nav-link flex w-full items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
+            <span class="material-symbols-outlined text-base">store</span>
+            <span class="nav-label">Vendor</span>
+          </button>
+          <button data-page="portal" class="nav-link flex w-full items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
+            <span class="material-symbols-outlined text-base">fact_check</span>
+            <span class="nav-label">Portal Borang</span>
+          </button>
+          <button data-page="hubungi" class="nav-link flex w-full items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
+            <span class="material-symbols-outlined text-base">support_agent</span>
+            <span class="nav-label">Hubungi</span>
+          </button>
+        </nav>
+        <p class="section-title text-xs font-semibold uppercase tracking-[0.2em] text-text-main/60 px-3 pt-2">Sesi</p>
+        <nav class="space-y-1">
+          <button id="resetSampleBtn" class="nav-link w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
+            <span class="material-symbols-outlined text-base">restart_alt</span>
+            <span class="nav-label">Reset Notis Contoh</span>
+          </button>
+          <button id="logoutBtn" class="nav-link w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
+            <span class="material-symbols-outlined text-base">logout</span>
+            <span class="nav-label">Log Keluar</span>
+          </button>
+        </nav>
+      </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col">
+      <header class="sticky top-0 z-30 bg-cream/95 backdrop-blur-md border-b border-stone-200/70">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <button data-sidebar-toggle class="lg:hidden p-2 rounded-lg border border-stone-200 hover:bg-white" aria-label="Toggle sidebar">
+              <span class="material-symbols-outlined text-base">menu</span>
+            </button>
+            <div class="bg-primary text-white p-2 rounded-xl">
+              <span class="material-symbols-outlined">campaign</span>
+            </div>
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Panel Admin</p>
+              <h1 class="text-lg font-bold text-text-main">Urus Notis</h1>
+            </div>
+          </div>
+          <a class="text-sm font-semibold text-primary flex items-center gap-1 hover:underline" href="halaman_notis_kediaman.html">
+            <span class="material-symbols-outlined text-base">visibility</span>
+            Lihat Papan Notis
+          </a>
+        </div>
+      </header>
+
+      <main class="flex-1 w-full px-4 sm:px-6 py-8">
+        <div id="notisAdminLayout" class="max-w-6xl mx-auto grid gap-8 lg:grid-cols-[2fr_1.2fr]">
+          <section class="bg-white rounded-3xl border border-stone-200 shadow-soft p-6 lg:p-8">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Senarai Notis</p>
+                <h2 class="text-2xl font-extrabold">Notis Semasa</h2>
+              </div>
+              <span class="text-sm text-text-main/60" id="notisCount"></span>
+            </div>
+            <div id="notisList" class="space-y-4"></div>
+          </section>
+
+          <section class="bg-white rounded-3xl border border-stone-200 shadow-soft p-6 lg:p-8">
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-2">Tambah / Sunting</p>
+            <h2 class="text-xl font-extrabold mb-4">Notis</h2>
+            <form id="notisForm" class="space-y-4">
+              <input type="hidden" id="notisId" />
+              <div>
+                <label class="text-sm font-semibold text-text-main/80">Tajuk</label>
+                <input required id="notisTitle" type="text" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="Contoh: Gangguan Air Blok A" />
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="text-sm font-semibold text-text-main/80">Kategori</label>
+                  <select id="notisCategory" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30">
+                    <option>Penyelenggaraan</option>
+                    <option>Umum</option>
+                    <option>Aktiviti</option>
+                    <option>Keselamatan</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="text-sm font-semibold text-text-main/80">Tarikh</label>
+                  <input required id="notisDate" type="date" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" />
+                </div>
+              </div>
+              <div>
+                <label class="text-sm font-semibold text-text-main/80">Ringkasan</label>
+                <textarea required id="notisSummary" rows="3" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="Masukkan deskripsi ringkas"></textarea>
+              </div>
+              <div>
+                <label class="text-sm font-semibold text-text-main/80">Imej (URL)</label>
+                <input id="notisImage" type="url" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="https://..." />
+                <p class="text-xs text-text-main/60 mt-1">Opsyenal: pautan gambar untuk paparan kad.</p>
+              </div>
+              <div class="flex items-center gap-3">
+                <button type="submit" class="rounded-xl bg-primary text-white font-bold px-5 py-3 shadow-lg shadow-primary/20 hover:-translate-y-0.5 transition-all" id="saveBtn">Simpan Notis</button>
+                <button type="button" id="resetBtn" class="rounded-xl border border-stone-200 px-4 py-3 text-sm font-semibold text-text-main hover:bg-stone-50">Kosongkan</button>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <div id="pagePreviewLayout" class="hidden max-w-6xl mx-auto">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Pratonton Kandungan</p>
+              <h2 id="previewTitle" class="text-2xl font-extrabold">Halaman</h2>
+              <p id="previewSubtitle" class="text-sm text-text-main/60 mt-1">Senarai kad pada halaman terpilih.</p>
+            </div>
+            <span id="previewCount" class="text-sm text-text-main/60"></span>
+          </div>
+
+          <div id="pageFormCard" class="bg-white rounded-3xl border border-stone-200 shadow-soft p-6 lg:p-8 mb-8">
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-2">Tambah / Sunting</p>
+            <h3 class="text-xl font-extrabold mb-4">Kad Halaman</h3>
+            <form id="pageCardForm" class="space-y-4">
+              <input type="hidden" id="pageCardId" />
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="text-sm font-semibold text-text-main/80">Tag / Kategori</label>
+                  <input id="pageCardTag" type="text" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="Contoh: Aktiviti" />
+                </div>
+                <div>
+                  <label class="text-sm font-semibold text-text-main/80">Tarikh (opsyenal)</label>
+                  <input id="pageCardDate" type="date" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" />
+                </div>
+              </div>
+              <div>
+                <label class="text-sm font-semibold text-text-main/80">Tajuk</label>
+                <input required id="pageCardTitle" type="text" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="Masukkan tajuk" />
+              </div>
+              <div>
+                <label class="text-sm font-semibold text-text-main/80">Ringkasan</label>
+                <textarea required id="pageCardSummary" rows="3" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="Masukkan deskripsi ringkas"></textarea>
+              </div>
+              <div>
+                <label class="text-sm font-semibold text-text-main/80">Imej (URL, opsyenal)</label>
+                <input id="pageCardImage" type="url" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="https://..." />
+              </div>
+              <div class="flex items-center gap-3">
+                <button type="submit" class="rounded-xl bg-primary text-white font-bold px-5 py-3 shadow-lg shadow-primary/20 hover:-translate-y-0.5 transition-all">Simpan Kad</button>
+                <button type="button" id="pageCardReset" class="rounded-xl border border-stone-200 px-4 py-3 text-sm font-semibold text-text-main hover:bg-stone-50">Kosongkan</button>
+              </div>
+            </form>
+          </div>
+
+          <div id="previewCards" class="grid gap-4 md:grid-cols-2"></div>
+          <p id="previewEmpty" class="hidden text-sm text-text-main/60">Tiada kad untuk dipaparkan.</p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <template id="notisCardTemplate">
+    <article class="border border-stone-200 rounded-2xl p-4 lg:p-5 bg-white flex flex-col gap-3">
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+            <span class="material-symbols-outlined">campaign</span>
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-text-main/60 card-category"></p>
+            <h3 class="text-lg font-bold card-title"></h3>
+          </div>
+        </div>
+        <p class="text-sm text-text-main/60 card-date"></p>
+      </div>
+      <p class="text-sm text-text-main/70 card-summary"></p>
+      <div class="flex items-center gap-2 pt-2">
+        <button class="edit-btn inline-flex items-center gap-1 text-primary text-sm font-bold hover:underline">
+          <span class="material-symbols-outlined text-base">edit</span>
+          Sunting
+        </button>
+        <button class="delete-btn inline-flex items-center gap-1 text-red-600 text-sm font-bold hover:underline">
+          <span class="material-symbols-outlined text-base">delete</span>
+          Padam
+        </button>
+      </div>
+    </article>
+  </template>
+
+  <script>
+    const authKey = 'adminAuthed';
+    const storageKey = 'notices';
+
+    if (localStorage.getItem(authKey) !== 'true') {
+      window.location.href = 'admin.html';
+    }
+
+    const defaultNotices = [
+      { id: crypto.randomUUID(), title: 'Gangguan Bekalan Air Sementara', category: 'Penyelenggaraan', date: '2023-10-15', summary: 'Kerja pembaikan paip utama di Blok A akan dijalankan 9:00 pagi - 5:00 petang.', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCTq7zizUdokZtsDQ6oljg1rEGo5VCLDYUNvre8k2dREHncdAYwlk2zI6q36VQH6QdBzc9yH6LQeF_xXJqZn87Qq6KHlK02FMxyFj9pB8NQQZwysSGtqtmzG3O0sp7cy2nVRBQ5LkuGnnbQ_l__WETLiESavJODz3hpyexbAi5gOmH80mZ0rRjjtucK74NvAjx_OdeulP1H5nRfGF7V8W8In6jY0z8ge572QwO2_5dP0_1HodK1da7Zogefklpy7_w2YwgzP7Wu6ms' },
+      { id: crypto.randomUUID(), title: 'Mesyuarat Agung Tahunan (AGM)', category: 'Umum', date: '2023-11-20', summary: 'Kehadiran semua pemilik dialu-alukan bagi membincangkan pelantikan jawatankuasa baharu.', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCZlde0qucjpnWS2USosfkdBHEPOK04fdmmJtgJ9Klne2MmdplzoekKtMm3LHd8CM87Oz-IjiT7HGsAa8d9RYPAss9d-i15OLCeYVwjibDB1iEQMyBpPOvnZRJY7MPu0OC-UWzz4jLEEfeVPd5F88i3-ic-E5ZmepYABuVxYC5uLBBtEM8Bh5ZF1GB93qoQalqSahMmTL9zlBb4VRpzwEJ_4ivjNttYuiqOTQtykazN3ukGUr9JNIjFZwf63wQ2NKj_3zfsnrIYZBU' },
+      { id: crypto.randomUUID(), title: 'Projek Keceriaan Taman', category: 'Aktiviti', date: '2023-10-10', summary: 'Penambahan landskap di zon rekreasi Fasa 2 dengan lebih banyak pokok teduhan.', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBf0rGKwyX_iC3P1-Wc39R5EEJAfP1jaYX4tQO9fgK5kCGHCjp2PkMf1FdioZqWp6A_lfYwc2FSVwbgfv2Sax0Qb7-NYwVO8_CHGah-hjVG5KlvtzQ4_SyotxReLj-p6PtfpJKNIu0XR6nhJN8YcfyarAkdJ4rJ92Ey26QykGEwsfsJnFuzptgbJY3FJ_9c8huccxawmi2BgvTablywrrhGcpg_rrT5r4M3zxr6SAevNhGYVTgWfzk4yiF0LHHESpXJ8iMVNeRropY' },
+      { id: crypto.randomUUID(), title: 'Sistem Kawalan Akses Baru', category: 'Keselamatan', date: '2023-11-01', summary: 'Pendaftaran tag akses baru penduduk bermula di pejabat pengurusan.', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBbfEskiQBAxLiVOcjapuEgoS16VXD4-uk9BCrnQ7_wDq04opPovDxb6hcpEUON26_ok2yWSFOXEv9YF6AI6kHYRJEuvBBLtIiPinKiBM09g1j9XbGW0Fh4UkuKPkdJJwOwYSGHSsE38waiNNiU8VWZ_rnphivokBTkxk8jOsgbkvCqHYTIi9aOPYRHli2ecFZ-Ni4G7u5IPJULCqrbYpXPMTMvUjF49XVzj1xfqBiluaOwBhVvgBtO2P_60pA07mzZWmpuHn46rQ0' },
+      { id: crypto.randomUUID(), title: 'Program Gotong-Royong Perdana', category: 'Aktiviti', date: '2023-10-25', summary: 'Bersih kawasan parkir dan taman permainan; sarapan disediakan.', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDJebI2EZjeAHw-ft6KmwaQ0r2m5AAfPVHO7CDFOOydQdDz1BlvXEx7A9Yyepprtt9C0fv0eaRG4thsflo5wMdDuTtNxSalrddxq7hpBWVJEB7ZK-yziV5iVRb1UPVpD3-FAA7aQ9ItWeORMK_YMnHUMcvTT6P3jqxh8J3sTsC3pIYn-J9mQtF3sEATN6cH8Q1Lcla22SYD0Hd-iIHzVthqvbNH1iS9fAVDMJlmQrktDBRg6WBpYkuIH3wn4zx9H4XB9YCi421a4Ww' },
+      { id: crypto.randomUUID(), title: 'Yuran Penyelenggaraan Suku Ke-4', category: 'Kewangan', date: '2023-10-05', summary: 'Peringatan pembayaran yuran; pembayaran atas talian disediakan.', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA4SIiqaxGYZwT5HkiW-d5bwy4NbtyWuDjLj-wiled35KhkzzqFJpF8fUr4fkZFyYs9Ma0ATVkUbHWgJCkdIgrO_FK-IXQEgRZzJAhqkekZZV-X9UoGztNgD1I_uL1D0G1eBERs55dh4c0BdmXgWPpYGGf-gC2owfruqpyp_LOTGyammdu4_1902HPbCPBIIzCLofQBVy2NIAJJ_fvTiPXxYfyHgApXUqyrQ3uHAAzb7farLJOgh91J1L03qTWX8Ywnmd6fRu1sVv4' },
+    ];
+
+    let notices = loadNotices();
+    let currentPage = 'notis-admin';
+
+    const pageStorageKey = 'pageDataV1';
+
+    function seedWithIds(obj) {
+      const copy = {};
+      Object.keys(obj).forEach(key => {
+        copy[key] = {
+          title: obj[key].title,
+          subtitle: obj[key].subtitle,
+          cards: (obj[key].cards || []).map(c => ({ ...c, id: crypto.randomUUID() })),
+        };
+      });
+      return copy;
+    }
+
+    function loadPageData() {
+      const saved = localStorage.getItem(pageStorageKey);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (!parsed || typeof parsed !== 'object') throw new Error('Invalid page data');
+          Object.keys(parsed).forEach(k => {
+            parsed[k].cards = (parsed[k].cards || []).map(c => ({ id: c.id || crypto.randomUUID(), ...c }));
+          });
+          return parsed;
+        } catch (_) {
+          const seeded = seedWithIds(pageDefaults);
+          localStorage.setItem(pageStorageKey, JSON.stringify(seeded));
+          return seeded;
+        }
+      }
+      const seeded = seedWithIds(pageDefaults);
+      localStorage.setItem(pageStorageKey, JSON.stringify(seeded));
+      return seeded;
+    }
+
+    function persistPageData() {
+      localStorage.setItem(pageStorageKey, JSON.stringify(pageData));
+    }
+
+    const pageDefaults = {
+      'home': {
+        title: 'Utama',
+        subtitle: 'Kad hero dan hab penduduk di halaman utama.',
+        cards: [
+          { tag: 'Hero', title: 'Selamat Datang ke Banjaria Court', summary: 'Highlight kediaman hijau dan ajakan “Lihat Kemudahan” & “Pendaftaran Pelawat”.', bg: 'bg-gradient-to-r from-primary/10 to-accent-warm/10' },
+          { tag: 'Hab Penduduk', title: 'Kumpulan servis utama', summary: 'Notis, Tempahan, Pembayaran, Sokongan sebagai pintu masuk utama.' },
+        ],
+      },
+      'kemudahan': {
+        title: 'Kemudahan',
+        subtitle: 'Kad tempahan & fasiliti.',
+        cards: [
+          { tag: 'Rekreasi', title: 'Kolam Renang Infinit', summary: 'Pemandangan panorama, 7:00 pagi - 10:00 malam.' },
+          { tag: 'Keluarga', title: 'Taman Permainan', summary: 'Permukaan lembut EPDM, peralatan moden.' },
+          { tag: 'Kesihatan', title: 'Laman Refleksologi', summary: 'Zon ketenangan dengan herba aromatik.' },
+          { tag: 'Acara', title: 'Dewan Serbaguna', summary: 'Ruang luas untuk majlis komuniti.' },
+        ],
+      },
+      'komuniti': {
+        title: 'Aktiviti Komuniti',
+        subtitle: 'Kad acara komuniti.',
+        cards: [
+          { tag: 'Akan Datang', title: 'Gotong-royong Perdana & Taman Herba', date: '2024-08-12', summary: 'Bersih kawasan blok & perasmian taman herba.' },
+          { tag: 'Sukan', title: 'Liga Futsal Komuniti', summary: 'Pertandingan santai hujung minggu.' },
+          { tag: 'Perayaan', title: 'Jamuan Hari Raya Blok B', summary: 'Jamuan bersama jiran tetangga.' },
+        ],
+      },
+      'laporan': {
+        title: 'Laporan AGM/EGM',
+        subtitle: 'Sorotan laporan terkini.',
+        cards: [
+          { tag: 'AGM', title: 'Mesyuarat Agung Tahunan', summary: 'Agenda: pelantikan jawatankuasa, laporan kewangan, usul keselamatan.' },
+          { tag: 'EGM', title: 'Mesyuarat Khas', summary: 'Isu khusus yang memerlukan undian pemilik.' },
+        ],
+      },
+      'tender': {
+        title: 'Tender Terbuka',
+        subtitle: 'Ringkasan tender aktif.',
+        cards: [
+          { tag: 'Perkhidmatan', title: 'Pembersihan Kawasan Umum', summary: 'Skop: blok kediaman & landskap; tutup 30 Jan 2025.' },
+          { tag: 'Keselamatan', title: 'Naik Taraf CCTV Perimeter', summary: 'Penambahan kamera dan pusat kawalan; tutup 15 Feb 2025.' },
+        ],
+      },
+      'vendor': {
+        title: 'Vendor Berdaftar',
+        subtitle: 'Direktori vendor.',
+        cards: [
+          { tag: 'Pembersihan', title: 'EcoClean Services', summary: 'Kontrak penyelenggaraan bulanan.' },
+          { tag: 'Keselamatan', title: 'SecureWatch Sdn Bhd', summary: 'Bekal & servis CCTV.' },
+          { tag: 'Landskap', title: 'GreenScape', summary: 'Penyelenggaraan taman & pokok.' },
+        ],
+      },
+      'portal': {
+        title: 'Portal Borang Digital',
+        subtitle: 'Borang & permohonan.',
+        cards: [
+          { tag: 'Permit', title: 'Permit Renovasi', summary: 'Permohonan kerja ubah suai unit.' },
+          { tag: 'Akses', title: 'Pas Pelawat', summary: 'Pendaftaran pelawat dan kenderaan.' },
+          { tag: 'Kelengkapan', title: 'Tempahan Fasiliti', summary: 'Tempahan dewan, BBQ, gelanggang.' },
+        ],
+      },
+      'hubungi': {
+        title: 'Hubungi Pengurusan',
+        subtitle: 'Saluran komunikasi.',
+        cards: [
+          { tag: 'Umum', title: 'Borang Aduan', summary: 'Laporkan isu penyelenggaraan.' },
+          { tag: 'Kecemasan', title: 'Talian Kecemasan', summary: 'Nombor untuk situasi mendesak.' },
+          { tag: 'Sokongan', title: 'Pertanyaan Akaun', summary: 'Hubungi untuk bil & yuran.' },
+        ],
+      },
+    };
+
+    let pageData = loadPageData();
+
+    const sidebar = document.getElementById('adminSidebar');
+    const sidebarToggles = document.querySelectorAll('[data-sidebar-toggle]');
+    const navLinks = document.querySelectorAll('#navLinks .nav-link');
+    const notisLayout = document.getElementById('notisAdminLayout');
+    const previewLayout = document.getElementById('pagePreviewLayout');
+    const previewTitle = document.getElementById('previewTitle');
+    const previewSubtitle = document.getElementById('previewSubtitle');
+    const previewCount = document.getElementById('previewCount');
+    const previewCards = document.getElementById('previewCards');
+    const previewEmpty = document.getElementById('previewEmpty');
+    const pageFormCard = document.getElementById('pageFormCard');
+    const pageForm = document.getElementById('pageCardForm');
+    const pageCardIdEl = document.getElementById('pageCardId');
+    const pageCardTagEl = document.getElementById('pageCardTag');
+    const pageCardDateEl = document.getElementById('pageCardDate');
+    const pageCardTitleEl = document.getElementById('pageCardTitle');
+    const pageCardSummaryEl = document.getElementById('pageCardSummary');
+    const pageCardImageEl = document.getElementById('pageCardImage');
+    const pageCardResetBtn = document.getElementById('pageCardReset');
+
+    const listEl = document.getElementById('notisList');
+    const countEl = document.getElementById('notisCount');
+    const formEl = document.getElementById('notisForm');
+    const idEl = document.getElementById('notisId');
+    const titleEl = document.getElementById('notisTitle');
+    const catEl = document.getElementById('notisCategory');
+    const dateEl = document.getElementById('notisDate');
+    const summaryEl = document.getElementById('notisSummary');
+    const imageEl = document.getElementById('notisImage');
+    const resetBtn = document.getElementById('resetBtn');
+    const resetSampleBtn = document.getElementById('resetSampleBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    sidebarToggles.forEach(btn => btn.addEventListener('click', () => {
+      sidebar.classList.toggle('sidebar-collapsed');
+    }));
+
+    navLinks.forEach(link => link.addEventListener('click', () => {
+      const page = link.getAttribute('data-page');
+      setActivePage(page);
+    }));
+
+    renderNotices();
+    setActivePage('notis-admin');
+
+    formEl.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const payload = {
+        id: idEl.value || crypto.randomUUID(),
+        title: titleEl.value.trim(),
+        category: catEl.value.trim(),
+        date: dateEl.value,
+        summary: summaryEl.value.trim(),
+        image: imageEl.value.trim(),
+      };
+
+      if (idEl.value) {
+        notices = notices.map(n => n.id === payload.id ? payload : n);
+      } else {
+        notices = [payload, ...notices];
+      }
+
+      persist();
+      renderNotices();
+      formEl.reset();
+      idEl.value = '';
+      imageEl.value = '';
+    });
+
+    resetBtn.addEventListener('click', () => {
+      formEl.reset();
+      idEl.value = '';
+      imageEl.value = '';
+    });
+
+    if (pageForm) {
+      pageForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const card = {
+          id: pageCardIdEl.value || crypto.randomUUID(),
+          tag: pageCardTagEl.value.trim(),
+          title: pageCardTitleEl.value.trim(),
+          date: pageCardDateEl.value,
+          summary: pageCardSummaryEl.value.trim(),
+          image: pageCardImageEl.value.trim(),
+        };
+
+        const pageEntry = pageData[currentPage] || { ...pageDefaults[currentPage], cards: [] };
+        const existingIdx = (pageEntry.cards || []).findIndex(c => c.id === card.id);
+        if (existingIdx >= 0) {
+          pageEntry.cards[existingIdx] = card;
+        } else {
+          pageEntry.cards = [card, ...pageEntry.cards];
+        }
+        pageData[currentPage] = pageEntry;
+        persistPageData();
+        renderPageCards(currentPage);
+        resetPageForm();
+      });
+
+      pageCardResetBtn.addEventListener('click', () => {
+        resetPageForm();
+      });
+    }
+
+    resetSampleBtn.addEventListener('click', () => {
+      if (!confirm('Gantikan notis dengan 6 contoh asal?')) return;
+      notices = defaultNotices.map(n => ({ ...n, id: crypto.randomUUID() }));
+      persist();
+      renderNotices();
+      setActivePage(currentPage);
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      localStorage.removeItem(authKey);
+      window.location.href = 'admin.html';
+    });
+
+    function loadNotices() {
+      const saved = localStorage.getItem(storageKey);
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch (_) {
+          return defaultNotices;
+        }
+      }
+      localStorage.setItem(storageKey, JSON.stringify(defaultNotices));
+      return defaultNotices;
+    }
+
+    function persist() {
+      localStorage.setItem(storageKey, JSON.stringify(notices));
+    }
+
+    function renderNotices() {
+      listEl.innerHTML = '';
+      if (!notices.length) {
+        listEl.innerHTML = '<p class="text-sm text-text-main/60">Tiada notis. Tambah notis baharu.</p>';
+      }
+      notices.forEach(notis => {
+        const tpl = document.getElementById('notisCardTemplate').content.cloneNode(true);
+        tpl.querySelector('.card-title').textContent = notis.title;
+        tpl.querySelector('.card-category').textContent = notis.category;
+        tpl.querySelector('.card-date').textContent = formatDate(notis.date);
+        tpl.querySelector('.card-summary').textContent = notis.summary;
+        tpl.querySelector('.edit-btn').addEventListener('click', () => fillForm(notis));
+        tpl.querySelector('.delete-btn').addEventListener('click', () => deleteNotis(notis.id));
+        listEl.appendChild(tpl);
+      });
+      countEl.textContent = `${notices.length} notis`;
+    }
+
+    function setActivePage(page) {
+      currentPage = page;
+      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('data-page') === page));
+
+      if (page === 'notis-admin') {
+        notisLayout.classList.remove('hidden');
+        previewLayout.classList.add('hidden');
+        return;
+      }
+
+      notisLayout.classList.add('hidden');
+      previewLayout.classList.remove('hidden');
+
+      if (page === 'notis-public') {
+        pageFormCard.classList.add('hidden');
+        previewTitle.textContent = 'Papan Notis Umum';
+        previewSubtitle.textContent = 'Kad notis seperti dilihat oleh penduduk.';
+        const noticeCards = (notices || []).map(n => ({
+          tag: n.category,
+          title: n.title,
+          date: formatDate(n.date),
+          summary: n.summary,
+          image: n.image,
+        }));
+        renderPreviewCards(noticeCards, false);
+        return;
+      }
+
+      pageFormCard.classList.remove('hidden');
+      renderPageCards(page);
+    }
+
+    function renderPageCards(page) {
+      const data = pageData[page] || pageDefaults[page] || { title: 'Halaman', subtitle: '', cards: [] };
+      const cards = (data.cards || []).map(c => ({
+        ...c,
+        displayDate: c.date ? formatDate(c.date) : '',
+        rawDate: c.date || '',
+      }));
+      previewTitle.textContent = data.title;
+      previewSubtitle.textContent = data.subtitle || 'Senarai kad pada halaman terpilih.';
+      renderPreviewCards(cards, true);
+      resetPageForm();
+    }
+
+    function fillPageForm(card) {
+      pageCardIdEl.value = card.id;
+      pageCardTagEl.value = card.tag || '';
+      pageCardTitleEl.value = card.title || '';
+      const raw = card.rawDate || card.date;
+      pageCardDateEl.value = raw ? new Date(raw).toISOString().slice(0,10) : '';
+      pageCardSummaryEl.value = card.summary || '';
+      pageCardImageEl.value = card.image || '';
+      pageCardTitleEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function deletePageCard(id) {
+      if (!id) return;
+      if (!confirm('Padam kad ini?')) return;
+      const entry = pageData[currentPage] || { ...pageDefaults[currentPage], cards: [] };
+      entry.cards = (entry.cards || []).filter(c => c.id !== id);
+      pageData[currentPage] = entry;
+      persistPageData();
+      renderPageCards(currentPage);
+    }
+
+    function resetPageForm() {
+      if (!pageForm) return;
+      pageForm.reset();
+      pageCardIdEl.value = '';
+    }
+
+    function renderPreviewCards(cards, allowEdit = false) {
+      previewCards.innerHTML = '';
+      previewCount.textContent = `${cards.length} kad`;
+      if (!cards.length) {
+        previewEmpty.classList.remove('hidden');
+        return;
+      }
+      previewEmpty.classList.add('hidden');
+      cards.forEach(card => {
+        const el = document.createElement('article');
+        const baseClass = 'border border-stone-200 rounded-2xl p-4 bg-white shadow-sm flex flex-col gap-2';
+        el.className = `${baseClass} ${card.bg || ''}`.trim();
+
+        const imageBlock = card.image ? `
+          <div class="rounded-xl overflow-hidden border border-stone-200/70">
+            <div class="aspect-[16/9] bg-center bg-cover" style="background-image: url('${card.image}')"></div>
+          </div>
+        ` : '';
+
+        el.innerHTML = `
+          ${imageBlock}
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-widest text-text-main/60">${card.tag || ''}</p>
+              <h3 class="text-lg font-bold ${card.textClass || 'text-text-main'}">${card.title || ''}</h3>
+            </div>
+            ${card.displayDate || card.date ? `<span class="text-xs text-text-main/60">${card.displayDate || card.date}</span>` : ''}
+          </div>
+          ${card.meta ? `<p class="text-xs font-semibold text-primary">${card.meta}</p>` : ''}
+          <p class="text-sm ${card.textClass || 'text-text-main/70'}">${card.summary || ''}</p>
+          ${allowEdit ? `
+            <div class="flex items-center gap-2 pt-2">
+              <button class="text-primary text-xs font-bold hover:underline" data-edit-card>Edit</button>
+              <button class="text-red-600 text-xs font-bold hover:underline" data-delete-card>Padam</button>
+            </div>
+          ` : ''}
+        `;
+        if (allowEdit && card.id) {
+          const editBtn = el.querySelector('[data-edit-card]');
+          const delBtn = el.querySelector('[data-delete-card]');
+          editBtn.addEventListener('click', () => fillPageForm(card));
+          delBtn.addEventListener('click', () => deletePageCard(card.id));
+        }
+        previewCards.appendChild(el);
+      });
+    }
+
+    function deleteNotis(id) {
+      if (!confirm('Padam notis ini?')) return;
+      notices = notices.filter(n => n.id !== id);
+      persist();
+      renderNotices();
+    }
+
+    function fillForm(notis) {
+      idEl.value = notis.id;
+      titleEl.value = notis.title;
+      catEl.value = notis.category;
+      dateEl.value = notis.date;
+      summaryEl.value = notis.summary;
+      imageEl.value = notis.image || '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const d = new Date(dateStr);
+      return d.toLocaleDateString('ms-MY', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+  </script>
+</body>
+</html>

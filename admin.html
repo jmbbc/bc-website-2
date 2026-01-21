@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html class="light" lang="ms">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Admin Log Masuk | Banjaria Court</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4A6741",
+            "accent-warm": "#D4A373",
+            "cream": "#FDFCF8",
+            "stone-surface": "#F5F2EB",
+            "text-main": "#2C3333",
+          },
+          fontFamily: { display: ["Manrope", "sans-serif"] },
+          borderRadius: { "2xl": "1.5rem", "3xl": "2rem" },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Manrope', sans-serif; }
+  </style>
+</head>
+<body class="bg-cream text-text-main">
+  <div class="min-h-screen flex flex-col">
+    <header class="sticky top-0 z-40 bg-cream/90 backdrop-blur-md border-b border-stone-200/60">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="bg-primary text-white p-2 rounded-xl">
+            <span class="material-symbols-outlined">admin_panel_settings</span>
+          </div>
+          <div>
+            <h1 class="text-lg font-bold tracking-tight text-primary">Banjaria Court</h1>
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-text-main/60">Admin</p>
+          </div>
+        </div>
+        <a class="text-sm font-bold text-primary flex items-center gap-2 hover:underline" href="index.html">
+          <span class="material-symbols-outlined text-base">arrow_back</span>
+          Kembali ke Laman Utama
+        </a>
+      </div>
+    </header>
+
+    <main class="flex-1 flex items-center justify-center px-4 py-12">
+      <div class="w-full max-w-xl bg-white shadow-lg shadow-primary/5 rounded-3xl border border-stone-200 p-8 md:p-10">
+        <div class="flex items-start gap-3 mb-6">
+          <div class="bg-primary/10 text-primary p-2 rounded-xl">
+            <span class="material-symbols-outlined">lock</span>
+          </div>
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Panel Admin</p>
+            <h2 class="text-2xl font-extrabold mt-1">Log Masuk Admin</h2>
+            <p class="text-sm text-text-main/70 mt-1">Untuk tambah, edit atau padam notis.</p>
+          </div>
+        </div>
+
+        <form id="adminLoginForm" class="space-y-4">
+          <div>
+            <label class="text-sm font-semibold text-text-main/80">Emel</label>
+            <input required type="email" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="admin@banjaria.local" />
+          </div>
+          <div>
+            <label class="text-sm font-semibold text-text-main/80">Kata Laluan</label>
+            <input required type="password" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="••••••••" />
+          </div>
+          <p class="text-xs text-text-main/60">Gunakan kelayakan yang sah. (Buat masa ini, sebarang emel & kata laluan akan diterima untuk demo tempatan.)</p>
+          <button type="submit" class="w-full rounded-xl bg-primary text-white font-bold py-3 shadow-lg shadow-primary/20 hover:-translate-y-0.5 transition-all">Log Masuk</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const form = document.getElementById('adminLoginForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      localStorage.setItem('adminAuthed', 'true');
+      window.location.href = 'admin-notis.html';
+    });
+  </script>
+</body>
+</html>
