@@ -122,7 +122,7 @@
                 </div>
                 <div>
                     <p class="text-muted-green dark:text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Tender Aktif</p>
-                    <p class="text-4xl font-black text-primary-dark dark:text-white">05</p>
+                    <p id="tenderActiveCount" class="text-4xl font-black text-primary-dark dark:text-white">05</p>
                 </div>
             </div>
             <div class="bg-surface-light dark:bg-[#2d3f3b] p-8 rounded-[2rem] border border-[#eaf0ef] dark:border-[#3a504b] shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] flex items-center gap-6 group hover:border-accent-terracotta/30 transition-all hover:shadow-lg hover:shadow-accent-terracotta/5">
@@ -131,7 +131,7 @@
                 </div>
                 <div>
                     <p class="text-muted-green dark:text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Tamat Segera</p>
-                    <p class="text-4xl font-black text-primary-dark dark:text-white">02</p>
+                    <p id="tenderClosingCount" class="text-4xl font-black text-primary-dark dark:text-white">02</p>
                 </div>
             </div>
             <div class="bg-surface-light dark:bg-[#2d3f3b] p-8 rounded-[2rem] border border-[#eaf0ef] dark:border-[#3a504b] shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] flex items-center gap-6 group hover:border-primary/30 transition-all hover:shadow-lg hover:shadow-primary/5">
@@ -140,7 +140,7 @@
                 </div>
                 <div>
                     <p class="text-muted-green dark:text-gray-400 text-xs font-bold uppercase tracking-widest mb-1">Arkib Tender</p>
-                    <p class="text-4xl font-black text-primary-dark dark:text-white">12</p>
+                    <p id="tenderArchiveCount" class="text-4xl font-black text-primary-dark dark:text-white">12</p>
                 </div>
             </div>
         </div>
@@ -155,24 +155,24 @@
                     <div class="flex flex-wrap gap-3">
                         <div class="relative">
                             <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-muted-green text-lg">search</span>
-                            <input class="pl-10 pr-4 py-2.5 bg-background-light dark:bg-[#1f2d2b] border border-[#eaf0ef] dark:border-[#3a504b] rounded-xl text-sm font-semibold focus:ring-2 focus:ring-primary/20 focus:border-primary w-64 transition-all" placeholder="Cari ID atau tajuk..." type="text" />
+                            <input id="tenderSearchInput" class="pl-10 pr-4 py-2.5 bg-background-light dark:bg-[#1f2d2b] border border-[#eaf0ef] dark:border-[#3a504b] rounded-xl text-sm font-semibold focus:ring-2 focus:ring-primary/20 focus:border-primary w-64 transition-all" placeholder="Cari ID atau tajuk..." type="text" />
                         </div>
-                        <div class="flex bg-[#eaf0ef] dark:bg-[#1a2624] p-1 rounded-xl">
-                            <button class="px-5 py-2 rounded-lg text-xs font-bold bg-white dark:bg-primary text-primary dark:text-white shadow-sm transition-all uppercase tracking-wide">Semua</button>
-                            <button class="px-5 py-2 rounded-lg text-xs font-bold text-muted-green hover:text-primary transition-colors uppercase tracking-wide">Buka</button>
-                            <button class="px-5 py-2 rounded-lg text-xs font-bold text-muted-green hover:text-primary transition-colors uppercase tracking-wide">Tutup</button>
+                        <div class="flex bg-[#eaf0ef] dark:bg-[#1a2624] p-1 rounded-xl" id="tenderStatusFilters">
+                            <button data-status="all" class="px-5 py-2 rounded-lg text-xs font-bold bg-white dark:bg-primary text-primary dark:text-white shadow-sm transition-all uppercase tracking-wide">Semua</button>
+                            <button data-status="open" class="px-5 py-2 rounded-lg text-xs font-bold text-muted-green hover:text-primary transition-colors uppercase tracking-wide">Buka</button>
+                            <button data-status="closed" class="px-5 py-2 rounded-lg text-xs font-bold text-muted-green hover:text-primary transition-colors uppercase tracking-wide">Tutup</button>
                         </div>
                     </div>
                 </div>
                 <div class="flex flex-wrap gap-3">
-                    <button class="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-full text-xs font-bold shadow-lg shadow-primary/20 hover:bg-primary-dark transition-colors">
+                    <button data-category="all" class="flex items-center gap-2 px-5 py-2.5 bg-primary text-white rounded-full text-xs font-bold shadow-lg shadow-primary/20 hover:bg-primary-dark transition-colors">
                         <span class="material-symbols-outlined text-sm">tune</span>
                         Semua Kategori
                     </button>
-                    <button class="flex items-center gap-2 px-5 py-2.5 bg-background-light dark:bg-[#1f2d2b] text-muted-green hover:text-primary border border-transparent hover:border-primary/20 rounded-full text-xs font-bold transition-all">Penyelenggaraan</button>
-                    <button class="flex items-center gap-2 px-5 py-2.5 bg-background-light dark:bg-[#1f2d2b] text-muted-green hover:text-primary border border-transparent hover:border-primary/20 rounded-full text-xs font-bold transition-all">Keselamatan</button>
-                    <button class="flex items-center gap-2 px-5 py-2.5 bg-background-light dark:bg-[#1f2d2b] text-muted-green hover:text-primary border border-transparent hover:border-primary/20 rounded-full text-xs font-bold transition-all">Naik Taraf</button>
-                    <button class="flex items-center gap-2 px-5 py-2.5 bg-background-light dark:bg-[#1f2d2b] text-muted-green hover:text-primary border border-transparent hover:border-primary/20 rounded-full text-xs font-bold transition-all">Landskap</button>
+                    <button data-category="Penyelenggaraan" class="flex items-center gap-2 px-5 py-2.5 bg-background-light dark:bg-[#1f2d2b] text-muted-green hover:text-primary border border-transparent hover:border-primary/20 rounded-full text-xs font-bold transition-all">Penyelenggaraan</button>
+                    <button data-category="Keselamatan" class="flex items-center gap-2 px-5 py-2.5 bg-background-light dark:bg-[#1f2d2b] text-muted-green hover:text-primary border border-transparent hover:border-primary/20 rounded-full text-xs font-bold transition-all">Keselamatan</button>
+                    <button data-category="Naik Taraf" class="flex items-center gap-2 px-5 py-2.5 bg-background-light dark:bg-[#1f2d2b] text-muted-green hover:text-primary border border-transparent hover:border-primary/20 rounded-full text-xs font-bold transition-all">Naik Taraf</button>
+                    <button data-category="Landskap" class="flex items-center gap-2 px-5 py-2.5 bg-background-light dark:bg-[#1f2d2b] text-muted-green hover:text-primary border border-transparent hover:border-primary/20 rounded-full text-xs font-bold transition-all">Landskap</button>
                 </div>
             </div>
 
@@ -188,152 +188,7 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-[#eaf0ef] dark:divide-[#3a504b] bg-white dark:bg-[#2d3f3b]">
-                        <tr class="hover:bg-[#fbfaf9] dark:hover:bg-[#253634] transition-colors group">
-                            <td class="px-8 py-6">
-                                <div class="flex flex-col gap-1">
-                                    <div class="flex items-center gap-2">
-                                        <span class="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[10px] font-black uppercase tracking-wider">TDR-2023-004</span>
-                                    </div>
-                                    <span class="font-bold text-lg text-[#111816] dark:text-white group-hover:text-primary transition-colors">Pengecatan Semula Blok A &amp; Blok B</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-6">
-                                <span class="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-lg text-xs font-bold text-gray-600 dark:text-gray-300">
-                                    <span class="material-symbols-outlined text-sm">format_paint</span>
-                                    Penyelenggaraan
-                                </span>
-                            </td>
-                            <td class="px-6 py-6">
-                                <div class="flex flex-col">
-                                    <span class="text-sm font-bold text-gray-900 dark:text-gray-100">15 Nov 2023</span>
-                                    <span class="text-[10px] text-accent-terracotta font-bold uppercase tracking-wide">12 Hari Lagi</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-6">
-                                <span class="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 rounded-full text-xs font-bold border border-emerald-100 dark:border-emerald-800">
-                                    <span class="relative flex h-2 w-2">
-                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                                    </span>
-                                    Dibuka
-                                </span>
-                            </td>
-                            <td class="px-8 py-6 text-right">
-                                <button class="group/btn relative px-4 py-2 rounded-xl bg-white dark:bg-[#1a2624] border border-[#eaf0ef] dark:border-[#3a504b] text-muted-green hover:text-primary hover:border-primary transition-all inline-flex items-center gap-2 font-bold text-xs shadow-sm hover:shadow-md">
-                                    <span class="material-symbols-outlined text-lg">download</span>
-                                    Muat Turun PDF
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-[#fbfaf9] dark:hover:bg-[#253634] transition-colors group">
-                            <td class="px-8 py-6">
-                                <div class="flex flex-col gap-1">
-                                    <div class="flex items-center gap-2">
-                                        <span class="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[10px] font-black uppercase tracking-wider">TDR-2023-005</span>
-                                    </div>
-                                    <span class="font-bold text-lg text-[#111816] dark:text-white group-hover:text-primary transition-colors">Naiktaraf Sistem Lif (Fasa 2)</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-6">
-                                <span class="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-lg text-xs font-bold text-gray-600 dark:text-gray-300">
-                                    <span class="material-symbols-outlined text-sm">elevator</span>
-                                    Naik Taraf
-                                </span>
-                            </td>
-                            <td class="px-6 py-6">
-                                <div class="flex flex-col">
-                                    <span class="text-sm font-bold text-gray-900 dark:text-gray-100">30 Okt 2023</span>
-                                    <span class="text-[10px] text-accent-terracotta font-black uppercase tracking-wide">Tamat Esok</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-6">
-                                <span class="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 rounded-full text-xs font-bold border border-emerald-100 dark:border-emerald-800">
-                                    <span class="relative flex h-2 w-2">
-                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                                    </span>
-                                    Dibuka
-                                </span>
-                            </td>
-                            <td class="px-8 py-6 text-right">
-                                <button class="group/btn relative px-4 py-2 rounded-xl bg-white dark:bg-[#1a2624] border border-[#eaf0ef] dark:border-[#3a504b] text-muted-green hover:text-primary hover:border-primary transition-all inline-flex items-center gap-2 font-bold text-xs shadow-sm hover:shadow-md">
-                                    <span class="material-symbols-outlined text-lg">download</span>
-                                    Muat Turun PDF
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-[#fbfaf9] dark:hover:bg-[#253634] transition-colors group opacity-75 grayscale-[0.5] hover:grayscale-0 hover:opacity-100">
-                            <td class="px-8 py-6">
-                                <div class="flex flex-col gap-1">
-                                    <div class="flex items-center gap-2">
-                                        <span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-500 text-[10px] font-black uppercase tracking-wider">TDR-2023-002</span>
-                                    </div>
-                                    <span class="font-bold text-lg text-[#111816] dark:text-white group-hover:text-primary transition-colors">Perkhidmatan Kawalan Keselamatan 2024</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-6">
-                                <span class="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-lg text-xs font-bold text-gray-600 dark:text-gray-300">
-                                    <span class="material-symbols-outlined text-sm">security</span>
-                                    Keselamatan
-                                </span>
-                            </td>
-                            <td class="px-6 py-6">
-                                <div class="flex flex-col">
-                                    <span class="text-sm font-bold text-gray-400">20 Okt 2023</span>
-                                    <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wide">Tutup</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-6">
-                                <span class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded-full text-xs font-bold border border-gray-200 dark:border-gray-700">
-                                    <span class="h-2 w-2 rounded-full bg-gray-400"></span>
-                                    Ditutup
-                                </span>
-                            </td>
-                            <td class="px-8 py-6 text-right">
-                                <button class="cursor-not-allowed opacity-50 px-4 py-2 rounded-xl bg-gray-50 dark:bg-[#1a2624] border border-gray-200 dark:border-[#3a504b] text-gray-400 inline-flex items-center gap-2 font-bold text-xs">
-                                    <span class="material-symbols-outlined text-lg">lock</span>
-                                    Tutup
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-[#fbfaf9] dark:hover:bg-[#253634] transition-colors group">
-                            <td class="px-8 py-6">
-                                <div class="flex flex-col gap-1">
-                                    <div class="flex items-center gap-2">
-                                        <span class="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[10px] font-black uppercase tracking-wider">TDR-2023-006</span>
-                                    </div>
-                                    <span class="font-bold text-lg text-[#111816] dark:text-white group-hover:text-primary transition-colors">Landskap &amp; Penanaman Semula Pokok</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-6">
-                                <span class="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-lg text-xs font-bold text-gray-600 dark:text-gray-300">
-                                    <span class="material-symbols-outlined text-sm">yard</span>
-                                    Landskap
-                                </span>
-                            </td>
-                            <td class="px-6 py-6">
-                                <div class="flex flex-col">
-                                    <span class="text-sm font-bold text-gray-900 dark:text-gray-100">22 Nov 2023</span>
-                                    <span class="text-[10px] text-emerald-600 font-bold uppercase tracking-wide">3 Minggu Lagi</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-6">
-                                <span class="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 rounded-full text-xs font-bold border border-emerald-100 dark:border-emerald-800">
-                                    <span class="relative flex h-2 w-2">
-                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                                    </span>
-                                    Dibuka
-                                </span>
-                            </td>
-                            <td class="px-8 py-6 text-right">
-                                <button class="group/btn relative px-4 py-2 rounded-xl bg-white dark:bg-[#1a2624] border border-[#eaf0ef] dark:border-[#3a504b] text-muted-green hover:text-primary hover:border-primary transition-all inline-flex items-center gap-2 font-bold text-xs shadow-sm hover:shadow-md">
-                                    <span class="material-symbols-outlined text-lg">download</span>
-                                    Muat Turun PDF
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
+                                <tbody id="tenderTableBody" class="divide-y divide-[#eaf0ef] dark:divide-[#3a504b] bg-white dark:bg-[#2d3f3b]"></tbody>
                 </table>
             </div>
 
@@ -428,5 +283,184 @@
         </div>
     </footer>
     </div>
+<script>
+    (() => {
+        const storageKey = 'pageDataV1';
+        const pageKey = 'tender';
+        const tableBody = document.getElementById('tenderTableBody');
+        const searchInput = document.getElementById('tenderSearchInput');
+        const statusButtons = document.querySelectorAll('#tenderStatusFilters [data-status]');
+        const categoryButtons = document.querySelectorAll('[data-category]');
+        const activeEl = document.getElementById('tenderActiveCount');
+        const closingEl = document.getElementById('tenderClosingCount');
+        const archiveEl = document.getElementById('tenderArchiveCount');
+
+        const defaultCards = [
+            { tag: 'Penyelenggaraan', title: 'Pengecatan Semula Blok A & Blok B', date: '2025-01-15', summary: 'Kerja cat luar dan dalaman blok A & B, termasuk pemeriksaan retakan.', meta: 'TDR-2025-001' },
+            { tag: 'Naik Taraf', title: 'Naiktaraf Sistem Lif (Fasa 2)', date: '2024-12-30', summary: 'Penggantian komponen kritikal lif dan sistem kecemasan.', meta: 'TDR-2024-017' },
+            { tag: 'Keselamatan', title: 'Perkhidmatan Kawalan Keselamatan 2024', date: '2024-10-20', summary: 'Kontrak pengawal 24/7 dan rondaan parkir bertingkat.', meta: 'TDR-2024-010' },
+            { tag: 'Landskap', title: 'Landskap & Penanaman Semula Pokok', date: '2024-11-22', summary: 'Penanaman semula pokok teduhan dan pembaikan sistem pengairan.', meta: 'TDR-2024-021' },
+            { tag: 'Penyelenggaraan', title: 'Penggantian Paip Utama Blok C', date: '2024-11-05', summary: 'Penggantian paip utama air domestik dan ujian tekanan.', meta: 'TDR-2024-013' },
+        ];
+
+        function loadPageData() {
+            let parsed;
+            try {
+                parsed = JSON.parse(localStorage.getItem(storageKey) || '{}');
+            } catch (_) {
+                parsed = {};
+            }
+
+            if (!parsed[pageKey] || !Array.isArray(parsed[pageKey].cards)) {
+                parsed[pageKey] = { title: 'Tender Terbuka', subtitle: '', cards: defaultCards.map(c => ({ ...c, id: crypto.randomUUID() })) };
+            } else {
+                parsed[pageKey].cards = (parsed[pageKey].cards || []).map(c => ({ id: c.id || crypto.randomUUID(), ...c }));
+            }
+            localStorage.setItem(storageKey, JSON.stringify(parsed));
+            return parsed;
+        }
+
+        const pageData = loadPageData();
+        let currentStatus = 'all';
+        let currentCategory = 'all';
+        let currentSearch = '';
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            const d = new Date(dateStr);
+            if (isNaN(d.getTime())) return '';
+            return d.toLocaleDateString('ms-MY', { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+
+        function statusInfo(dateStr) {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const d = new Date(dateStr || '');
+            if (!dateStr || isNaN(d.getTime())) return { status: 'unknown', badge: 'T/A', days: null };
+            const diffDays = Math.ceil((d - today) / (1000 * 60 * 60 * 24));
+            if (diffDays < 0) return { status: 'closed', badge: 'Ditutup', days: diffDays };
+            return { status: 'open', badge: `${diffDays} Hari Lagi`, days: diffDays };
+        }
+
+        function iconForCategory(cat) {
+            const map = {
+                Penyelenggaraan: 'build',
+                Keselamatan: 'security',
+                'Naik Taraf': 'upgrade',
+                Landskap: 'yard',
+            };
+            return map[cat] || 'description';
+        }
+
+        function updateCounters(cards) {
+            const totals = cards.reduce((acc, card) => {
+                const info = statusInfo(card.date);
+                if (info.status === 'open') acc.active += 1;
+                if (info.status === 'closed') acc.archive += 1;
+                if (info.status === 'open' && info.days !== null && info.days <= 14) acc.closing += 1;
+                return acc;
+            }, { active: 0, closing: 0, archive: 0 });
+
+            if (activeEl) activeEl.textContent = String(totals.active).padStart(2, '0');
+            if (closingEl) closingEl.textContent = String(totals.closing).padStart(2, '0');
+            if (archiveEl) archiveEl.textContent = String(totals.archive).padStart(2, '0');
+        }
+
+        function render() {
+            const cards = ((pageData[pageKey] && pageData[pageKey].cards) || []).filter(card => {
+                const info = statusInfo(card.date);
+                const matchesStatus = currentStatus === 'all' ? true : info.status === currentStatus;
+                const matchesCategory = currentCategory === 'all' ? true : (card.tag || '').toLowerCase() === currentCategory.toLowerCase();
+                const search = currentSearch.trim().toLowerCase();
+                const matchesSearch = !search || (card.title || '').toLowerCase().includes(search) || (card.meta || '').toLowerCase().includes(search);
+                return matchesStatus && matchesCategory && matchesSearch;
+            }).sort((a, b) => new Date(a.date || 0) - new Date(b.date || 0));
+
+            updateCounters((pageData[pageKey] && pageData[pageKey].cards) || []);
+
+            tableBody.innerHTML = '';
+            if (!cards.length) {
+                const emptyRow = document.createElement('tr');
+                emptyRow.innerHTML = '<td colspan="5" class="px-6 py-6 text-center text-muted-green">Tiada tender ditemui.</td>';
+                tableBody.appendChild(emptyRow);
+                return;
+            }
+
+            cards.forEach(card => {
+                const info = statusInfo(card.date);
+                const dateLabel = formatDate(card.date);
+                const icon = iconForCategory(card.tag);
+                const code = card.meta || 'ID Tidak Ditentukan';
+                const statusBadge = info.status === 'open'
+                    ? `<span class="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 rounded-full text-xs font-bold border border-emerald-100 dark:border-emerald-800"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span></span>${info.badge}</span>`
+                    : `<span class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 rounded-full text-xs font-bold border border-gray-200 dark:border-gray-700"><span class="h-2 w-2 rounded-full bg-gray-400"></span>${info.badge}</span>`;
+
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-[#fbfaf9] dark:hover:bg-[#253634] transition-colors group';
+                row.innerHTML = `
+                    <td class="px-8 py-6">
+                        <div class="flex flex-col gap-1">
+                            <div class="flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[10px] font-black uppercase tracking-wider">${code}</span>
+                            </div>
+                            <span class="font-bold text-lg text-[#111816] dark:text-white group-hover:text-primary transition-colors">${card.title || ''}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-6">
+                        <span class="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-lg text-xs font-bold text-gray-600 dark:text-gray-300">
+                            <span class="material-symbols-outlined text-sm">${icon}</span>
+                            ${card.tag || 'Kategori'}
+                        </span>
+                    </td>
+                    <td class="px-6 py-6">
+                        <div class="flex flex-col">
+                            <span class="text-sm font-bold text-gray-900 dark:text-gray-100">${dateLabel || 'Tarikh N/A'}</span>
+                            <span class="text-[10px] text-accent-terracotta font-bold uppercase tracking-wide">${info.badge}</span>
+                        </div>
+                    </td>
+                    <td class="px-6 py-6">${statusBadge}</td>
+                    <td class="px-8 py-6 text-right">
+                        <button class="group/btn relative px-4 py-2 rounded-xl bg-white dark:bg-[#1a2624] border border-[#eaf0ef] dark:border-[#3a504b] text-muted-green hover:text-primary hover:border-primary transition-all inline-flex items-center gap-2 font-bold text-xs shadow-sm hover:shadow-md">
+                            <span class="material-symbols-outlined text-lg">download</span>
+                            Muat Turun PDF
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        statusButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                statusButtons.forEach(b => b.classList.remove('bg-white', 'dark:bg-primary', 'text-primary', 'dark:text-white', 'shadow-sm'));
+                statusButtons.forEach(b => b.classList.add('text-muted-green'));
+                btn.classList.add('bg-white', 'dark:bg-primary', 'text-primary', 'dark:text-white', 'shadow-sm');
+                btn.classList.remove('text-muted-green');
+                currentStatus = btn.getAttribute('data-status') || 'all';
+                render();
+            });
+        });
+
+        categoryButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryButtons.forEach(b => b.classList.remove('bg-primary', 'text-white', 'shadow-lg', 'shadow-primary/20'));
+                categoryButtons.forEach(b => b.classList.add('bg-background-light', 'dark:bg-[#1f2d2b]', 'text-muted-green'));
+                btn.classList.add('bg-primary', 'text-white', 'shadow-lg', 'shadow-primary/20');
+                btn.classList.remove('bg-background-light', 'dark:bg-[#1f2d2b]', 'text-muted-green');
+                currentCategory = btn.getAttribute('data-category') || 'all';
+                render();
+            });
+        });
+
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value || '';
+                render();
+            });
+        }
+
+        render();
+    })();
+</script>
 </body>
 </html>

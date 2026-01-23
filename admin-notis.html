@@ -194,7 +194,12 @@
               <h2 id="previewTitle" class="text-2xl font-extrabold">Halaman</h2>
               <p id="previewSubtitle" class="text-sm text-text-main/60 mt-1">Senarai kad pada halaman terpilih.</p>
             </div>
-            <span id="previewCount" class="text-sm text-text-main/60"></span>
+            <div class="flex items-center gap-3">
+              <span id="previewCount" class="text-sm text-text-main/60"></span>
+              <button id="resetPageBtn" class="text-xs font-bold text-primary bg-primary/10 px-3 py-2 rounded-lg border border-primary/20 hover:bg-primary/15">
+                Reset Halaman
+              </button>
+            </div>
           </div>
 
           <div id="pageFormCard" class="bg-white rounded-3xl border border-stone-200 shadow-soft p-6 lg:p-8 mb-8">
@@ -231,7 +236,7 @@
             </form>
           </div>
 
-          <div id="previewCards" class="grid gap-4 md:grid-cols-2"></div>
+          <div id="previewCards" class="grid gap-3 md:grid-cols-2 lg:grid-cols-3"></div>
           <p id="previewEmpty" class="hidden text-sm text-text-main/60">Tiada kad untuk dipaparkan.</p>
         </div>
       </main>
@@ -338,10 +343,12 @@
         title: 'Kemudahan',
         subtitle: 'Kad tempahan & fasiliti.',
         cards: [
-          { tag: 'Rekreasi', title: 'Kolam Renang Infinit', summary: 'Pemandangan panorama, 7:00 pagi - 10:00 malam.' },
-          { tag: 'Keluarga', title: 'Taman Permainan', summary: 'Permukaan lembut EPDM, peralatan moden.' },
-          { tag: 'Kesihatan', title: 'Laman Refleksologi', summary: 'Zon ketenangan dengan herba aromatik.' },
-          { tag: 'Acara', title: 'Dewan Serbaguna', summary: 'Ruang luas untuk majlis komuniti.' },
+          { tag: 'Rekreasi', title: 'Kolam Renang Infinit', summary: 'Ketenangan air + pemandangan panorama; 7:00 pagi - 10:00 malam.' },
+          { tag: 'Keluarga', title: 'Taman Permainan', summary: 'Ruang selamat EPDM dengan peralatan moden; 8:00 pagi - 8:00 malam.' },
+          { tag: 'Kesihatan', title: 'Laman Refleksologi', summary: 'Zon herba aromatik untuk terapi minda & fizikal; sentiasa terbuka.' },
+          { tag: 'Komuniti', title: 'Dewan Serbaguna', summary: 'Ruang berhawa dingin untuk kenduri/mesyuarat; perlu tempahan.' },
+          { tag: 'Sukan', title: 'Gimnasium Terbuka', summary: 'Peralatan senaman luaran diselenggara; 6:00 pagi - 11:00 malam.' },
+          { tag: 'Santai', title: 'Kawasan BBQ', summary: 'Kemudahan memanggang lengkap berhampiran kolam; tempahan diperlukan.' },
         ],
       },
       'komuniti': {
@@ -411,6 +418,9 @@
     const previewCards = document.getElementById('previewCards');
     const previewEmpty = document.getElementById('previewEmpty');
     const pageFormCard = document.getElementById('pageFormCard');
+    const resetPageBtn = document.getElementById('resetPageBtn');
+    const compactGridClass = 'grid gap-3 md:grid-cols-2 lg:grid-cols-3';
+    const noticeGridClass = 'grid gap-4 md:grid-cols-2';
     const pageForm = document.getElementById('pageCardForm');
     const pageCardIdEl = document.getElementById('pageCardId');
     const pageCardTagEl = document.getElementById('pageCardTag');
@@ -505,6 +515,17 @@
       });
     }
 
+    if (resetPageBtn) {
+      resetPageBtn.addEventListener('click', () => {
+        if (!confirm('Reset kandungan halaman ini kepada default?')) return;
+        const seeded = seedWithIds({ [currentPage]: pageDefaults[currentPage] || { cards: [] } });
+        pageData[currentPage] = seeded[currentPage] || { cards: [] };
+        persistPageData();
+        const isNoticePage = currentPage === 'notis-public' || currentPage === 'kemudahan';
+        renderPageCards(currentPage, isNoticePage);
+      });
+    }
+
     resetSampleBtn.addEventListener('click', () => {
       if (!confirm('Gantikan notis dengan 6 contoh asal?')) return;
       notices = defaultNotices.map(n => ({ ...n, id: crypto.randomUUID() }));
@@ -557,6 +578,9 @@
       currentPage = page;
       navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('data-page') === page));
 
+      const useNoticeGrid = page === 'notis-public' || page === 'kemudahan';
+      previewCards.className = useNoticeGrid ? noticeGridClass : compactGridClass;
+
       if (page === 'notis-admin') {
         notisLayout.classList.remove('hidden');
         previewLayout.classList.add('hidden');
@@ -577,15 +601,15 @@
           summary: n.summary,
           image: n.image,
         }));
-        renderPreviewCards(noticeCards, false);
+        renderPreviewCards(noticeCards, false, true);
         return;
       }
 
       pageFormCard.classList.remove('hidden');
-      renderPageCards(page);
+      renderPageCards(page, page === 'kemudahan');
     }
 
-    function renderPageCards(page) {
+    function renderPageCards(page, isNoticePage = false) {
       const data = pageData[page] || pageDefaults[page] || { title: 'Halaman', subtitle: '', cards: [] };
       const cards = (data.cards || []).map(c => ({
         ...c,
@@ -594,7 +618,7 @@
       }));
       previewTitle.textContent = data.title;
       previewSubtitle.textContent = data.subtitle || 'Senarai kad pada halaman terpilih.';
-      renderPreviewCards(cards, true);
+      renderPreviewCards(cards, true, isNoticePage);
       resetPageForm();
     }
 
@@ -625,7 +649,7 @@
       pageCardIdEl.value = '';
     }
 
-    function renderPreviewCards(cards, allowEdit = false) {
+    function renderPreviewCards(cards, allowEdit = false, isNoticeLayout = false) {
       previewCards.innerHTML = '';
       previewCount.textContent = `${cards.length} kad`;
       if (!cards.length) {
@@ -635,39 +659,73 @@
       previewEmpty.classList.add('hidden');
       cards.forEach(card => {
         const el = document.createElement('article');
-        const baseClass = 'border border-stone-200 rounded-2xl p-4 bg-white shadow-sm flex flex-col gap-2';
-        el.className = `${baseClass} ${card.bg || ''}`.trim();
 
-        const imageBlock = card.image ? `
-          <div class="rounded-xl overflow-hidden border border-stone-200/70">
-            <div class="aspect-[16/9] bg-center bg-cover" style="background-image: url('${card.image}')"></div>
-          </div>
-        ` : '';
+        if (isNoticeLayout) {
+          const imageBlock = card.image ? `
+            <div class="sm:w-40 h-40 sm:h-auto shrink-0 relative overflow-hidden">
+              <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('${card.image}')"></div>
+              <div class="absolute top-3 left-3 sm:hidden">
+                <span class="px-2 py-1 bg-white/90 backdrop-blur text-primary rounded-lg text-[11px] font-bold shadow-sm">${card.tag || ''}</span>
+              </div>
+            </div>
+          ` : '';
 
-        el.innerHTML = `
-          ${imageBlock}
-          <div class="flex items-start justify-between gap-3">
-            <div>
-              <p class="text-xs font-semibold uppercase tracking-widest text-text-main/60">${card.tag || ''}</p>
-              <h3 class="text-lg font-bold ${card.textClass || 'text-text-main'}">${card.title || ''}</h3>
+          el.className = 'group bg-white rounded-2xl overflow-hidden border border-stone-200 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col sm:flex-row';
+          el.innerHTML = `
+            ${imageBlock}
+            <div class="flex-1 p-5 flex flex-col justify-center gap-2">
+              <div class="flex items-center gap-3 text-[11px] font-medium text-text-main/70">
+                ${card.date ? `<span class="text-eucalyptus font-bold text-sm">${card.date}</span>` : ''}
+                ${card.date ? '<span class="w-1 h-1 rounded-full bg-[#cbd5e1]"></span>' : ''}
+                <span class="text-[#60857d] uppercase tracking-wider">${card.tag || ''}</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main group-hover:text-primary transition-colors">${card.title || ''}</h3>
+              <p class="text-[#60857d] text-sm leading-relaxed line-clamp-2">${card.summary || ''}</p>
+              ${allowEdit ? `
+                <div class="flex items-center gap-2 pt-1 text-xs">
+                  <button class="text-primary font-bold hover:underline" data-edit-card>Edit</button>
+                  <button class="text-red-600 font-bold hover:underline" data-delete-card>Padam</button>
+                </div>
+              ` : ''}
             </div>
-            ${card.displayDate || card.date ? `<span class="text-xs text-text-main/60">${card.displayDate || card.date}</span>` : ''}
-          </div>
-          ${card.meta ? `<p class="text-xs font-semibold text-primary">${card.meta}</p>` : ''}
-          <p class="text-sm ${card.textClass || 'text-text-main/70'}">${card.summary || ''}</p>
-          ${allowEdit ? `
-            <div class="flex items-center gap-2 pt-2">
-              <button class="text-primary text-xs font-bold hover:underline" data-edit-card>Edit</button>
-              <button class="text-red-600 text-xs font-bold hover:underline" data-delete-card>Padam</button>
+          `;
+        } else {
+          const baseClass = 'border border-stone-200 rounded-xl p-3 bg-white shadow-sm flex flex-col gap-2 text-sm';
+          el.className = `${baseClass} ${card.bg || ''}`.trim();
+
+          const imageBlock = card.image ? `
+            <div class="rounded-xl overflow-hidden border border-stone-200/70">
+              <div class="aspect-[16/9] bg-center bg-cover" style="background-image: url('${card.image}')"></div>
             </div>
-          ` : ''}
-        `;
+          ` : '';
+
+          el.innerHTML = `
+            ${imageBlock}
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <p class="text-[11px] font-semibold uppercase tracking-widest text-text-main/60">${card.tag || ''}</p>
+                <h3 class="text-base font-bold ${card.textClass || 'text-text-main'}">${card.title || ''}</h3>
+              </div>
+              ${card.displayDate || card.date ? `<span class="text-[11px] text-text-main/60">${card.displayDate || card.date}</span>` : ''}
+            </div>
+            ${card.meta ? `<p class="text-[11px] font-semibold text-primary">${card.meta}</p>` : ''}
+            <p class="text-[13px] leading-5 ${card.textClass || 'text-text-main/70'}">${card.summary || ''}</p>
+            ${allowEdit ? `
+              <div class="flex items-center gap-2 pt-2">
+                <button class="text-primary text-xs font-bold hover:underline" data-edit-card>Edit</button>
+                <button class="text-red-600 text-xs font-bold hover:underline" data-delete-card>Padam</button>
+              </div>
+            ` : ''}
+          `;
+        }
+
         if (allowEdit && card.id) {
           const editBtn = el.querySelector('[data-edit-card]');
           const delBtn = el.querySelector('[data-delete-card]');
-          editBtn.addEventListener('click', () => fillPageForm(card));
-          delBtn.addEventListener('click', () => deletePageCard(card.id));
+          if (editBtn) editBtn.addEventListener('click', () => fillPageForm(card));
+          if (delBtn) delBtn.addEventListener('click', () => deletePageCard(card.id));
         }
+
         previewCards.appendChild(el);
       });
     }

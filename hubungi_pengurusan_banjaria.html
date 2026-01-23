@@ -165,58 +165,89 @@
 </div>
 </div>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
-<div class="bg-white dark:bg-zinc-900/80 p-6 rounded-3xl border border-primary/5 shadow-sm flex gap-5 items-start">
-<div class="bg-primary/5 p-3 rounded-2xl text-primary shrink-0">
-<span class="material-symbols-outlined">location_on</span>
-</div>
-<div>
-<h3 class="font-bold text-[#111816] dark:text-white mb-2 text-lg">Pejabat Pengurusan</h3>
-<p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
-                                            Banjaria Court Management Office,<br/>
-                                            Jalan Samudera Utama,<br/>
-                                            68100 Batu Caves, Selangor.
-                                        </p>
-<div class="mt-4 pt-4 border-t border-dashed border-gray-200 dark:border-gray-700">
-<p class="text-sm font-semibold text-primary flex items-center gap-2">
-<span class="material-symbols-outlined text-base">call</span>
-                                                +603 6188 1234
-                                            </p>
-</div>
-</div>
-</div>
-<div class="bg-primary text-white p-6 rounded-3xl shadow-lg shadow-primary/20 relative overflow-hidden">
-<div class="absolute top-0 right-0 p-8 opacity-10">
-<span class="material-symbols-outlined text-8xl">schedule</span>
-</div>
-<div class="relative z-10">
-<div class="flex items-center gap-3 mb-6">
-<div class="bg-white/20 p-2 rounded-xl">
-<span class="material-symbols-outlined text-white">schedule</span>
-</div>
-<h3 class="font-bold text-lg">Waktu Operasi</h3>
-</div>
-<div class="space-y-3 text-sm">
-<div class="flex justify-between items-center pb-2 border-b border-white/20">
-<span class="text-white/80">Isnin - Jumaat</span>
-<span class="font-bold">9:00 pagi - 5:00 petang</span>
-</div>
-<div class="flex justify-between items-center pb-2 border-b border-white/20">
-<span class="text-white/80">Sabtu</span>
-<span class="font-bold">9:00 pagi - 1:00 petang</span>
-</div>
-<div class="flex justify-between items-center">
-<span class="text-white/80">Ahad</span>
-<span class="bg-white/20 px-2 py-0.5 rounded text-xs font-bold">TUTUP</span>
-</div>
-</div>
-</div>
-</div>
-</div>
+<div id="contactCardList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6"></div>
 </div>
 </div>
 </div>
 </main>
+<script>
+    (() => {
+        const contactList = document.getElementById("contactCardList");
+        if (!contactList) return;
+
+        const defaultContacts = [
+            {
+                title: "Pejabat Pengurusan",
+                icon: "location_on",
+                lines: [
+                    "Banjaria Court Management Office",
+                    "Jalan Samudera Utama",
+                    "68100 Batu Caves, Selangor",
+                ],
+                highlight: false,
+                extra: { label: "Telefon", value: "+603 6188 1234" },
+            },
+            {
+                title: "Waktu Operasi",
+                icon: "schedule",
+                lines: [
+                    "Isnin - Jumaat: 9:00 pagi - 5:00 petang",
+                    "Sabtu: 9:00 pagi - 1:00 petang",
+                    "Ahad: Tutup",
+                ],
+                highlight: true,
+            },
+            {
+                title: "Hotline Sekuriti (24/7)",
+                icon: "shield_lock",
+                lines: ["+603 6188 5678"],
+                highlight: false,
+            },
+            {
+                title: "Emel Pengurusan",
+                icon: "alternate_email",
+                lines: ["management@banjaria.com", "Respon dalam 1 hari bekerja"],
+                highlight: false,
+            },
+        ];
+
+        const loadContacts = () => {
+            const stored = JSON.parse(localStorage.getItem("pageDataV1") || "{}");
+            if (!Array.isArray(stored.hubungi) || !stored.hubungi.length) {
+                stored.hubungi = defaultContacts;
+            }
+            localStorage.setItem("pageDataV1", JSON.stringify(stored));
+            return stored.hubungi;
+        };
+
+        const contacts = loadContacts();
+
+        contactList.innerHTML = contacts.map(item => {
+            const cardClass = item.highlight ? "bg-primary text-white shadow-lg shadow-primary/20" : "bg-white dark:bg-zinc-900/80 border border-primary/5 text-[#111816] dark:text-white";
+            const textMuted = item.highlight ? "text-white/80" : "text-gray-600 dark:text-gray-400";
+            const iconWrap = item.highlight ? "bg-white/20 text-white" : "bg-primary/5 text-primary";
+            const borderClass = item.highlight ? "" : "shadow-sm";
+
+            const linesHtml = (item.lines || []).map(line => `<p class="${textMuted} text-sm leading-relaxed">${line}</p>`).join("");
+            const extraHtml = item.extra ? `<div class="mt-4 pt-4 border-t ${item.highlight ? "border-white/20" : "border-dashed border-gray-200 dark:border-gray-700"}"><p class="text-sm font-semibold ${item.highlight ? "text-white" : "text-primary"} flex items-center gap-2"><span class="material-symbols-outlined text-base">call</span>${item.extra.value}</p></div>` : "";
+
+            return `
+                <div class="${cardClass} p-6 rounded-3xl ${borderClass} relative overflow-hidden">
+                    <div class="flex items-start gap-4">
+                        <div class="${iconWrap} p-3 rounded-2xl shrink-0">
+                            <span class="material-symbols-outlined">${item.icon || "info"}</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold mb-2 text-lg">${item.title || "Hubungi"}</h3>
+                            <div class="space-y-1.5">${linesHtml}</div>
+                            ${extraHtml}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join("");
+    })();
+</script>
 <footer class="bg-white border-t border-stone-200 pt-16 pb-10 px-4 lg:px-8">
 <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">

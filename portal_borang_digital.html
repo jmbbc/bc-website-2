@@ -120,67 +120,7 @@
                             Lihat Semua Kategori <span class="material-symbols-outlined text-base">arrow_forward</span>
 </span>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-<div class="flex flex-1 gap-4 rounded-xl border border-[#d6e1de] dark:border-[#3a4d49] bg-white dark:bg-[#2d3e3b] p-6 flex-col hover:border-primary hover:shadow-[0_4px_20px_rgba(52,121,105,0.1)] transition-all cursor-pointer group h-full justify-between">
-<div>
-<div class="text-primary bg-primary/10 size-14 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors mb-4">
-<span class="material-symbols-outlined text-3xl">construction</span>
-</div>
-<div class="flex flex-col gap-1">
-<h2 class="text-text-primary dark:text-white text-lg font-bold leading-tight">Permit Renovasi</h2>
-<p class="text-text-secondary dark:text-[#a1b5b0] text-sm font-normal leading-normal">Mohon pengubahsuaian atau pembaikan unit.</p>
-</div>
-</div>
-<div class="w-full flex justify-end">
-<span class="material-symbols-outlined text-gray-300 group-hover:text-primary transition-colors">arrow_forward</span>
-</div>
-</div>
-<div class="flex flex-1 gap-4 rounded-xl border-2 border-primary/20 bg-[#f0f9f7] dark:bg-primary/20 p-6 flex-col shadow-sm cursor-pointer relative overflow-hidden h-full justify-between ring-1 ring-primary/10">
-<div class="absolute top-0 right-0 p-3">
-<span class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Popular</span>
-</div>
-<div>
-<div class="text-white bg-primary size-14 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-primary/30">
-<span class="material-symbols-outlined text-3xl">calendar_month</span>
-</div>
-<div class="flex flex-col gap-1">
-<h2 class="text-text-primary dark:text-white text-lg font-bold leading-tight">Tempahan Fasiliti</h2>
-<p class="text-primary dark:text-[#a1b5b0] text-sm font-bold leading-normal">BBQ Pit, Gelanggang atau Dewan</p>
-</div>
-</div>
-<div class="w-full flex justify-end">
-<span class="material-symbols-outlined text-primary">arrow_forward</span>
-</div>
-</div>
-<div class="flex flex-1 gap-4 rounded-xl border border-[#d6e1de] dark:border-[#3a4d49] bg-white dark:bg-[#2d3e3b] p-6 flex-col hover:border-primary hover:shadow-[0_4px_20px_rgba(52,121,105,0.1)] transition-all cursor-pointer group h-full justify-between">
-<div>
-<div class="text-primary bg-primary/10 size-14 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors mb-4">
-<span class="material-symbols-outlined text-3xl">local_shipping</span>
-</div>
-<div class="flex flex-col gap-1">
-<h2 class="text-text-primary dark:text-white text-lg font-bold leading-tight">Notis Pindah</h2>
-<p class="text-text-secondary dark:text-[#a1b5b0] text-sm font-normal leading-normal">Jadualkan logistik masuk atau keluar.</p>
-</div>
-</div>
-<div class="w-full flex justify-end">
-<span class="material-symbols-outlined text-gray-300 group-hover:text-primary transition-colors">arrow_forward</span>
-</div>
-</div>
-<div class="flex flex-1 gap-4 rounded-xl border border-[#d6e1de] dark:border-[#3a4d49] bg-white dark:bg-[#2d3e3b] p-6 flex-col hover:border-primary hover:shadow-[0_4px_20px_rgba(52,121,105,0.1)] transition-all cursor-pointer group h-full justify-between">
-<div>
-<div class="text-primary bg-primary/10 size-14 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors mb-4">
-<span class="material-symbols-outlined text-3xl">badge</span>
-</div>
-<div class="flex flex-col gap-1">
-<h2 class="text-text-primary dark:text-white text-lg font-bold leading-tight">Kad Akses</h2>
-<p class="text-text-secondary dark:text-[#a1b5b0] text-sm font-normal leading-normal">Mohon kad baharu atau gantian.</p>
-</div>
-</div>
-<div class="w-full flex justify-end">
-<span class="material-symbols-outlined text-gray-300 group-hover:text-primary transition-colors">arrow_forward</span>
-</div>
-</div>
-</div>
+<div id="portalGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
 </div>
 <div class="px-6 lg:px-40 py-10 pb-20 bg-[#f4f7f6] dark:bg-[#1a2626] border-t border-[#eaf0ef] dark:border-[#3a4d49]">
 <div class="max-w-[800px] mx-auto bg-white dark:bg-[#2d3e3b] rounded-2xl shadow-lg border border-[#eaf0ef] dark:border-[#3a4d49] overflow-hidden" id="facility-booking">
@@ -279,6 +219,78 @@
 </div>
 </div>
 </main>
+<script>
+    (() => {
+        const portalGrid = document.getElementById("portalGrid");
+        if (!portalGrid) return;
+
+        const defaultPortals = [
+            {
+                title: "Permit Renovasi",
+                description: "Mohon pengubahsuaian atau pembaikan unit.",
+                icon: "construction",
+                url: "#",
+                highlight: false,
+            },
+            {
+                title: "Tempahan Fasiliti",
+                description: "BBQ Pit, Gelanggang atau Dewan.",
+                icon: "calendar_month",
+                url: "#facility-booking",
+                highlight: true,
+            },
+            {
+                title: "Notis Pindah",
+                description: "Jadualkan logistik masuk atau keluar.",
+                icon: "local_shipping",
+                url: "#",
+                highlight: false,
+            },
+            {
+                title: "Kad Akses",
+                description: "Mohon kad baharu atau gantian.",
+                icon: "badge",
+                url: "#",
+                highlight: false,
+            },
+        ];
+
+        const loadPortals = () => {
+            const stored = JSON.parse(localStorage.getItem("pageDataV1") || "{}");
+            if (!Array.isArray(stored.portal) || !stored.portal.length) {
+                stored.portal = defaultPortals;
+            }
+            localStorage.setItem("pageDataV1", JSON.stringify(stored));
+            return stored.portal;
+        };
+
+        const portals = loadPortals();
+
+        portalGrid.innerHTML = portals.map(item => {
+            const highlight = item.highlight ? "border-2 border-primary/20 bg-[#f0f9f7] dark:bg-primary/20 ring-1 ring-primary/10 shadow-sm" : "border border-[#d6e1de] dark:border-[#3a4d49] bg-white dark:bg-[#2d3e3b]";
+            const iconWrap = item.highlight ? "text-white bg-primary" : "text-primary bg-primary/10";
+            const iconColor = item.highlight ? "text-white" : "text-gray-300";
+            const badge = item.highlight ? `<div class="absolute top-0 right-0 p-3"><span class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">Popular</span></div>` : "";
+            return `
+                <a href="${item.url || "#"}" class="flex flex-1 gap-4 rounded-xl ${highlight} p-6 flex-col hover:border-primary hover:shadow-[0_4px_20px_rgba(52,121,105,0.1)] transition-all group h-full justify-between relative overflow-hidden cursor-pointer">
+                    ${badge}
+                    <div>
+                        <div class="${iconWrap} size-14 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors mb-4 shadow-sm">
+                            <span class="material-symbols-outlined text-3xl">${item.icon || "description"}</span>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <h2 class="text-text-primary dark:text-white text-lg font-bold leading-tight">${item.title || "Borang"}</h2>
+                            <p class="text-text-secondary dark:text-[#a1b5b0] text-sm font-normal leading-normal">${item.description || "Maklumat tidak tersedia."}</p>
+                        </div>
+                    </div>
+                    <div class="w-full flex justify-end">
+                        <span class="material-symbols-outlined ${iconColor} group-hover:text-primary transition-colors">arrow_forward</span>
+                    </div>
+                </a>
+            `;
+        }).join("");
+    })();
+</script>
 <footer class="bg-white border-t border-stone-200 pt-16 pb-10 px-4 lg:px-8">
 <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">

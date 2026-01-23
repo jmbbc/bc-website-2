@@ -115,11 +115,11 @@
 <div class="max-w-[1000px] mx-auto">
 <div class="bg-white dark:bg-[#2c3e3e] rounded-2xl shadow-lg border border-light-oak/20 p-2 mb-10 flex flex-col md:flex-row items-center gap-2">
 <div class="flex-1 w-full md:w-auto overflow-x-auto scrollbar-hide flex items-center p-1 gap-2">
-<button class="px-5 py-2.5 bg-primary text-white rounded-xl text-sm font-bold shadow-md whitespace-nowrap">Semua</button>
-<button class="px-5 py-2.5 bg-transparent hover:bg-secondary-green text-leaf-green dark:text-white/80 rounded-xl text-sm font-semibold transition-colors whitespace-nowrap">2024</button>
-<button class="px-5 py-2.5 bg-transparent hover:bg-secondary-green text-leaf-green dark:text-white/80 rounded-xl text-sm font-semibold transition-colors whitespace-nowrap">2023</button>
-<button class="px-5 py-2.5 bg-transparent hover:bg-secondary-green text-leaf-green dark:text-white/80 rounded-xl text-sm font-semibold transition-colors whitespace-nowrap">2022</button>
-<button class="px-5 py-2.5 bg-transparent hover:bg-secondary-green text-leaf-green dark:text-white/80 rounded-xl text-sm font-semibold transition-colors whitespace-nowrap">Arkib</button>
+<button data-report-year="all" class="px-5 py-2.5 bg-primary text-white rounded-xl text-sm font-bold shadow-md whitespace-nowrap">Semua</button>
+<button data-report-year="2024" class="px-5 py-2.5 bg-transparent hover:bg-secondary-green text-leaf-green dark:text-white/80 rounded-xl text-sm font-semibold transition-colors whitespace-nowrap">2024</button>
+<button data-report-year="2023" class="px-5 py-2.5 bg-transparent hover:bg-secondary-green text-leaf-green dark:text-white/80 rounded-xl text-sm font-semibold transition-colors whitespace-nowrap">2023</button>
+<button data-report-year="2022" class="px-5 py-2.5 bg-transparent hover:bg-secondary-green text-leaf-green dark:text-white/80 rounded-xl text-sm font-semibold transition-colors whitespace-nowrap">2022</button>
+<button data-report-year="archive" class="px-5 py-2.5 bg-transparent hover:bg-secondary-green text-leaf-green dark:text-white/80 rounded-xl text-sm font-semibold transition-colors whitespace-nowrap">Arkib</button>
 </div>
 <div class="h-8 w-px bg-light-oak/30 hidden md:block"></div>
 <div class="w-full md:w-64 relative px-2 md:px-0">
@@ -130,75 +130,10 @@
 <div class="space-y-4 mb-16">
 <div class="flex items-center gap-3 mb-6 px-2">
 <span class="h-px flex-1 bg-light-oak/30"></span>
-<span class="text-xs font-bold text-oak-dark uppercase tracking-widest">Terkini (2024)</span>
+<span id="reportSectionLabel" class="text-xs font-bold text-oak-dark uppercase tracking-widest">Terkini</span>
 <span class="h-px flex-1 bg-light-oak/30"></span>
 </div>
-<div class="bg-white dark:bg-[#2c3e3e] rounded-2xl p-5 border border-secondary-green hover:border-light-oak/60 transition-all shadow-sm hover:shadow-md group flex flex-col sm:flex-row items-start sm:items-center gap-5">
-<div class="bg-[#F2F0EB] dark:bg-white/5 p-4 rounded-xl flex-shrink-0">
-<span class="material-symbols-outlined text-3xl text-primary">article</span>
-</div>
-<div class="flex-1 min-w-0">
-<div class="flex items-center gap-3 mb-1">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-primary/10 text-primary uppercase tracking-wide">AGM</span>
-<span class="text-xs text-leaf-green dark:text-white/60 font-medium flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">calendar_today</span> 25 Mei 2024
-                            </span>
-</div>
-<h3 class="text-lg font-bold text-[#1c2120] dark:text-white truncate pr-4 group-hover:text-primary transition-colors">Minit Mesyuarat Agung Tahunan Ke-15</h3>
-<p class="text-sm text-leaf-green dark:text-white/60 mt-1 line-clamp-1">Status: Disahkan oleh JMB • Menunggu audit akhir.</p>
-</div>
-<div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end border-t sm:border-t-0 border-secondary-green pt-4 sm:pt-0 mt-2 sm:mt-0">
-<span class="text-xs font-bold text-leaf-green/50">2.4 MB</span>
-<button class="flex items-center gap-2 bg-secondary-green/50 hover:bg-eucalyptus hover:text-white text-[#1c2120] px-4 py-2 rounded-xl text-sm font-bold transition-all group-hover:bg-eucalyptus group-hover:text-white">
-<span class="material-symbols-outlined text-[20px] text-eucalyptus group-hover:text-white">download</span>
-<span class="hidden sm:inline">Muat Turun</span>
-</button>
-</div>
-</div>
-<div class="bg-white dark:bg-[#2c3e3e] rounded-2xl p-5 border border-secondary-green hover:border-light-oak/60 transition-all shadow-sm hover:shadow-md group flex flex-col sm:flex-row items-start sm:items-center gap-5">
-<div class="bg-[#F2F0EB] dark:bg-white/5 p-4 rounded-xl flex-shrink-0">
-<span class="material-symbols-outlined text-3xl text-oak-dark">account_balance</span>
-</div>
-<div class="flex-1 min-w-0">
-<div class="flex items-center gap-3 mb-1">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-light-oak/20 text-oak-dark uppercase tracking-wide">Kewangan</span>
-<span class="text-xs text-leaf-green dark:text-white/60 font-medium flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">calendar_today</span> 12 Mac 2024
-                            </span>
-</div>
-<h3 class="text-lg font-bold text-[#1c2120] dark:text-white truncate pr-4 group-hover:text-primary transition-colors">Laporan Kewangan Tahunan 2023</h3>
-<p class="text-sm text-leaf-green dark:text-white/60 mt-1 line-clamp-1">Laporan penuh audit kewangan tahun berakhir 2023.</p>
-</div>
-<div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end border-t sm:border-t-0 border-secondary-green pt-4 sm:pt-0 mt-2 sm:mt-0">
-<span class="text-xs font-bold text-leaf-green/50">4.1 MB</span>
-<button class="flex items-center gap-2 bg-secondary-green/50 hover:bg-eucalyptus hover:text-white text-[#1c2120] px-4 py-2 rounded-xl text-sm font-bold transition-all group-hover:bg-eucalyptus group-hover:text-white">
-<span class="material-symbols-outlined text-[20px] text-eucalyptus group-hover:text-white">download</span>
-<span class="hidden sm:inline">Muat Turun</span>
-</button>
-</div>
-</div>
-<div class="bg-white dark:bg-[#2c3e3e] rounded-2xl p-5 border border-secondary-green hover:border-light-oak/60 transition-all shadow-sm hover:shadow-md group flex flex-col sm:flex-row items-start sm:items-center gap-5">
-<div class="bg-[#F2F0EB] dark:bg-white/5 p-4 rounded-xl flex-shrink-0">
-<span class="material-symbols-outlined text-3xl text-primary">gavel</span>
-</div>
-<div class="flex-1 min-w-0">
-<div class="flex items-center gap-3 mb-1">
-<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-[10px] font-bold bg-primary/10 text-primary uppercase tracking-wide">EGM</span>
-<span class="text-xs text-leaf-green dark:text-white/60 font-medium flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">calendar_today</span> 10 Jan 2024
-                            </span>
-</div>
-<h3 class="text-lg font-bold text-[#1c2120] dark:text-white truncate pr-4 group-hover:text-primary transition-colors">Minit Mesyuarat Agung Luar Biasa (EGM)</h3>
-<p class="text-sm text-leaf-green dark:text-white/60 mt-1 line-clamp-1">Perbincangan: Penukaran Lif Blok B dan Isu Parkir.</p>
-</div>
-<div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end border-t sm:border-t-0 border-secondary-green pt-4 sm:pt-0 mt-2 sm:mt-0">
-<span class="text-xs font-bold text-leaf-green/50">1.8 MB</span>
-<button class="flex items-center gap-2 bg-secondary-green/50 hover:bg-eucalyptus hover:text-white text-[#1c2120] px-4 py-2 rounded-xl text-sm font-bold transition-all group-hover:bg-eucalyptus group-hover:text-white">
-<span class="material-symbols-outlined text-[20px] text-eucalyptus group-hover:text-white">download</span>
-<span class="hidden sm:inline">Muat Turun</span>
-</button>
-</div>
-</div>
+<div id="reportList" class="space-y-4 mb-16"></div>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
 <div class="bg-[#F2F0EB] dark:bg-[#2c3e3e]/50 p-8 rounded-3xl border border-light-oak/20 relative overflow-hidden">
@@ -302,5 +237,118 @@
 </footer>
     </div>
 </div>
+<script>
+    (() => {
+        const storageKey = 'pageDataV1';
+        const pageKey = 'laporan';
+        const listEl = document.getElementById('reportList');
+        const labelEl = document.getElementById('reportSectionLabel');
+        const filterEls = document.querySelectorAll('[data-report-year]');
+
+        const defaultCards = [
+            { tag: 'AGM', title: 'Minit Mesyuarat Agung Tahunan Ke-15', date: '2024-05-25', summary: 'Status: Disahkan oleh JMB • Menunggu audit akhir.', meta: '2.4 MB', icon: 'article' },
+            { tag: 'Kewangan', title: 'Laporan Kewangan Tahunan 2023', date: '2024-03-12', summary: 'Laporan penuh audit kewangan tahun berakhir 2023.', meta: '4.1 MB', icon: 'account_balance' },
+            { tag: 'EGM', title: 'Minit Mesyuarat Agung Luar Biasa (EGM)', date: '2024-01-10', summary: 'Perbincangan: Penukaran Lif Blok B dan Isu Parkir.', meta: '1.8 MB', icon: 'gavel' },
+        ];
+
+        function loadPageData() {
+            let parsed;
+            try {
+                parsed = JSON.parse(localStorage.getItem(storageKey) || '{}');
+            } catch (_) {
+                parsed = {};
+            }
+
+            if (!parsed[pageKey] || !Array.isArray(parsed[pageKey].cards)) {
+                parsed[pageKey] = { title: 'Laporan AGM/EGM', subtitle: '', cards: defaultCards.map(c => ({ ...c, id: crypto.randomUUID() })) };
+            } else {
+                parsed[pageKey].cards = (parsed[pageKey].cards || []).map(c => ({ id: c.id || crypto.randomUUID(), ...c }));
+            }
+            localStorage.setItem(storageKey, JSON.stringify(parsed));
+            return parsed;
+        }
+
+        const pageData = loadPageData();
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            const d = new Date(dateStr);
+            if (isNaN(d.getTime())) return '';
+            return d.toLocaleDateString('ms-MY', { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+
+        function matchesFilter(card, filter) {
+            if (filter === 'all') return true;
+            const d = card.date ? new Date(card.date) : null;
+            if (!d || isNaN(d.getTime())) return filter === 'archive';
+            const year = d.getFullYear();
+            if (filter === 'archive') return year < new Date().getFullYear() - 1;
+            return String(year) === filter;
+        }
+
+        function render(filter = 'all') {
+            const cards = ((pageData[pageKey] && pageData[pageKey].cards) || [])
+                .filter(c => matchesFilter(c, filter))
+                .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+
+            if (labelEl) {
+                if (filter === 'all') labelEl.textContent = 'Terkini';
+                else if (filter === 'archive') labelEl.textContent = 'Arkib';
+                else labelEl.textContent = `Tapis: ${filter}`;
+            }
+
+            listEl.innerHTML = '';
+            if (!cards.length) {
+                listEl.innerHTML = '<p class="text-sm text-leaf-green">Tiada dokumen untuk penapis ini.</p>';
+                return;
+            }
+
+            cards.forEach(card => {
+                const iconMap = { agm: 'article', egm: 'gavel', kewangan: 'account_balance' };
+                const icon = card.icon || iconMap[(card.tag || '').toLowerCase()] || 'description';
+                const badgeClass = (card.tag || '').toLowerCase() === 'kewangan' ? 'bg-light-oak/20 text-oak-dark' : 'bg-primary/10 text-primary';
+                const dateLabel = formatDate(card.date);
+                const metaLabel = card.meta || 'PDF';
+
+                const el = document.createElement('article');
+                el.className = 'bg-white dark:bg-[#2c3e3e] rounded-2xl p-5 border border-secondary-green hover:border-light-oak/60 transition-all shadow-sm hover:shadow-md group flex flex-col sm:flex-row items-start sm:items-center gap-5';
+                el.innerHTML = `
+                    <div class="bg-[#F2F0EB] dark:bg-white/5 p-4 rounded-xl flex-shrink-0">
+                        <span class="material-symbols-outlined text-3xl text-primary">${icon}</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-3 mb-1">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wide ${badgeClass}">${card.tag || 'Dokumen'}</span>
+                            ${dateLabel ? `<span class="text-xs text-leaf-green dark:text-white/60 font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span>${dateLabel}</span>` : ''}
+                        </div>
+                        <h3 class="text-lg font-bold text-[#1c2120] dark:text-white truncate pr-4 group-hover:text-primary transition-colors">${card.title || ''}</h3>
+                        <p class="text-sm text-leaf-green dark:text-white/60 mt-1 line-clamp-1">${card.summary || ''}</p>
+                    </div>
+                    <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end border-t sm:border-t-0 border-secondary-green pt-4 sm:pt-0 mt-2 sm:mt-0">
+                        <span class="text-xs font-bold text-leaf-green/50">${metaLabel}</span>
+                        <button class="flex items-center gap-2 bg-secondary-green/50 hover:bg-eucalyptus hover:text-white text-[#1c2120] px-4 py-2 rounded-xl text-sm font-bold transition-all group-hover:bg-eucalyptus group-hover:text-white">
+                            <span class="material-symbols-outlined text-[20px] text-eucalyptus group-hover:text-white">download</span>
+                            <span class="hidden sm:inline">Muat Turun</span>
+                        </button>
+                    </div>
+                `;
+                listEl.appendChild(el);
+            });
+        }
+
+        filterEls.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterEls.forEach(b => b.classList.remove('bg-primary', 'text-white', 'shadow-md'));
+                filterEls.forEach(b => b.classList.add('bg-transparent', 'text-leaf-green', 'dark:text-white/80'));
+                btn.classList.add('bg-primary', 'text-white', 'shadow-md');
+                btn.classList.remove('bg-transparent', 'text-leaf-green', 'dark:text-white/80');
+                const filter = btn.getAttribute('data-report-year') || 'all';
+                render(filter);
+            });
+        });
+
+        render('all');
+    })();
+</script>
 
 </body></html>

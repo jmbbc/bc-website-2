@@ -99,18 +99,20 @@
                         Kekal maklum dengan berita terkini, jadual penyelenggaraan, dan aktiviti komuniti kita.
                     </p>
 </div>
-<div class="bg-white dark:bg-[#2d3d3d] p-2 rounded-2xl shadow-sm border border-[#eaf0ef] dark:border-[#3d4d4d] flex flex-col md:flex-row gap-2">
-<div class="flex-1 relative flex items-center px-4">
-<span class="material-symbols-outlined text-[#60857d]">search</span>
-<input class="w-full bg-transparent border-none focus:ring-0 text-[#111816] dark:text-white placeholder:text-[#60857d]/60 text-sm" placeholder="Cari notis..." type="text"/>
-</div>
-<div class="flex items-center gap-2 overflow-x-auto scrollbar-hide p-1">
-<button class="bg-sage-soft dark:bg-primary/20 text-primary px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap">Semua</button>
-<button class="hover:bg-gray-50 dark:hover:bg-white/5 text-[#60857d] px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors">Penyelenggaraan</button>
-<button class="hover:bg-gray-50 dark:hover:bg-white/5 text-[#60857d] px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors">Keselamatan</button>
-<button class="hover:bg-gray-50 dark:hover:bg-white/5 text-[#60857d] px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors">Komuniti</button>
-</div>
-</div>
+        <div class="bg-white dark:bg-[#2d3d3d] p-2 rounded-2xl shadow-sm border border-[#eaf0ef] dark:border-[#3d4d4d] flex flex-col md:flex-row gap-2">
+            <div class="flex-1 relative flex items-center px-4">
+                <span class="material-symbols-outlined text-[#60857d]">search</span>
+                <input id="searchInput" class="w-full bg-transparent border-none focus:ring-0 text-[#111816] dark:text-white placeholder:text-[#60857d]/60 text-sm" placeholder="Cari notis..." type="text"/>
+            </div>
+            <div class="flex items-center gap-2 overflow-x-auto scrollbar-hide p-1">
+                <button data-filter="Semua" class="filter-btn bg-sage-soft dark:bg-primary/20 text-primary px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap">Semua</button>
+                <button data-filter="Penyelenggaraan" class="filter-btn hover:bg-gray-50 dark:hover:bg-white/5 text-[#60857d] px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors">Penyelenggaraan</button>
+                <button data-filter="Keselamatan" class="filter-btn hover:bg-gray-50 dark:hover:bg-white/5 text-[#60857d] px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors">Keselamatan</button>
+                <button data-filter="Aktiviti" class="filter-btn hover:bg-gray-50 dark:hover:bg-white/5 text-[#60857d] px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors">Aktiviti</button>
+                <button data-filter="Umum" class="filter-btn hover:bg-gray-50 dark:hover:bg-white/5 text-[#60857d] px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors">Umum</button>
+                <button data-filter="Kewangan" class="filter-btn hover:bg-gray-50 dark:hover:bg-white/5 text-[#60857d] px-4 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-colors">Kewangan</button>
+            </div>
+        </div>
 </div>
 <div id="notisList" class="flex flex-col gap-6"></div>
 <div class="mt-12 flex flex-col items-center gap-4">
@@ -207,18 +209,25 @@
 
     const listEl = document.getElementById('notisList');
     const countEl = document.getElementById('notisCount');
+    const searchInput = document.getElementById('searchInput');
+    const filterButtons = document.querySelectorAll('[data-filter]');
+
+    let activeCategory = 'Semua';
+    let searchTerm = '';
 
     function loadNotices() {
         const saved = localStorage.getItem(storageKey);
+        let notices = defaultNotices;
         if (saved) {
             try {
-                return JSON.parse(saved);
+                notices = JSON.parse(saved);
             } catch (_) {
-                return defaultNotices;
+                notices = defaultNotices;
             }
         }
-        localStorage.setItem(storageKey, JSON.stringify(defaultNotices));
-        return defaultNotices;
+        notices = (notices || []).map(n => ({ ...n, id: n.id || crypto.randomUUID() }));
+        localStorage.setItem(storageKey, JSON.stringify(notices));
+        return notices;
     }
 
     function formatDate(dateStr) {
@@ -227,13 +236,28 @@
         return d.toLocaleDateString('ms-MY', { day: '2-digit', month: 'short', year: 'numeric' });
     }
 
+    function filterNotices(notices) {
+        const query = searchTerm.trim().toLowerCase();
+        return (notices || []).filter(n => {
+            const matchCategory = activeCategory === 'Semua' || (n.category || '').toLowerCase() === activeCategory.toLowerCase();
+            if (!query) return matchCategory;
+            const haystack = `${n.title || ''} ${n.summary || ''} ${n.category || ''}`.toLowerCase();
+            return matchCategory && haystack.includes(query);
+        });
+    }
+
     function renderNotices() {
         const notices = loadNotices();
+        const filtered = filterNotices(notices);
         listEl.innerHTML = '';
-        if (!notices.length) {
+
+        if (!filtered.length) {
             listEl.innerHTML = '<p class="text-sm text-[#60857d] dark:text-[#a0c0b8]">Tiada notis buat masa ini.</p>';
+            countEl.textContent = 'Tiada notis dipaparkan';
+            return;
         }
-        notices.forEach((n, idx) => {
+
+        filtered.forEach((n, idx) => {
             const el = document.createElement('article');
             el.className = 'group bg-white dark:bg-[#2d3d3d] rounded-2xl overflow-hidden border border-[#eaf0ef] dark:border-[#3d4d4d] hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col sm:flex-row';
             el.id = `notis-${idx}`;
@@ -266,9 +290,37 @@
             `;
             listEl.appendChild(el);
         });
-        countEl.textContent = `Menunjukkan ${notices.length} notis`;
+
+        countEl.textContent = `Menunjukkan ${filtered.length} daripada ${notices.length} notis`;
     }
 
-    renderNotices();
+    function setActiveFilter(category) {
+        activeCategory = category;
+        filterButtons.forEach(btn => {
+            const isActive = btn.dataset.filter === category;
+            btn.classList.toggle('bg-sage-soft', isActive);
+            btn.classList.toggle('dark:bg-primary/20', isActive);
+            btn.classList.toggle('text-primary', isActive);
+            btn.classList.toggle('font-bold', isActive);
+            btn.classList.toggle('hover:bg-gray-50', !isActive);
+            btn.classList.toggle('dark:hover:bg-white/5', !isActive);
+            btn.classList.toggle('text-[#60857d]', !isActive);
+            btn.classList.toggle('font-semibold', !isActive);
+        });
+        renderNotices();
+    }
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => setActiveFilter(btn.dataset.filter || 'Semua'));
+    });
+
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            searchTerm = e.target.value || '';
+            renderNotices();
+        });
+    }
+
+    setActiveFilter(activeCategory);
 </script>
 </body></html>
