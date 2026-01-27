@@ -60,10 +60,6 @@
             <span class="material-symbols-outlined text-base">home</span>
             <span class="nav-label">Utama</span>
           </button>
-          <button data-page="notis-admin" class="nav-link active flex w-full items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold" type="button">
-            <span class="material-symbols-outlined text-base">campaign</span>
-            <span class="nav-label">Notis (Admin)</span>
-          </button>
           <button data-page="notis-public" class="nav-link flex w-full items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
             <span class="material-symbols-outlined text-base">feed</span>
             <span class="nav-label">Papan Notis</span>
@@ -134,56 +130,22 @@
       </header>
 
       <main class="flex-1 w-full px-4 sm:px-6 py-8">
-        <div id="notisAdminLayout" class="max-w-6xl mx-auto grid gap-8 lg:grid-cols-[2fr_1.2fr]">
+        <div id="notisAdminLayout" class="max-w-6xl mx-auto">
           <section class="bg-white rounded-3xl border border-stone-200 shadow-soft p-6 lg:p-8">
-            <div class="flex items-center justify-between mb-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
               <div>
-                <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Senarai Notis</p>
+                <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Notis (Admin)</p>
                 <h2 class="text-2xl font-extrabold">Notis Semasa</h2>
               </div>
-              <span class="text-sm text-text-main/60" id="notisCount"></span>
+              <div class="flex flex-wrap items-center gap-3 text-sm text-text-main/70">
+                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full border border-primary/20" id="notisCount"></span>
+                <button id="resetSampleBtn" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-stone-200 text-text-main hover:bg-stone-50 text-sm font-semibold">
+                  <span class="material-symbols-outlined text-base">restart_alt</span>
+                  Reset Notis Contoh
+                </button>
+              </div>
             </div>
-            <div id="notisList" class="space-y-4"></div>
-          </section>
-
-          <section class="bg-white rounded-3xl border border-stone-200 shadow-soft p-6 lg:p-8">
-            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-2">Tambah / Sunting</p>
-            <h2 class="text-xl font-extrabold mb-4">Notis</h2>
-            <form id="notisForm" class="space-y-4">
-              <input type="hidden" id="notisId" />
-              <div>
-                <label class="text-sm font-semibold text-text-main/80">Tajuk</label>
-                <input required id="notisTitle" type="text" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="Contoh: Gangguan Air Blok A" />
-              </div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="text-sm font-semibold text-text-main/80">Kategori</label>
-                  <select id="notisCategory" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30">
-                    <option>Penyelenggaraan</option>
-                    <option>Umum</option>
-                    <option>Aktiviti</option>
-                    <option>Keselamatan</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="text-sm font-semibold text-text-main/80">Tarikh</label>
-                  <input required id="notisDate" type="date" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" />
-                </div>
-              </div>
-              <div>
-                <label class="text-sm font-semibold text-text-main/80">Ringkasan</label>
-                <textarea required id="notisSummary" rows="3" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="Masukkan deskripsi ringkas"></textarea>
-              </div>
-              <div>
-                <label class="text-sm font-semibold text-text-main/80">Imej (URL)</label>
-                <input id="notisImage" type="url" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="https://..." />
-                <p class="text-xs text-text-main/60 mt-1">Opsyenal: pautan gambar untuk paparan kad.</p>
-              </div>
-              <div class="flex items-center gap-3">
-                <button type="submit" class="rounded-xl bg-primary text-white font-bold px-5 py-3 shadow-lg shadow-primary/20 hover:-translate-y-0.5 transition-all" id="saveBtn">Simpan Notis</button>
-                <button type="button" id="resetBtn" class="rounded-xl border border-stone-200 px-4 py-3 text-sm font-semibold text-text-main hover:bg-stone-50">Kosongkan</button>
-              </div>
-            </form>
+            <div id="notisList" class="grid gap-4 md:grid-cols-2"></div>
           </section>
         </div>
 
@@ -196,44 +158,14 @@
             </div>
             <div class="flex items-center gap-3">
               <span id="previewCount" class="text-sm text-text-main/60"></span>
+              <button id="addItemBtn" class="text-xs font-bold text-primary bg-primary/10 px-3 py-2 rounded-lg border border-primary/20 hover:bg-primary/15 inline-flex items-center gap-1">
+                <span class="material-symbols-outlined text-base">add</span>
+                Tambah Baharu
+              </button>
               <button id="resetPageBtn" class="text-xs font-bold text-primary bg-primary/10 px-3 py-2 rounded-lg border border-primary/20 hover:bg-primary/15">
                 Reset Halaman
               </button>
             </div>
-          </div>
-
-          <div id="pageFormCard" class="bg-white rounded-3xl border border-stone-200 shadow-soft p-6 lg:p-8 mb-8">
-            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-2">Tambah / Sunting</p>
-            <h3 class="text-xl font-extrabold mb-4">Kad Halaman</h3>
-            <form id="pageCardForm" class="space-y-4">
-              <input type="hidden" id="pageCardId" />
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="text-sm font-semibold text-text-main/80">Tag / Kategori</label>
-                  <input id="pageCardTag" type="text" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="Contoh: Aktiviti" />
-                </div>
-                <div>
-                  <label class="text-sm font-semibold text-text-main/80">Tarikh (opsyenal)</label>
-                  <input id="pageCardDate" type="date" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" />
-                </div>
-              </div>
-              <div>
-                <label class="text-sm font-semibold text-text-main/80">Tajuk</label>
-                <input required id="pageCardTitle" type="text" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="Masukkan tajuk" />
-              </div>
-              <div>
-                <label class="text-sm font-semibold text-text-main/80">Ringkasan</label>
-                <textarea required id="pageCardSummary" rows="3" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="Masukkan deskripsi ringkas"></textarea>
-              </div>
-              <div>
-                <label class="text-sm font-semibold text-text-main/80">Imej (URL, opsyenal)</label>
-                <input id="pageCardImage" type="url" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="https://..." />
-              </div>
-              <div class="flex items-center gap-3">
-                <button type="submit" class="rounded-xl bg-primary text-white font-bold px-5 py-3 shadow-lg shadow-primary/20 hover:-translate-y-0.5 transition-all">Simpan Kad</button>
-                <button type="button" id="pageCardReset" class="rounded-xl border border-stone-200 px-4 py-3 text-sm font-semibold text-text-main hover:bg-stone-50">Kosongkan</button>
-              </div>
-            </form>
           </div>
 
           <div id="previewCards" class="grid gap-3 md:grid-cols-2 lg:grid-cols-3"></div>
@@ -273,7 +205,6 @@
 
   <script>
     const authKey = 'adminAuthed';
-    const storageKey = 'notices';
 
     if (localStorage.getItem(authKey) !== 'true') {
       window.location.href = 'admin.html';
@@ -288,10 +219,9 @@
       { id: crypto.randomUUID(), title: 'Yuran Penyelenggaraan Suku Ke-4', category: 'Kewangan', date: '2023-10-05', summary: 'Peringatan pembayaran yuran; pembayaran atas talian disediakan.', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA4SIiqaxGYZwT5HkiW-d5bwy4NbtyWuDjLj-wiled35KhkzzqFJpF8fUr4fkZFyYs9Ma0ATVkUbHWgJCkdIgrO_FK-IXQEgRZzJAhqkekZZV-X9UoGztNgD1I_uL1D0G1eBERs55dh4c0BdmXgWPpYGGf-gC2owfruqpyp_LOTGyammdu4_1902HPbCPBIIzCLofQBVy2NIAJJ_fvTiPXxYfyHgApXUqyrQ3uHAAzb7farLJOgh91J1L03qTWX8Ywnmd6fRu1sVv4' },
     ];
 
-    let notices = loadNotices();
-    let currentPage = 'notis-admin';
-
-    const pageStorageKey = 'pageDataV1';
+    let dataService;
+    let notices = [];
+    let currentPage = 'home';
 
     function seedWithIds(obj) {
       const copy = {};
@@ -303,31 +233,6 @@
         };
       });
       return copy;
-    }
-
-    function loadPageData() {
-      const saved = localStorage.getItem(pageStorageKey);
-      if (saved) {
-        try {
-          const parsed = JSON.parse(saved);
-          if (!parsed || typeof parsed !== 'object') throw new Error('Invalid page data');
-          Object.keys(parsed).forEach(k => {
-            parsed[k].cards = (parsed[k].cards || []).map(c => ({ id: c.id || crypto.randomUUID(), ...c }));
-          });
-          return parsed;
-        } catch (_) {
-          const seeded = seedWithIds(pageDefaults);
-          localStorage.setItem(pageStorageKey, JSON.stringify(seeded));
-          return seeded;
-        }
-      }
-      const seeded = seedWithIds(pageDefaults);
-      localStorage.setItem(pageStorageKey, JSON.stringify(seeded));
-      return seeded;
-    }
-
-    function persistPageData() {
-      localStorage.setItem(pageStorageKey, JSON.stringify(pageData));
     }
 
     const pageDefaults = {
@@ -343,12 +248,55 @@
         title: 'Kemudahan',
         subtitle: 'Kad tempahan & fasiliti.',
         cards: [
-          { tag: 'Rekreasi', title: 'Kolam Renang Infinit', summary: 'Ketenangan air + pemandangan panorama; 7:00 pagi - 10:00 malam.' },
-          { tag: 'Keluarga', title: 'Taman Permainan', summary: 'Ruang selamat EPDM dengan peralatan moden; 8:00 pagi - 8:00 malam.' },
-          { tag: 'Kesihatan', title: 'Laman Refleksologi', summary: 'Zon herba aromatik untuk terapi minda & fizikal; sentiasa terbuka.' },
-          { tag: 'Komuniti', title: 'Dewan Serbaguna', summary: 'Ruang berhawa dingin untuk kenduri/mesyuarat; perlu tempahan.' },
-          { tag: 'Sukan', title: 'Gimnasium Terbuka', summary: 'Peralatan senaman luaran diselenggara; 6:00 pagi - 11:00 malam.' },
-          { tag: 'Santai', title: 'Kawasan BBQ', summary: 'Kemudahan memanggang lengkap berhampiran kolam; tempahan diperlukan.' },
+          {
+            tag: 'Rekreasi',
+            title: 'Kolam Renang Infinit',
+            summary: 'Ketenangan air yang menyegarkan dengan sistem penapisan kristal; pemandangan panorama.',
+            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCZKYxYXMiV-d_YYekDkZxChjplGQLnlzqGY3ZWGLQDJ92ocpjjnCmfSu9IUFLr_ium4kCnTxzUYgUHTmjoxkvpfQiVJuNJ4g9n3m8dbpdHv4AXr6j4UOECEhE7CzutpUqTFr9CrsWB7RBjYLQOnQaKxSvtdqt8kra_pqwfKLPHr5TPamqp3szwiSj-WrdzAgjDW-cjLjptb-P1Io8d5R0se8KKbmaKSiSDppGZh4FPcpb8CR3asBcL8qvG_yJqL_tYCPMVy0A6mr4',
+            meta: '7:00 pagi - 10:00 malam',
+            badge: 'Popular',
+            icon: 'pool',
+          },
+          {
+            tag: 'Keluarga',
+            title: 'Taman Permainan',
+            summary: 'Permukaan lembut EPDM dan peralatan moden untuk si kecil bermain selamat.',
+            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDGiVvRWkVNjFLKUN9fm2FpzNhpwRnFsf_cGgNigQGLmF6R3hvXpcqwfbgBxYTHsOhgLe1OJGTZKhpxYF61ZZf1MtfMcGST4VecegAs6VCCwJOxX_LnBLpPiYpek9lTGjUr7yKEA3yYriUMEqP0HJCbYva4pcL74XkOu9AgadiawTKhv50DkdJUJJ4jcm6Uxw-bISrrHlVA9wA08ZcElfQadqpwDc9hIMALNySMTQjjOiGD6HYw-vJq1J9c7ly_JzKSokmOSkv7Snk',
+            meta: '8:00 pagi - 8:00 malam',
+            icon: 'child_care',
+          },
+          {
+            tag: 'Kesihatan',
+            title: 'Laman Refleksologi',
+            summary: 'Zon herba aromatik untuk terapi minda & fizikal; sesuai meditasi.',
+            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC8EELoZ5XNpT8EGP3fZIRNyrHQV44Kv36cK9eK9CoMHXmM4uvYY-KsWc1pQBwJhX7p6q7iuk2EyBFPYsDDX5pWaWSbEklN2I1cY5MNuuvTpBgdsIoRVQ7nG1iGbhaeEgol9gMuk0n8cyKfV7L7_4JQ52hqpTfh2xr3uI5tbNHsywKsM63Uc_aNyp3Y-AulAK9AL-hFxhkbxedLGOv8S1uRFqPrJKNncsNsChcjFzLGYqPNSHPZEg77pdLWXLrvWGB3ZPcyyJdan3U',
+            meta: 'Sentiasa terbuka',
+            icon: 'spa',
+          },
+          {
+            tag: 'Komuniti',
+            title: 'Dewan Serbaguna',
+            summary: 'Ruang berhawa dingin untuk kenduri, mesyuarat dan acara komuniti.',
+            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDeoURgF7cm7nhfkYTjZvPipQ8yvQIf7QVbTy2FmfqqJ5waJzaPIJIp6ujgWBv0Y6jjGpZTXizfJoM-8w14bA0eJOvPLVlq3Zs5kT9Kgm_5w1vPOYtSHPss8h5-wRliimEL9fOXi9H4gTZeOR4damVtJ2o6DCJjS1jj8EQAYyIeedDQ2dzRvjysSduMMgoXPO9saWv24XeU1ye_WQ4ZIrxCemLVL4cc0eCUE5-82rYxXwLa2gHPXzGiUg61kwNPvOocv_pdboFOzIg',
+            meta: 'Perlu tempahan',
+            icon: 'groups',
+          },
+          {
+            tag: 'Sukan',
+            title: 'Gimnasium Terbuka',
+            summary: 'Peralatan senaman luaran diselenggara rapi di tengah kehijauan.',
+            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCxsfo_wWEah62mZZweTwRGycmOI77Tb-V7p3LuRb1aUvURnNusqawr0y5TtuP7GO2-SU7eqp0v6oznUp4wGCqpEDiRjRwKONpdW3I_I5KbYxjnFmxz1-_JkZd9cQwSHsFRSDxirKOSwjUrOukifI8XNrquAZj6RgNpkUD-FHBnL2XXU50zG1LcOcfD5pupe9rgfkwy6Ptq7Bmoa5UT65isnmabCvw77LR1moVgKTs-wt9qbR2gc-yk1sAbltd_SiLTuNTPLoXxcN0',
+            meta: '6:00 pagi - 11:00 malam',
+            icon: 'fitness_center',
+          },
+          {
+            tag: 'Santai',
+            title: 'Kawasan BBQ',
+            summary: 'Kemudahan memanggang lengkap berhampiran kolam; sesuai untuk keluarga.',
+            image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBUlod-KivcxvepGvTgwP9XWTSEWEWa5cLXvsixMwJ_OmgOWLXTXScyZpKXAxoiTfoG6BmSoeul7aGQfV8I6kC4RN0QaFr1t5XHlrACpRBuMPGXLmwfHOzGyIr4qdZtI0pR3HDhRXM5hlwlIXrolJaXYw35H5edxtUGaa5ScwxCMxFBbGTBFCkY6D5UwCOidRAKJ4PPic0Ys263IUE63X-C_mc0MltBrXH9lsyEB1JvbldfD_GG5fLhb4Z1hTSVevb-SuXbr0sQokE',
+            meta: 'Tempahan diperlukan',
+            icon: 'outdoor_grill',
+          },
         ],
       },
       'komuniti': {
@@ -364,48 +312,290 @@
         title: 'Laporan AGM/EGM',
         subtitle: 'Sorotan laporan terkini.',
         cards: [
-          { tag: 'AGM', title: 'Mesyuarat Agung Tahunan', summary: 'Agenda: pelantikan jawatankuasa, laporan kewangan, usul keselamatan.' },
-          { tag: 'EGM', title: 'Mesyuarat Khas', summary: 'Isu khusus yang memerlukan undian pemilik.' },
+          { tag: 'AGM', title: 'Minit Mesyuarat Agung Tahunan Ke-15', date: '2024-05-25', summary: 'Status: Disahkan oleh JMB • Menunggu audit akhir.', meta: '2.4 MB', icon: 'article' },
+          { tag: 'Kewangan', title: 'Laporan Kewangan Tahunan 2023', date: '2024-03-12', summary: 'Laporan penuh audit kewangan tahun berakhir 2023.', meta: '4.1 MB', icon: 'account_balance' },
+          { tag: 'EGM', title: 'Minit Mesyuarat Agung Luar Biasa (EGM)', date: '2024-01-10', summary: 'Perbincangan: Penukaran Lif Blok B dan Isu Parkir.', meta: '1.8 MB', icon: 'gavel' },
         ],
       },
       'tender': {
         title: 'Tender Terbuka',
         subtitle: 'Ringkasan tender aktif.',
         cards: [
-          { tag: 'Perkhidmatan', title: 'Pembersihan Kawasan Umum', summary: 'Skop: blok kediaman & landskap; tutup 30 Jan 2025.' },
-          { tag: 'Keselamatan', title: 'Naik Taraf CCTV Perimeter', summary: 'Penambahan kamera dan pusat kawalan; tutup 15 Feb 2025.' },
+          { tag: 'Penyelenggaraan', title: 'Pengecatan Semula Blok A & Blok B', date: '2025-01-15', summary: 'Kerja cat luar dan dalaman blok A & B, termasuk pemeriksaan retakan.', meta: 'TDR-2025-001' },
+          { tag: 'Naik Taraf', title: 'Naiktaraf Sistem Lif (Fasa 2)', date: '2024-12-30', summary: 'Penggantian komponen kritikal lif dan sistem kecemasan.', meta: 'TDR-2024-017' },
+          { tag: 'Keselamatan', title: 'Perkhidmatan Kawalan Keselamatan 2024', date: '2024-10-20', summary: 'Kontrak pengawal 24/7 dan rondaan parkir bertingkat.', meta: 'TDR-2024-010' },
+          { tag: 'Landskap', title: 'Landskap & Penanaman Semula Pokok', date: '2024-11-22', summary: 'Penanaman semula pokok teduhan dan pembaikan sistem pengairan.', meta: 'TDR-2024-021' },
+          { tag: 'Penyelenggaraan', title: 'Penggantian Paip Utama Blok C', date: '2024-11-05', summary: 'Penggantian paip utama air domestik dan ujian tekanan.', meta: 'TDR-2024-013' },
         ],
       },
       'vendor': {
         title: 'Vendor Berdaftar',
         subtitle: 'Direktori vendor.',
         cards: [
-          { tag: 'Pembersihan', title: 'EcoClean Services', summary: 'Kontrak penyelenggaraan bulanan.' },
-          { tag: 'Keselamatan', title: 'SecureWatch Sdn Bhd', summary: 'Bekal & servis CCTV.' },
-          { tag: 'Landskap', title: 'GreenScape', summary: 'Penyelenggaraan taman & pokok.' },
+          { name: 'Syarikat Paip Jitu', category: 'Paip', icon: 'plumbing', rating: 4.8, reviews: 120, phone: '+60 12-345 6789', years: 12, verified: true, whatsapp: 'https://wa.me/60123456789', profileUrl: '#' },
+          { name: 'Arus Elektrik Enterprise', category: 'Elektrik', icon: 'bolt', rating: 4.5, reviews: 85, phone: '+60 13-987 6543', years: 8, verified: true, whatsapp: 'https://wa.me/60139876543', profileUrl: '#' },
+          { name: 'CoolAir Solutions', category: 'Penyaman Udara', icon: 'ac_unit', rating: 4.9, reviews: 200, phone: '+60 17-555 1234', years: 15, verified: true, whatsapp: 'https://wa.me/60175551234', profileUrl: '#' },
+          { name: 'CleanHome Services', category: 'Pembersihan', icon: 'cleaning_services', rating: 4.7, reviews: 50, phone: '+60 11-232 4455', years: 5, verified: false, whatsapp: 'https://wa.me/60112324455', profileUrl: '#' },
+          { name: 'BuildRight Reno', category: 'Renovasi', icon: 'format_paint', rating: 4.6, reviews: 90, phone: '+60 19-333 4444', years: 10, verified: true, whatsapp: 'https://wa.me/60193334444', profileUrl: '#' },
+          { name: 'PlumbMaster Pro', category: 'Baik Pulih', icon: 'construction', rating: 4.4, reviews: 75, phone: '+60 14-221 3322', years: 6, verified: false, whatsapp: 'https://wa.me/60142213322', profileUrl: '#' },
         ],
       },
       'portal': {
         title: 'Portal Borang Digital',
         subtitle: 'Borang & permohonan.',
         cards: [
-          { tag: 'Permit', title: 'Permit Renovasi', summary: 'Permohonan kerja ubah suai unit.' },
-          { tag: 'Akses', title: 'Pas Pelawat', summary: 'Pendaftaran pelawat dan kenderaan.' },
-          { tag: 'Kelengkapan', title: 'Tempahan Fasiliti', summary: 'Tempahan dewan, BBQ, gelanggang.' },
+          { title: 'Permit Renovasi', description: 'Mohon pengubahsuaian atau pembaikan unit.', icon: 'construction', url: '#', highlight: false },
+          { title: 'Tempahan Fasiliti', description: 'BBQ Pit, Gelanggang atau Dewan.', icon: 'calendar_month', url: '#facility-booking', highlight: true },
+          { title: 'Notis Pindah', description: 'Jadualkan logistik masuk atau keluar.', icon: 'local_shipping', url: '#', highlight: false },
+          { title: 'Kad Akses', description: 'Mohon kad baharu atau gantian.', icon: 'badge', url: '#', highlight: false },
         ],
       },
       'hubungi': {
         title: 'Hubungi Pengurusan',
         subtitle: 'Saluran komunikasi.',
         cards: [
-          { tag: 'Umum', title: 'Borang Aduan', summary: 'Laporkan isu penyelenggaraan.' },
-          { tag: 'Kecemasan', title: 'Talian Kecemasan', summary: 'Nombor untuk situasi mendesak.' },
-          { tag: 'Sokongan', title: 'Pertanyaan Akaun', summary: 'Hubungi untuk bil & yuran.' },
+          {
+            title: 'Pejabat Pengurusan',
+            icon: 'location_on',
+            lines: [
+              'Banjaria Court Management Office',
+              'Jalan Samudera Utama',
+              '68100 Batu Caves, Selangor',
+            ],
+            highlight: false,
+            extra: { label: 'Telefon', value: '+603 6188 1234' },
+          },
+          {
+            title: 'Waktu Operasi',
+            icon: 'schedule',
+            lines: [
+              'Isnin - Jumaat: 9:00 pagi - 5:00 petang',
+              'Sabtu: 9:00 pagi - 1:00 petang',
+              'Ahad: Tutup',
+            ],
+            highlight: true,
+          },
+          {
+            title: 'Hotline Sekuriti (24/7)',
+            icon: 'shield_lock',
+            lines: ['+603 6188 5678'],
+            highlight: false,
+          },
+          {
+            title: 'Emel Pengurusan',
+            icon: 'alternate_email',
+            lines: ['management@banjaria.com', 'Respon dalam 1 hari bekerja'],
+            highlight: false,
+          },
         ],
       },
     };
 
-    let pageData = loadPageData();
+    dataService = createLocalDataService();
+    notices = dataService.loadNotices();
+    pageData = dataService.loadPages();
+
+    function ensureNoticeIds() {
+      let touched = false;
+      notices = (notices || []).map(n => {
+        if (!n.id) {
+          touched = true;
+          return { ...n, id: crypto.randomUUID() };
+        }
+        return n;
+      });
+      if (touched) dataService.saveNotices(notices);
+    }
+
+    function ensureNoticeData() {
+      // Reseed jika tiada notis langsung
+      if (!Array.isArray(notices) || notices.length === 0) {
+        notices = defaultNotices.map(n => ({ ...n, id: crypto.randomUUID() }));
+        dataService.saveNotices(notices);
+      }
+      ensureNoticeIds();
+    }
+
+    function ensureAllPageIds() {
+      Object.keys(pageData || {}).forEach(key => ensurePageCardIds(key));
+    }
+
+    function ensurePageCardIds(pageName) {
+      const entry = pageData[pageName];
+      if (!entry) return;
+
+      // Jika data disimpan sebagai array, tukar kepada shape { title, subtitle, cards }
+      if (Array.isArray(entry)) {
+        pageData[pageName] = {
+          title: pageDefaults[pageName]?.title || pageName,
+          subtitle: pageDefaults[pageName]?.subtitle || '',
+          cards: entry,
+        };
+      }
+
+      const target = pageData[pageName];
+      if (!target || !Array.isArray(target.cards)) return;
+
+      let touched = false;
+      target.cards = target.cards.map(c => {
+        if (!c.id) {
+          touched = true;
+          return { ...c, id: crypto.randomUUID() };
+        }
+        return c;
+      });
+      if (touched) {
+        dataService.savePages(pageData);
+      }
+    }
+
+    function ensurePageEntry(pageName) {
+      const defaults = pageDefaults[pageName];
+      const existing = pageData[pageName];
+
+      // Jika tiada entri langsung, reseed dari defaults
+      if (!existing) {
+        if (!defaults) return;
+        pageData[pageName] = seedWithIds({ [pageName]: defaults })[pageName];
+        dataService.savePages(pageData);
+        return;
+      }
+
+      // Jika cards tiada atau bukan array atau kosong, reseed dari defaults
+      if (!existing.cards || !Array.isArray(existing.cards) || existing.cards.length === 0) {
+        if (defaults) {
+          pageData[pageName] = seedWithIds({ [pageName]: defaults })[pageName];
+          dataService.savePages(pageData);
+          return;
+        }
+      }
+
+      // Pastikan id diset
+      ensurePageCardIds(pageName);
+    }
+
+    function createLocalDataService() {
+      const noticeKey = 'notices';
+      const pageKey = 'pageDataV1';
+
+      const normalizeEntry = (pageName, entry) => {
+        if (Array.isArray(entry)) {
+          return {
+            title: pageDefaults[pageName]?.title || pageName,
+            subtitle: pageDefaults[pageName]?.subtitle || '',
+            cards: entry.map(c => ({ id: c.id || crypto.randomUUID(), ...c })),
+          };
+        }
+        if (!entry || typeof entry !== 'object') {
+          return { title: pageDefaults[pageName]?.title || pageName, subtitle: pageDefaults[pageName]?.subtitle || '', cards: [] };
+        }
+        entry.cards = (entry.cards || []).map(c => ({ id: c.id || crypto.randomUUID(), ...c }));
+        return entry;
+      };
+
+      const safeParse = (raw, fallback, label) => {
+        try {
+          const parsed = JSON.parse(raw);
+          if (parsed === null || typeof parsed !== 'object') throw new Error('Invalid shape');
+          return parsed;
+        } catch (err) {
+          console.error(`Data parse error for ${label}`, err);
+          showToast('Data rosak, kembali ke default.', 'error');
+          return fallback;
+        }
+      };
+
+      return {
+        loadNotices() {
+          const saved = localStorage.getItem(noticeKey);
+            const ensureIds = (list) => {
+              const withIds = (list || []).map(n => ({ ...n, id: n.id || crypto.randomUUID() }));
+              localStorage.setItem(noticeKey, JSON.stringify(withIds));
+              return withIds;
+            };
+
+            if (!saved) {
+              return ensureIds(defaultNotices);
+            }
+            const parsed = safeParse(saved, defaultNotices, 'notices');
+            if (!Array.isArray(parsed)) return ensureIds(defaultNotices);
+            return ensureIds(parsed);
+        },
+        saveNotices(list) {
+          localStorage.setItem(noticeKey, JSON.stringify(list));
+        },
+        resetNotices() {
+          const seeded = defaultNotices.map(n => ({ ...n, id: crypto.randomUUID() }));
+          localStorage.setItem(noticeKey, JSON.stringify(seeded));
+          return seeded;
+        },
+        loadPages() {
+          const saved = localStorage.getItem(pageKey);
+          if (!saved) {
+            const seeded = seedWithIds(pageDefaults);
+            localStorage.setItem(pageKey, JSON.stringify(seeded));
+            return seeded;
+          }
+          const parsed = safeParse(saved, seedWithIds(pageDefaults), 'page data');
+          Object.keys(parsed).forEach(k => {
+            parsed[k] = normalizeEntry(k, parsed[k]);
+          });
+          return parsed;
+        },
+        savePages(data) {
+          localStorage.setItem(pageKey, JSON.stringify(data));
+        },
+        resetPage(pageName) {
+          const seeded = seedWithIds({ [pageName]: pageDefaults[pageName] || { cards: [] } });
+          const fresh = seeded[pageName] || { cards: [] };
+          localStorage.setItem(pageKey, JSON.stringify({ ...this.loadPages(), [pageName]: fresh }));
+          return fresh;
+        }
+      };
+    }
+
+    function showToast(message, variant = 'info') {
+      if (!toastHost) return;
+      const el = document.createElement('div');
+      const base = 'min-w-[240px] max-w-sm rounded-2xl border px-4 py-3 shadow-lg shadow-primary/10 text-sm bg-white';
+      const tone = variant === 'error'
+        ? 'border-red-200 text-red-700 bg-red-50'
+        : variant === 'success'
+          ? 'border-emerald-200 text-emerald-800 bg-emerald-50'
+          : 'border-stone-200 text-text-main bg-white';
+      el.className = `${base} ${tone}`;
+      el.textContent = message;
+      toastHost.appendChild(el);
+      setTimeout(() => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(-4px)';
+        el.style.transition = 'opacity 150ms ease, transform 150ms ease';
+        setTimeout(() => el.remove(), 180);
+      }, 3000);
+    }
+
+    function isValidUrl(value) {
+      if (!value) return true;
+      try {
+        new URL(value);
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
+
+    function validateNotice(payload) {
+      const errors = [];
+      if (!payload.title || payload.title.length < 4) errors.push('Tajuk mesti ada sekurang-kurangnya 4 aksara.');
+      if (!payload.summary || payload.summary.length < 10) errors.push('Ringkasan terlalu pendek.');
+      if (!payload.date) errors.push('Tarikh diperlukan.');
+      if (payload.image && !isValidUrl(payload.image)) errors.push('URL imej tidak sah.');
+      return errors;
+    }
+
+    const toastHost = document.createElement('div');
+    toastHost.className = 'fixed top-4 right-4 z-50 space-y-3';
+    document.body.appendChild(toastHost);
 
     const sidebar = document.getElementById('adminSidebar');
     const sidebarToggles = document.querySelectorAll('[data-sidebar-toggle]');
@@ -417,31 +607,36 @@
     const previewCount = document.getElementById('previewCount');
     const previewCards = document.getElementById('previewCards');
     const previewEmpty = document.getElementById('previewEmpty');
-    const pageFormCard = document.getElementById('pageFormCard');
     const resetPageBtn = document.getElementById('resetPageBtn');
     const compactGridClass = 'grid gap-3 md:grid-cols-2 lg:grid-cols-3';
     const noticeGridClass = 'grid gap-4 md:grid-cols-2';
-    const pageForm = document.getElementById('pageCardForm');
-    const pageCardIdEl = document.getElementById('pageCardId');
-    const pageCardTagEl = document.getElementById('pageCardTag');
-    const pageCardDateEl = document.getElementById('pageCardDate');
-    const pageCardTitleEl = document.getElementById('pageCardTitle');
-    const pageCardSummaryEl = document.getElementById('pageCardSummary');
-    const pageCardImageEl = document.getElementById('pageCardImage');
-    const pageCardResetBtn = document.getElementById('pageCardReset');
+    const fallbackImages = [
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuB0yW6o4DoAYcV7ml0A9UJXNP-zefOlqCSX2kjIvA06KHD4P_Ov6MT334kSkkk7UcKkQC3j8_LyRu4cvJdtqYkujTNYFkvl3BX6fXzxhR9dCtBv6HxjJjBnnIwB35Zny3osneBqBlvTNhf7MQYvXgXIoPjzDj3rBuvvv8Ge8--NRRej3AErRV6qDMC2GuLOMLK5-AaiC5cMb55juX0swUrwfd3A_dsPdp1XFEu0hPhJ3TePUs9T4RrKnzn4uWNWvJdw7Ttt1sA4Wts',
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuCqpEF2HztR3lHpXF6xUQnk1Kz_uME_OhCMnhX9KFKEcJ0fkfE-7_QT9cLh3v4yCzvcOCrT-xtGdzPEIn6hXze_jkW0zHTcRDLEBsK1NYa9DD_3JG3jCS1PNiST3hkpcKkz-mSfWj7haSw6zbkAnhLjTJ6xHL0rmEOKkQCLam-T29c4up6fMfAFTTrjshsFsQFHVoIm7OwEOV42hfDZ0J0JAGY_BcB2WOgpTqAUPvFb-XBP4QuoBh_cCI09GCz0xXjPkyww00l0M6c',
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuBkYkltb7C1HhoFW_sPq4ZhWROBVjha-fkQFtwrkaVmc6SX6QNg317VZtoQM7Jg1rm57_FNUTARTr2yHRjny3DvmwiTPr4hhPMcWQC323L0dcXPyTGOXj5nev2Zayo6kLfS6QZ0HrPPF1CCdH9uFcNieUOy6nR7EkWuuTUktP85Tr4YiLK2U1iY1LL2shApCLRfvWwx3XcRAxEiCbFxEMFowN4cEEyJZxatS1WI4tArZHLpISRlJk7Sfuw_LqPz5Y5DKZrFLPMm1dw',
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuB5Ewr544LMUBKephLgVR6hv9Q18OA2ZoxFM_5jptsaB_z7d2MH_2Wivm7h_iwQclM5_wF2JImG5g1aRKQgda1L3-la4jPOmxjEVoSIc7p3rPqHjG0WuUE25CD0OediwR8I5Ds2o-gD0zMnEziIQ7VS4czDG2LxyeScGU4wAGbqRYI2S8pB6D0DxVt-KooUTabzdXkICtIa53uYqQodkT1hS59tmXYSPYx1HK_2M9__LS_G86hajaHB8mnxikfx6kqFgXfRRXKNtCQ',
+      'https://lh3.googleusercontent.com/aida-public/AB6AXuDPZLM_OI-zx4LWFIxCepL2nx34QL1in1P9021naRQVIRbqZfR-XzRi3ZFXw-xJjXPeDmtkp-wM6TsGQXUAVeu6_O2zdbgiTBbBWYzlb92fNMS9FxjQzkG5PhbfaMajLYiu9GnVczkfU5oJo3KNqpmtIFQ07oGRlaP1N7b1BGg4W9F_-yDdT8QX85ExJkchCdRtjdwEGFGtopHz3gFCVN_O9ApBBqFrJr0oTByfDWR7CaYgtTI564icXQIIW0wrd4jEq9jZXBXTnoo',
+    ];
 
     const listEl = document.getElementById('notisList');
     const countEl = document.getElementById('notisCount');
-    const formEl = document.getElementById('notisForm');
-    const idEl = document.getElementById('notisId');
-    const titleEl = document.getElementById('notisTitle');
-    const catEl = document.getElementById('notisCategory');
-    const dateEl = document.getElementById('notisDate');
-    const summaryEl = document.getElementById('notisSummary');
-    const imageEl = document.getElementById('notisImage');
-    const resetBtn = document.getElementById('resetBtn');
     const resetSampleBtn = document.getElementById('resetSampleBtn');
     const logoutBtn = document.getElementById('logoutBtn');
+    const addItemBtn = document.getElementById('addItemBtn');
+    let editModal = document.getElementById('editModal');
+    let editForm = document.getElementById('editForm');
+    let editTitle = document.getElementById('editTitle');
+    let editTag = document.getElementById('editTag');
+    let editDate = document.getElementById('editDate');
+    let editMeta = document.getElementById('editMeta');
+    let editSummary = document.getElementById('editSummary');
+    let editImage = document.getElementById('editImage');
+    let editUpload = document.getElementById('editUpload');
+    let editPreview = document.getElementById('editPreview');
+    let editModalTitle = document.getElementById('editModalTitle');
+    let editModalContext = document.getElementById('editModalContext');
+    let editState = null;
+    let editEventsBound = false;
 
     sidebarToggles.forEach(btn => btn.addEventListener('click', () => {
       sidebar.classList.toggle('sidebar-collapsed');
@@ -452,86 +647,63 @@
       setActivePage(page);
     }));
 
-    renderNotices();
-    setActivePage('notis-admin');
-
-    formEl.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const payload = {
-        id: idEl.value || crypto.randomUUID(),
-        title: titleEl.value.trim(),
-        category: catEl.value.trim(),
-        date: dateEl.value,
-        summary: summaryEl.value.trim(),
-        image: imageEl.value.trim(),
-      };
-
-      if (idEl.value) {
-        notices = notices.map(n => n.id === payload.id ? payload : n);
-      } else {
-        notices = [payload, ...notices];
-      }
-
-      persist();
-      renderNotices();
-      formEl.reset();
-      idEl.value = '';
-      imageEl.value = '';
-    });
-
-    resetBtn.addEventListener('click', () => {
-      formEl.reset();
-      idEl.value = '';
-      imageEl.value = '';
-    });
-
-    if (pageForm) {
-      pageForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const card = {
-          id: pageCardIdEl.value || crypto.randomUUID(),
-          tag: pageCardTagEl.value.trim(),
-          title: pageCardTitleEl.value.trim(),
-          date: pageCardDateEl.value,
-          summary: pageCardSummaryEl.value.trim(),
-          image: pageCardImageEl.value.trim(),
-        };
-
-        const pageEntry = pageData[currentPage] || { ...pageDefaults[currentPage], cards: [] };
-        const existingIdx = (pageEntry.cards || []).findIndex(c => c.id === card.id);
-        if (existingIdx >= 0) {
-          pageEntry.cards[existingIdx] = card;
+    if (addItemBtn) {
+      addItemBtn.addEventListener('click', () => {
+        const isNotice = currentPage === 'notis-public';
+        const newId = crypto.randomUUID();
+        if (isNotice) {
+          const today = new Date().toISOString().slice(0, 10);
+          openEditModal('notice', 'notis-public', {
+            id: newId,
+            title: '',
+            tag: '',
+            rawDate: today,
+            summary: '',
+            meta: '',
+            image: '',
+          }, true);
         } else {
-          pageEntry.cards = [card, ...pageEntry.cards];
+          const defaults = pageDefaults[currentPage] || {};
+          openEditModal('page', currentPage, {
+            id: newId,
+            title: '',
+            tag: defaults.title || currentPage,
+            rawDate: '',
+            summary: '',
+            meta: '',
+            image: '',
+          }, true);
         }
-        pageData[currentPage] = pageEntry;
-        persistPageData();
-        renderPageCards(currentPage);
-        resetPageForm();
-      });
-
-      pageCardResetBtn.addEventListener('click', () => {
-        resetPageForm();
       });
     }
+
+    ensureNoticeData();
+    ensureAllPageIds();
+    renderNotices();
+    setActivePage('home');
+
+    // Notis form removed; Admin view now read-only grid.
+
+    // Page card form removed per requirement.
 
     if (resetPageBtn) {
       resetPageBtn.addEventListener('click', () => {
         if (!confirm('Reset kandungan halaman ini kepada default?')) return;
-        const seeded = seedWithIds({ [currentPage]: pageDefaults[currentPage] || { cards: [] } });
-        pageData[currentPage] = seeded[currentPage] || { cards: [] };
-        persistPageData();
+        pageData[currentPage] = dataService.resetPage(currentPage);
+        dataService.savePages(pageData);
         const isNoticePage = currentPage === 'notis-public' || currentPage === 'kemudahan';
         renderPageCards(currentPage, isNoticePage);
+        showToast('Halaman telah di-reset.', 'success');
       });
     }
 
     resetSampleBtn.addEventListener('click', () => {
       if (!confirm('Gantikan notis dengan 6 contoh asal?')) return;
-      notices = defaultNotices.map(n => ({ ...n, id: crypto.randomUUID() }));
-      persist();
+      notices = dataService.resetNotices();
+      dataService.saveNotices(notices);
       renderNotices();
       setActivePage(currentPage);
+      showToast('Notis contoh dipulihkan.', 'success');
     });
 
     logoutBtn.addEventListener('click', () => {
@@ -539,117 +711,305 @@
       window.location.href = 'admin.html';
     });
 
-    function loadNotices() {
-      const saved = localStorage.getItem(storageKey);
-      if (saved) {
-        try {
-          return JSON.parse(saved);
-        } catch (_) {
-          return defaultNotices;
-        }
-      }
-      localStorage.setItem(storageKey, JSON.stringify(defaultNotices));
-      return defaultNotices;
-    }
-
-    function persist() {
-      localStorage.setItem(storageKey, JSON.stringify(notices));
-    }
-
     function renderNotices() {
+      ensureNoticeData();
       listEl.innerHTML = '';
       if (!notices.length) {
         listEl.innerHTML = '<p class="text-sm text-text-main/60">Tiada notis. Tambah notis baharu.</p>';
       }
-      notices.forEach(notis => {
-        const tpl = document.getElementById('notisCardTemplate').content.cloneNode(true);
-        tpl.querySelector('.card-title').textContent = notis.title;
-        tpl.querySelector('.card-category').textContent = notis.category;
-        tpl.querySelector('.card-date').textContent = formatDate(notis.date);
-        tpl.querySelector('.card-summary').textContent = notis.summary;
-        tpl.querySelector('.edit-btn').addEventListener('click', () => fillForm(notis));
-        tpl.querySelector('.delete-btn').addEventListener('click', () => deleteNotis(notis.id));
-        listEl.appendChild(tpl);
+      notices.forEach((notis, idx) => {
+        const el = document.createElement('article');
+        const imgSrc = notis.image || fallbackImages[idx % fallbackImages.length];
+        const imageBlock = imgSrc ? `
+            <div class="sm:w-40 h-40 sm:h-auto shrink-0 relative overflow-hidden">
+              <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('${imgSrc}')"></div>
+              <div class="absolute top-3 left-3 sm:hidden">
+                <span class="px-2 py-1 bg-white/90 backdrop-blur text-primary rounded-lg text-[11px] font-bold shadow-sm">${notis.category || ''}</span>
+              </div>
+            </div>
+        ` : '';
+
+        el.className = 'group bg-white rounded-2xl overflow-hidden border border-stone-200 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col sm:flex-row';
+        el.innerHTML = `
+            ${imageBlock}
+            <div class="flex-1 p-5 flex flex-col justify-center gap-2">
+              <div class="flex items-center gap-3 text-[11px] font-medium text-text-main/70">
+                ${notis.date ? `<span class="text-eucalyptus font-bold text-sm">${formatDate(notis.date)}</span>` : ''}
+                ${notis.date ? '<span class="w-1 h-1 rounded-full bg-[#cbd5e1]"></span>' : ''}
+                <span class="text-[#60857d] uppercase tracking-wider">${notis.category || ''}</span>
+              </div>
+              <h3 class="text-lg font-bold text-text-main group-hover:text-primary transition-colors">${notis.title || ''}</h3>
+              <p class="text-[#60857d] text-sm leading-relaxed line-clamp-2">${notis.summary || ''}
+                ${notis.meta ? `<span class="block text-[11px] text-text-main/60 mt-1">${notis.meta}</span>` : ''}
+              </p>
+            </div>
+        `;
+        listEl.appendChild(el);
       });
       countEl.textContent = `${notices.length} notis`;
+    }
+
+    function deleteNoticeById(id) {
+      const idx = notices.findIndex(n => n.id === id);
+      if (idx === -1) return;
+      notices.splice(idx, 1);
+      dataService.saveNotices(notices);
+      setActivePage('notis-public');
+      showToast('Notis dipadam.', 'success');
+    }
+
+    function deletePageCardById(pageName, id) {
+      if (!pageData[pageName] || !Array.isArray(pageData[pageName].cards)) return;
+      const idx = pageData[pageName].cards.findIndex(c => c.id === id);
+      if (idx === -1) return;
+      pageData[pageName].cards.splice(idx, 1);
+      dataService.savePages(pageData);
+      setActivePage(pageName);
+      showToast('Kad dipadam.', 'success');
+    }
+
+    function ensureEditModalReady() {
+      if (!document.getElementById('editModal')) {
+        const modalHtml = `
+<div id="editModal" class="fixed inset-0 z-[60] hidden items-center justify-center px-4">
+  <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" data-edit-close></div>
+  <div class="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl border border-stone-200 overflow-hidden">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-stone-200 bg-primary/5">
+      <div>
+        <p class="text-xs font-semibold text-primary uppercase tracking-widest" id="editModalContext">Edit</p>
+        <h3 class="text-lg font-bold text-text-main" id="editModalTitle">Kemaskini</h3>
+      </div>
+      <button class="p-2 text-stone-500 hover:text-primary" data-edit-close>
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <form id="editForm" class="px-6 py-5 space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label class="text-sm font-semibold text-text-main/80 space-y-1">
+          <span>Tajuk</span>
+          <input id="editTitle" type="text" class="w-full rounded-xl border border-stone-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/40" required minlength="3" />
+        </label>
+        <label class="text-sm font-semibold text-text-main/80 space-y-1">
+          <span>Kategori / Tag</span>
+          <input id="editTag" type="text" class="w-full rounded-xl border border-stone-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/40" />
+        </label>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label class="text-sm font-semibold text-text-main/80 space-y-1">
+          <span>Tarikh (jika notis)</span>
+          <input id="editDate" type="date" class="w-full rounded-xl border border-stone-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/40" />
+        </label>
+        <label class="text-sm font-semibold text-text-main/80 space-y-1">
+          <span>Meta / Masa</span>
+          <input id="editMeta" type="text" class="w-full rounded-xl border border-stone-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/40" />
+        </label>
+      </div>
+      <label class="text-sm font-semibold text-text-main/80 space-y-1 block">
+        <span>Ringkasan</span>
+        <textarea id="editSummary" rows="3" class="w-full rounded-xl border border-stone-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/40" required minlength="5"></textarea>
+      </label>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label class="text-sm font-semibold text-text-main/80 space-y-1">
+          <span>URL Imej</span>
+          <input id="editImage" type="url" class="w-full rounded-xl border border-stone-200 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary/40" placeholder="https://" />
+        </label>
+        <label class="text-sm font-semibold text-text-main/80 space-y-1">
+          <span>Muat naik imej</span>
+          <input id="editUpload" type="file" accept="image/*" class="block w-full text-sm text-text-main/70" />
+          <span class="text-[11px] text-text-main/60">Fail akan ditukar kepada data URL & disimpan bersama kad.</span>
+        </label>
+      </div>
+      <div class="flex items-center gap-3">
+        <div id="editPreview" class="size-24 rounded-xl border border-dashed border-stone-300 bg-stone-50 bg-center bg-cover"></div>
+        <p class="text-xs text-text-main/60">Pratonton imej kad. Jika kosong, fallback akan digunakan.</p>
+      </div>
+      <div class="flex justify-end gap-3 pt-2">
+        <button type="button" class="px-4 py-2 rounded-xl border border-stone-200 text-text-main hover:bg-stone-50" data-edit-close>Batal</button>
+        <button type="submit" class="px-5 py-2 rounded-xl bg-primary text-white font-bold hover:bg-primary/90">Simpan</button>
+      </div>
+    </form>
+  </div>
+</div>`;
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+      }
+
+      editModal = document.getElementById('editModal');
+      editForm = document.getElementById('editForm');
+      editTitle = document.getElementById('editTitle');
+      editTag = document.getElementById('editTag');
+      editDate = document.getElementById('editDate');
+      editMeta = document.getElementById('editMeta');
+      editSummary = document.getElementById('editSummary');
+      editImage = document.getElementById('editImage');
+      editUpload = document.getElementById('editUpload');
+      editPreview = document.getElementById('editPreview');
+      editModalTitle = document.getElementById('editModalTitle');
+      editModalContext = document.getElementById('editModalContext');
+
+      const ready = !!(editModal && editForm && editTitle && editTag && editDate && editMeta && editSummary && editImage && editUpload && editPreview && editModalTitle && editModalContext);
+      if (!ready) return false;
+
+      if (!editEventsBound) {
+        editUpload.addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            const dataUrl = ev.target?.result;
+            if (typeof dataUrl === 'string') {
+              editImage.value = dataUrl;
+              editPreview.style.backgroundImage = `url('${dataUrl}')`;
+            }
+          };
+          reader.readAsDataURL(file);
+        });
+
+        editImage.addEventListener('input', () => {
+          const url = editImage.value.trim();
+          editPreview.style.backgroundImage = url ? `url('${url}')` : '';
+        });
+
+        editModal.querySelectorAll('[data-edit-close]').forEach(btn => {
+          btn.addEventListener('click', closeEditModal);
+        });
+
+        editForm.addEventListener('submit', (evt) => {
+          evt.preventDefault();
+          if (!editState) return;
+          const title = editTitle.value.trim();
+          const tag = editTag.value.trim();
+          const date = editDate.value;
+          const summary = editSummary.value.trim();
+          const meta = editMeta.value.trim();
+          const image = editImage.value.trim();
+
+          if (!title || summary.length < 5) {
+            showToast('Lengkapkan tajuk dan ringkasan.', 'error');
+            return;
+          }
+          if (editState.kind === 'notice' && !date) {
+            showToast('Tarikh diperlukan untuk notis.', 'error');
+            return;
+          }
+
+          if (editState.kind === 'notice') {
+            if (editState.isNew) {
+              const newNotice = { id: editState.id || crypto.randomUUID(), title, category: tag, date, summary, meta, image };
+              notices.unshift(newNotice);
+            } else {
+              const idx = notices.findIndex(n => n.id === editState.id);
+              if (idx === -1) return showToast('Notis tidak ditemui.', 'error');
+              notices[idx] = { ...notices[idx], title, category: tag, date, summary, meta, image };
+            }
+            dataService.saveNotices(notices);
+            setActivePage('notis-public');
+            showToast(editState.isNew ? 'Notis ditambah.' : 'Notis dikemaskini.', 'success');
+          } else {
+            if (!pageData[editState.pageName]) {
+              pageData[editState.pageName] = { title: pageDefaults[editState.pageName]?.title || editState.pageName, subtitle: pageDefaults[editState.pageName]?.subtitle || '', cards: [] };
+            }
+            const cards = pageData[editState.pageName].cards || [];
+            if (editState.isNew) {
+              const newCard = { id: editState.id || crypto.randomUUID(), title, tag, category: tag, summary, meta, image, date };
+              cards.unshift(newCard);
+            } else {
+              const idx = cards.findIndex(c => c.id === editState.id);
+              if (idx === -1) return showToast('Kad tidak ditemui.', 'error');
+              cards[idx] = { ...cards[idx], title, tag, category: tag, summary, meta, image, date: date || cards[idx].date };
+            }
+            pageData[editState.pageName].cards = cards;
+            dataService.savePages(pageData);
+            setActivePage(editState.pageName);
+            showToast(editState.isNew ? 'Kad baharu ditambah.' : 'Kad dikemaskini.', 'success');
+          }
+
+          closeEditModal();
+        });
+
+        editEventsBound = true;
+      }
+
+      return true;
+    }
+
+    function openEditModal(kind, pageName, card, isNew = false) {
+      if (!ensureEditModalReady()) {
+        showToast('Modal tidak tersedia. Sila refresh halaman.', 'error');
+        return;
+      }
+      editState = { kind, pageName, id: card.id, isNew };
+      editModalTitle.textContent = kind === 'notice' ? 'Edit Notis' : 'Edit Kad Halaman';
+      editModalContext.textContent = pageName === 'notis-public' ? 'Papan Notis' : pageDefaults[pageName]?.title || pageName;
+      editTitle.value = card.title || '';
+      editTag.value = card.tag || card.category || '';
+      editDate.value = kind === 'notice' && card.rawDate ? card.rawDate : '';
+      editMeta.value = card.meta || '';
+      editSummary.value = card.summary || '';
+      editImage.value = card.image || '';
+      editPreview.style.backgroundImage = card.image ? `url('${card.image}')` : '';
+      editUpload.value = '';
+      editModal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeEditModal() {
+      editModal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+      editState = null;
     }
 
     function setActivePage(page) {
       currentPage = page;
       navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('data-page') === page));
 
-      const useNoticeGrid = page === 'notis-public' || page === 'kemudahan';
+      const useNoticeGrid = page !== 'notis-admin';
       previewCards.className = useNoticeGrid ? noticeGridClass : compactGridClass;
-
-      if (page === 'notis-admin') {
-        notisLayout.classList.remove('hidden');
-        previewLayout.classList.add('hidden');
-        return;
-      }
 
       notisLayout.classList.add('hidden');
       previewLayout.classList.remove('hidden');
 
       if (page === 'notis-public') {
-        pageFormCard.classList.add('hidden');
         previewTitle.textContent = 'Papan Notis Umum';
         previewSubtitle.textContent = 'Kad notis seperti dilihat oleh penduduk.';
+        ensureNoticeData();
         const noticeCards = (notices || []).map(n => ({
+          id: n.id,
           tag: n.category,
           title: n.title,
           date: formatDate(n.date),
+          rawDate: n.date,
           summary: n.summary,
+          meta: n.meta,
           image: n.image,
         }));
-        renderPreviewCards(noticeCards, false, true);
+        renderPreviewCards(noticeCards, true, true, 'notice');
         return;
       }
 
-      pageFormCard.classList.remove('hidden');
-      renderPageCards(page, page === 'kemudahan');
+      ensurePageEntry(page);
+      renderPageCards(page, true, 'page');
     }
 
-    function renderPageCards(page, isNoticePage = false) {
-      const data = pageData[page] || pageDefaults[page] || { title: 'Halaman', subtitle: '', cards: [] };
+    function renderPageCards(page, isNoticePage = false, actionMode = 'page') {
+      ensurePageCardIds(page);
+      const raw = pageData[page] || pageDefaults[page] || { title: 'Halaman', subtitle: '', cards: [] };
+      const data = Array.isArray(raw) ? { title: pageDefaults[page]?.title || page, subtitle: pageDefaults[page]?.subtitle || '', cards: raw } : raw;
       const cards = (data.cards || []).map(c => ({
-        ...c,
-        displayDate: c.date ? formatDate(c.date) : '',
+        id: c.id,
+        tag: c.tag || c.category || c.icon || '',
+        title: c.title || c.name || 'Kad',
+        date: c.date ? formatDate(c.date) : '',
         rawDate: c.date || '',
+        meta: c.meta,
+        summary: c.summary || c.description || c.meta || (Array.isArray(c.lines) ? c.lines.join(' · ') : ''),
+        image: c.image,
       }));
       previewTitle.textContent = data.title;
       previewSubtitle.textContent = data.subtitle || 'Senarai kad pada halaman terpilih.';
-      renderPreviewCards(cards, true, isNoticePage);
-      resetPageForm();
+      renderPreviewCards(cards, true, isNoticePage, actionMode);
     }
 
-    function fillPageForm(card) {
-      pageCardIdEl.value = card.id;
-      pageCardTagEl.value = card.tag || '';
-      pageCardTitleEl.value = card.title || '';
-      const raw = card.rawDate || card.date;
-      pageCardDateEl.value = raw ? new Date(raw).toISOString().slice(0,10) : '';
-      pageCardSummaryEl.value = card.summary || '';
-      pageCardImageEl.value = card.image || '';
-      pageCardTitleEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-
-    function deletePageCard(id) {
-      if (!id) return;
-      if (!confirm('Padam kad ini?')) return;
-      const entry = pageData[currentPage] || { ...pageDefaults[currentPage], cards: [] };
-      entry.cards = (entry.cards || []).filter(c => c.id !== id);
-      pageData[currentPage] = entry;
-      persistPageData();
-      renderPageCards(currentPage);
-    }
-
-    function resetPageForm() {
-      if (!pageForm) return;
-      pageForm.reset();
-      pageCardIdEl.value = '';
-    }
-
-    function renderPreviewCards(cards, allowEdit = false, isNoticeLayout = false) {
+    function renderPreviewCards(cards, allowEdit = false, isNoticeLayout = false, actionMode = 'page') {
       previewCards.innerHTML = '';
       previewCount.textContent = `${cards.length} kad`;
       if (!cards.length) {
@@ -657,13 +1017,14 @@
         return;
       }
       previewEmpty.classList.add('hidden');
-      cards.forEach(card => {
+      cards.forEach((card, idx) => {
         const el = document.createElement('article');
 
         if (isNoticeLayout) {
-          const imageBlock = card.image ? `
+          const imgSrc = card.image || fallbackImages[idx % fallbackImages.length];
+          const imageBlock = imgSrc ? `
             <div class="sm:w-40 h-40 sm:h-auto shrink-0 relative overflow-hidden">
-              <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('${card.image}')"></div>
+              <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('${imgSrc}')"></div>
               <div class="absolute top-3 left-3 sm:hidden">
                 <span class="px-2 py-1 bg-white/90 backdrop-blur text-primary rounded-lg text-[11px] font-bold shadow-sm">${card.tag || ''}</span>
               </div>
@@ -682,9 +1043,9 @@
               <h3 class="text-lg font-bold text-text-main group-hover:text-primary transition-colors">${card.title || ''}</h3>
               <p class="text-[#60857d] text-sm leading-relaxed line-clamp-2">${card.summary || ''}</p>
               ${allowEdit ? `
-                <div class="flex items-center gap-2 pt-1 text-xs">
-                  <button class="text-primary font-bold hover:underline" data-edit-card>Edit</button>
-                  <button class="text-red-600 font-bold hover:underline" data-delete-card>Padam</button>
+                <div class="flex flex-wrap items-center gap-2 pt-3 text-xs font-bold">
+                  <button class="px-3 py-1.5 rounded-lg border border-primary/30 text-primary hover:bg-primary/5 transition" data-action="${actionMode === 'notice' ? 'edit-notice' : 'edit-page'}" data-id="${card.id || ''}">Edit</button>
+                  <button class="px-3 py-1.5 rounded-lg border border-red-200 text-red-600 hover:bg-red-50 transition" data-action="${actionMode === 'notice' ? 'delete-notice' : 'delete-page'}" data-id="${card.id || ''}">Padam</button>
                 </div>
               ` : ''}
             </div>
@@ -711,41 +1072,69 @@
             ${card.meta ? `<p class="text-[11px] font-semibold text-primary">${card.meta}</p>` : ''}
             <p class="text-[13px] leading-5 ${card.textClass || 'text-text-main/70'}">${card.summary || ''}</p>
             ${allowEdit ? `
-              <div class="flex items-center gap-2 pt-2">
-                <button class="text-primary text-xs font-bold hover:underline" data-edit-card>Edit</button>
-                <button class="text-red-600 text-xs font-bold hover:underline" data-delete-card>Padam</button>
+              <div class="flex flex-wrap items-center gap-2 pt-3 text-xs font-bold">
+                <button class="px-3 py-1.5 rounded-lg border border-primary/30 text-primary hover:bg-primary/5 transition" data-action="edit-page" data-id="${card.id || ''}">Edit</button>
+                <button class="px-3 py-1.5 rounded-lg border border-red-200 text-red-600 hover:bg-red-50 transition" data-action="delete-page" data-id="${card.id || ''}">Padam</button>
               </div>
             ` : ''}
           `;
         }
 
-        if (allowEdit && card.id) {
-          const editBtn = el.querySelector('[data-edit-card]');
-          const delBtn = el.querySelector('[data-delete-card]');
-          if (editBtn) editBtn.addEventListener('click', () => fillPageForm(card));
-          if (delBtn) delBtn.addEventListener('click', () => deletePageCard(card.id));
-        }
+        // Edit/Delete actions removed with form removal.
 
         previewCards.appendChild(el);
       });
     }
 
-    function deleteNotis(id) {
-      if (!confirm('Padam notis ini?')) return;
-      notices = notices.filter(n => n.id !== id);
-      persist();
-      renderNotices();
+    if (previewCards) {
+      previewCards.addEventListener('click', (evt) => {
+      const btn = evt.target.closest('[data-action]');
+      if (!btn) return;
+      const action = btn.getAttribute('data-action');
+      const id = btn.getAttribute('data-id');
+      if (!id) {
+        showToast('ID kad tidak ditemui, data akan disegerakkan semula.', 'error');
+        ensureNoticeIds();
+        ensurePageCardIds(currentPage);
+        setActivePage(currentPage);
+        return;
+      }
+      if (action === 'delete-notice') {
+        if (!confirm('Padam notis ini?')) return;
+        deleteNoticeById(id);
+      } else if (action === 'edit-notice') {
+        const card = notices.find(n => n.id === id);
+        if (!card) return showToast('Notis tidak ditemui.', 'error');
+        openEditModal('notice', 'notis-public', {
+          id: card.id,
+          title: card.title,
+          tag: card.category,
+          rawDate: card.date,
+          summary: card.summary,
+          meta: card.meta,
+          image: card.image,
+        });
+      } else if (action === 'delete-page') {
+        if (!confirm('Padam kad ini dari halaman?')) return;
+        deletePageCardById(currentPage, id);
+      } else if (action === 'edit-page') {
+        const cards = pageData[currentPage]?.cards || [];
+        const card = cards.find(c => c.id === id);
+        if (!card) return showToast('Kad tidak ditemui.', 'error');
+        openEditModal('page', currentPage, {
+          id: card.id,
+          title: card.title || card.name,
+          tag: card.tag || card.category || card.icon,
+          rawDate: card.date,
+          summary: card.summary || card.description || card.meta || (Array.isArray(card.lines) ? card.lines.join(' · ') : ''),
+          meta: card.meta,
+          image: card.image,
+        });
+      }
+      });
     }
 
-    function fillForm(notis) {
-      idEl.value = notis.id;
-      titleEl.value = notis.title;
-      catEl.value = notis.category;
-      dateEl.value = notis.date;
-      summaryEl.value = notis.summary;
-      imageEl.value = notis.image || '';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    // Listeners are bound inside ensureEditModalReady()
 
     function formatDate(dateStr) {
       if (!dateStr) return '';

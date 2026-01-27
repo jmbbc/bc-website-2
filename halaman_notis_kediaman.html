@@ -83,12 +83,23 @@
                 <span class="material-symbols-outlined text-lg">admin_panel_settings</span>
                 Admin Log Masuk
             </a>
-            <button class="lg:hidden text-[#2C3333] p-1">
+            <button id="mobileMenuBtn" class="lg:hidden text-[#2C3333] p-1" aria-label="Toggle menu">
                 <span class="material-symbols-outlined">menu</span>
             </button>
         </div>
     </div>
 </header>
+<div id="mobileNav" class="lg:hidden hidden bg-white border-b border-stone-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex flex-col gap-3 text-sm font-semibold text-[#2C3333]">
+        <a class="hover:text-primary" href="index.html">Utama</a>
+        <a class="text-primary" href="halaman_notis_kediaman.html">Notis</a>
+        <a class="hover:text-primary" href="kemudahan_banjaria_court.html">Kemudahan</a>
+        <a class="hover:text-primary" href="aktiviti_komuniti_banjaria.html">Komuniti</a>
+        <a class="hover:text-primary" href="laporan_agm_dan_egm.html">Laporan</a>
+        <a class="hover:text-primary" href="maklumat_tender_terbuka.html">Tender</a>
+        <a class="hover:text-primary" href="senarai_vendor_berdaftar.html">Vendor</a>
+    </div>
+</div>
 <main class="flex-grow pt-10 pb-20">
 <div class="max-w-4xl mx-auto px-6">
 <div class="flex flex-col gap-6 mb-12">
@@ -115,15 +126,32 @@
         </div>
 </div>
 <div id="notisList" class="flex flex-col gap-6"></div>
-<div class="mt-12 flex flex-col items-center gap-4">
-<a class="w-full sm:w-auto bg-white hover:bg-sage-soft text-primary border border-primary/20 hover:border-primary/40 px-8 py-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2" href="laporan_agm_dan_egm.html">
-<span>Muat Lebih Banyak</span>
-<span class="material-symbols-outlined text-sm">expand_more</span>
-</a>
+<div class="mt-12 flex flex-col items-center gap-3">
+<button id="loadMoreBtn" class="hidden bg-white hover:bg-sage-soft text-primary border border-primary/20 hover:border-primary/40 px-6 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2">
+<span>Muatkan Lagi</span>
+<span class="material-symbols-outlined text-sm">unfold_more</span>
+</button>
 <p id="notisCount" class="text-xs text-[#60857d] dark:text-[#a0c0b8]">Menunjukkan 0 notis</p>
 </div>
 </div>
 </main>
+<div id="noticeModal" class="fixed inset-0 hidden items-center justify-center bg-black/50 backdrop-blur-sm z-[60] px-4">
+    <div class="relative w-full max-w-2xl bg-white dark:bg-[#2d3d3d] rounded-2xl overflow-hidden shadow-2xl border border-[#eaf0ef] dark:border-[#3d4d4d]">
+        <button id="closeNoticeModal" class="absolute top-3 right-3 p-2 rounded-full bg-white/80 dark:bg-white/10 text-[#2C3333] dark:text-white border border-white/60 dark:border-white/10 shadow-sm hover:scale-105 transition" aria-label="Tutup">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <div id="noticeModalImage" class="h-48 bg-cover bg-center" role="presentation"></div>
+        <div class="p-6 space-y-3">
+            <div class="flex items-center gap-3 text-xs font-semibold text-[#60857d] dark:text-[#a0c0b8]">
+                <span id="modalDate"></span>
+                <span class="w-1 h-1 rounded-full bg-[#cbd5e1]"></span>
+                <span id="modalCategory" class="uppercase tracking-wider"></span>
+            </div>
+            <h2 id="modalTitle" class="text-2xl font-bold text-[#111816] dark:text-white"></h2>
+            <p id="modalSummary" class="text-sm leading-relaxed text-[#455d58] dark:text-[#c4d5d1]"></p>
+        </div>
+    </div>
+</div>
 <footer class="bg-white border-t border-stone-200 pt-16 pb-10 px-4 lg:px-8">
 <div class="max-w-7xl mx-auto">
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -209,11 +237,21 @@
 
     const listEl = document.getElementById('notisList');
     const countEl = document.getElementById('notisCount');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
     const searchInput = document.getElementById('searchInput');
     const filterButtons = document.querySelectorAll('[data-filter]');
+    const noticeModal = document.getElementById('noticeModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDate = document.getElementById('modalDate');
+    const modalCategory = document.getElementById('modalCategory');
+    const modalSummary = document.getElementById('modalSummary');
+    const modalImage = document.getElementById('noticeModalImage');
+    const closeModalBtn = document.getElementById('closeNoticeModal');
 
     let activeCategory = 'Semua';
     let searchTerm = '';
+    const pageSize = 7;
+    let visibleCount = pageSize;
 
     function loadNotices() {
         const saved = localStorage.getItem(storageKey);
@@ -233,6 +271,7 @@
     function formatDate(dateStr) {
         if (!dateStr) return '';
         const d = new Date(dateStr);
+        if (isNaN(d.getTime())) return '';
         return d.toLocaleDateString('ms-MY', { day: '2-digit', month: 'short', year: 'numeric' });
     }
 
@@ -246,24 +285,54 @@
         });
     }
 
+    const fallbackImages = [
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuB0yW6o4DoAYcV7ml0A9UJXNP-zefOlqCSX2kjIvA06KHD4P_Ov6MT334kSkkk7UcKkQC3j8_LyRu4cvJdtqYkujTNYFkvl3BX6fXzxhR9dCtBv6HxjJjBnnIwB35Zny3osneBqBlvTNhf7MQYvXgXIoPjzDj3rBuvvv8Ge8--NRRej3AErRV6qDMC2GuLOMLK5-AaiC5cMb55juX0swUrwfd3A_dsPdp1XFEu0hPhJ3TePUs9T4RrKnzn4uWNWvJdw7Ttt1sA4Wts',
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuCqpEF2HztR3lHpXF6xUQnk1Kz_uME_OhCMnhX9KFKEcJ0fkfE-7_QT9cLh3v4yCzvcOCrT-xtGdzPEIn6hXze_jkW0zHTcRDLEBsK1NYa9DD_3JG3jCS1PNiST3hkpcKkz-mSfWj7haSw6zbkAnhLjTJ6xHL0rmEOKkQCLam-T29c4up6fMfAFTTrjshsFsQFHVoIm7OwEOV42hfDZ0J0JAGY_BcB2WOgpTqAUPvFb-XBP4QuoBh_cCI09GCz0xXjPkyww00l0M6c',
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuBkYkltb7C1HhoFW_sPq4ZhWROBVjha-fkQFtwrkaVmc6SX6QNg317VZtoQM7Jg1rm57_FNUTARTr2yHRjny3DvmwiTPr4hhPMcWQC323L0dcXPyTGOXj5nev2Zayo6kLfS6QZ0HrPPF1CCdH9uFcNieUOy6nR7EkWuuTUktP85Tr4YiLK2U1iY1LL2shApCLRfvWwx3XcRAxEiCbFxEMFowN4cEEyJZxatS1WI4tArZHLpISRlJk7Sfuw_LqPz5Y5DKZrFLPMm1dw',
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuB5Ewr544LMUBKephLgVR6hv9Q18OA2ZoxFM_5jptsaB_z7d2MH_2Wivm7h_iwQclM5_wF2JImG5g1aRKQgda1L3-la4jPOmxjEVoSIc7p3rPqHjG0WuUE25CD0OediwR8I5Ds2o-gD0zMnEziIQ7VS4czDG2LxyeScGU4wAGbqRYI2S8pB6D0DxVt-KooUTabzdXkICtIa53uYqQodkT1hS59tmXYSPYx1HK_2M9__LS_G86hajaHB8mnxikfx6kqFgXfRRXKNtCQ',
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuDPZLM_OI-zx4LWFIxCepL2nx34QL1in1P9021naRQVIRbqZfR-XzRi3ZFXw-xJjXPeDmtkp-wM6TsGQXUAVeu6_O2zdbgiTBbBWYzlb92fNMS9FxjQzkG5PhbfaMajLYiu9GnVczkfU5oJo3KNqpmtIFQ07oGRlaP1N7b1BGg4W9F_-yDdT8QX85ExJkchCdRtjdwEGFGtopHz3gFCVN_O9ApBBqFrJr0oTByfDWR7CaYgtTI564icXQIIW0wrd4jEq9jZXBXTnoo',
+    ];
+
+    function openNoticeModal(notice, imgSrc) {
+        if (!noticeModal) return;
+        modalTitle.textContent = notice.title || 'Notis';
+        modalDate.textContent = formatDate(notice.date) || '';
+        modalCategory.textContent = notice.category || '';
+        modalSummary.textContent = notice.summary || 'Tiada ringkasan disediakan.';
+        modalImage.style.backgroundImage = `linear-gradient(180deg, rgba(17,24,22,0.35) 0%, rgba(17,24,22,0.65) 100%), url('${imgSrc || ''}')`;
+        noticeModal.classList.remove('hidden');
+        noticeModal.classList.add('flex');
+    }
+
+    function closeNoticeModal() {
+        if (!noticeModal) return;
+        noticeModal.classList.add('hidden');
+        noticeModal.classList.remove('flex');
+    }
+
     function renderNotices() {
         const notices = loadNotices();
         const filtered = filterNotices(notices);
+        const visible = filtered.slice(0, visibleCount);
         listEl.innerHTML = '';
 
         if (!filtered.length) {
             listEl.innerHTML = '<p class="text-sm text-[#60857d] dark:text-[#a0c0b8]">Tiada notis buat masa ini.</p>';
             countEl.textContent = 'Tiada notis dipaparkan';
+            if (loadMoreBtn) {
+                loadMoreBtn.classList.add('hidden');
+            }
             return;
         }
 
-        filtered.forEach((n, idx) => {
+        visible.forEach((n, idx) => {
             const el = document.createElement('article');
             el.className = 'group bg-white dark:bg-[#2d3d3d] rounded-2xl overflow-hidden border border-[#eaf0ef] dark:border-[#3d4d4d] hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col sm:flex-row';
             el.id = `notis-${idx}`;
-            const imageBlock = n.image ? `
+            const imgSrc = n.image || fallbackImages[idx % fallbackImages.length];
+            const imageBlock = imgSrc ? `
                 <div class="sm:w-48 h-48 sm:h-auto shrink-0 relative overflow-hidden">
-                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('${n.image}')"></div>
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('${imgSrc}')"></div>
                     <div class="absolute top-3 left-3 sm:hidden">
                         <span class="px-2 py-1 bg-white/90 backdrop-blur text-primary rounded-lg text-xs font-bold shadow-sm">${n.category || ''}</span>
                     </div>
@@ -281,21 +350,32 @@
                     <h3 class="text-xl font-bold text-[#111816] dark:text-white mb-2 group-hover:text-primary transition-colors">${n.title || ''}</h3>
                     <p class="text-[#60857d] dark:text-[#a0c0b8] text-sm leading-relaxed mb-4 line-clamp-2">${n.summary || ''}</p>
                     <div class="mt-auto">
-                        <a class="text-sm font-bold text-primary hover:text-primary/80 inline-flex items-center gap-1 group/link" href="#notis-${idx}">
+                        <button class="read-more text-sm font-bold text-primary hover:text-primary/80 inline-flex items-center gap-1 group/link" type="button">
                             Baca Lanjut
                             <span class="material-symbols-outlined text-sm transition-transform group-hover/link:translate-x-1">arrow_forward</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
             `;
+            const readMoreBtn = el.querySelector('.read-more');
+            if (readMoreBtn) {
+                readMoreBtn.addEventListener('click', () => openNoticeModal(n, imgSrc));
+            }
             listEl.appendChild(el);
         });
 
-        countEl.textContent = `Menunjukkan ${filtered.length} daripada ${notices.length} notis`;
+        countEl.textContent = `Menunjukkan ${visible.length} daripada ${filtered.length} notis`;
+
+        if (loadMoreBtn) {
+            const hasMore = filtered.length > visible.length;
+            loadMoreBtn.classList.toggle('hidden', !hasMore);
+            loadMoreBtn.disabled = !hasMore;
+        }
     }
 
     function setActiveFilter(category) {
         activeCategory = category;
+        visibleCount = pageSize;
         filterButtons.forEach(btn => {
             const isActive = btn.dataset.filter === category;
             btn.classList.toggle('bg-sage-soft', isActive);
@@ -314,9 +394,31 @@
         btn.addEventListener('click', () => setActiveFilter(btn.dataset.filter || 'Semua'));
     });
 
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeNoticeModal);
+    }
+
+    if (noticeModal) {
+        noticeModal.addEventListener('click', (e) => {
+            if (e.target === noticeModal) closeNoticeModal();
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeNoticeModal();
+    });
+
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
             searchTerm = e.target.value || '';
+            visibleCount = pageSize;
+            renderNotices();
+        });
+    }
+
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+            visibleCount += pageSize;
             renderNotices();
         });
     }
