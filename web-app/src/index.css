@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root{
-  --primary:#0b6b5e;
+  --primary:#4A6741;
 }
 
-.hero-bg{
-  background-image: linear-gradient(90deg, rgba(11,107,94,0.08), rgba(11,107,94,0.03));
-}
+.material-symbols-outlined{ font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+.hero-bg{ background-image: linear-gradient(90deg, rgba(11,107,94,0.08), rgba(11,107,94,0.03)); }
 
 .card-img{ background-size: cover; background-position: center; }
