@@ -4,6 +4,7 @@ import Notices from './pages/Notices'
 import Portal from './pages/Portal'
 import Tender from './pages/Tender'
 import Kemudahan from './pages/Kemudahan'
+import Aktiviti from './pages/Aktiviti'
 
 import Home from './pages/Home'
 
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/portal" element={<Portal />} />
           <Route path="/tender" element={<Tender />} />
           <Route path="/kemudahan" element={<Kemudahan />} />
+          <Route path="/aktiviti" element={<Aktiviti />} />
         </Routes>
       </main>
 
