@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --primary:#0b6b5e;
+}
+
+.hero-bg{
+  background-image: linear-gradient(90deg, rgba(11,107,94,0.08), rgba(11,107,94,0.03));
+}
+
+.card-img{ background-size: cover; background-position: center; }
