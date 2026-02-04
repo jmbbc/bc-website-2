@@ -47,6 +47,9 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+        /* line-clamp fallback utilities */
+        .line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-[#111816] dark:text-[#f9fbfa] min-h-screen">
@@ -76,6 +79,7 @@
             <a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="aktiviti_komuniti_banjaria.html">Komuniti</a>
             <a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="laporan_agm_dan_egm.html">Laporan</a>
             <a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="maklumat_tender_terbuka.html">Tender</a>
+            <a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="portal_borang_digital.html">Portal</a>
             <a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="senarai_vendor_berdaftar.html">Vendor</a>
         </nav>
         <div class="flex items-center gap-4">
@@ -97,10 +101,11 @@
         <a class="hover:text-primary" href="aktiviti_komuniti_banjaria.html">Komuniti</a>
         <a class="hover:text-primary" href="laporan_agm_dan_egm.html">Laporan</a>
         <a class="hover:text-primary" href="maklumat_tender_terbuka.html">Tender</a>
+        <a class="hover:text-primary" href="portal_borang_digital.html">Portal</a>
         <a class="hover:text-primary" href="senarai_vendor_berdaftar.html">Vendor</a>
     </div>
 </div>
-<div class="w-full border-b border-light-oak/20 relative overflow-hidden min-h-[160px] lg:min-h-[240px] flex items-center" style="background: linear-gradient(120deg, rgba(244,244,241,0.9), rgba(244,244,241,0.7)), url('/assets/organised-documents-references.jpg') center/cover no-repeat;">
+<div class="w-full border-b border-light-oak/20 relative overflow-hidden min-h-[160px] lg:min-h-[240px] flex items-center" style="background: linear-gradient(120deg, rgba(245,242,235,0.95), rgba(244,244,241,0.7)), url('/assets/organised-documents-references.jpg') center/cover no-repeat;">
   <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-white/40 to-transparent pointer-events-none"></div>
 
   <div class="max-w-[1000px] mx-auto relative z-10 text-center px-8 lg:px-12 py-12 lg:py-16">
@@ -115,16 +120,10 @@
 <main class="flex-grow pt-10 pb-20">
 <div class="max-w-4xl mx-auto px-6">
 <div class="flex flex-col gap-6 mb-12">
-<div class="text-center md:text-left">
-<h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-[#111816] dark:text-[#f9fbfa]">Notis &amp; Pengumuman</h1>
-<p class="text-[#60857d] dark:text-[#a0c0b8] text-base leading-relaxed mt-2 max-w-2xl">
-                        Kekal maklum dengan berita terkini, jadual penyelenggaraan, dan aktiviti komuniti kita.
-                    </p>
-</div>
         <div class="bg-white dark:bg-[#2d3d3d] p-2 rounded-2xl shadow-sm border border-[#eaf0ef] dark:border-[#3d4d4d] flex flex-col md:flex-row gap-2">
             <div class="flex-1 relative flex items-center px-4">
                 <span class="material-symbols-outlined text-[#60857d]">search</span>
-                <input id="searchInput" class="w-full bg-transparent border-none focus:ring-0 text-[#111816] dark:text-white placeholder:text-[#60857d]/60 text-sm" placeholder="Cari notis..." type="text"/>
+                <input id="searchInput" aria-label="Cari notis" class="w-full bg-transparent border-none focus:ring-0 text-[#111816] dark:text-white placeholder:text-[#60857d]/60 text-sm" placeholder="Cari notis..." type="text"/>
             </div>
             <div class="flex items-center gap-2 overflow-x-auto scrollbar-hide p-1">
                 <button data-filter="Semua" class="filter-btn bg-sage-soft dark:bg-primary/20 text-primary px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap">Semua</button>
@@ -320,6 +319,10 @@
         noticeModal.classList.add('hidden');
         noticeModal.classList.remove('flex');
     }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeNoticeModal();
+    });
 
     function renderNotices() {
         const notices = loadNotices();

@@ -1,0 +1,19 @@
+# Node dependencies
+node_modules/
+
+# Package lock
+package-lock.json
+
+# Build / temp
+dist/
+
+# Screenshots and generated assets
+screenshots/
+/test/
+
+# Temporary palette preview files
+assets/css/palette.css
+test/palette.html
+
+# Local vscode
+.vscode/
