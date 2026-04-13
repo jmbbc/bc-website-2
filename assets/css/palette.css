@@ -1,0 +1,234 @@
+/* Palette & header helper */
+:root {
+  --brand-primary: #347969;
+  --header-bg-light: rgba(52,121,105,0.06);
+  --header-bg-dark: #213131;
+  --header-border: rgba(52,121,105,0.12);
+  --page-background: #fbfaf9;
+  --text-main: #2c3333;
+  --ring-focus: rgba(52,121,105,0.25);
+  --surface-border: rgba(44,51,51,0.08);
+  --surface-shadow: 0 10px 26px rgba(44,51,51,0.08);
+}
+
+.site-header {
+  background: var(--header-bg-light) !important;
+  border-bottom: 1px solid var(--header-border) !important;
+  color: #111816 !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  backdrop-filter: blur(8px) !important;
+}
+.site-header .text-primary, .site-header h1 { color: var(--brand-primary) !important; }
+
+/* Header link styles to mirror index page: neutral text + primary underline on hover/active */
+.site-header nav a { color: rgba(44,51,51,0.7) !important; position: relative; text-decoration: none !important; }
+.site-header nav a:hover { color: var(--brand-primary) !important; }
+.site-header nav a::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 0; height: 4px; background: var(--brand-primary); border-radius: 9999px; transition: width .2s ease; }
+.site-header nav a:hover::after, .site-header nav a[aria-current="page"]::after, .site-header nav a.active::after { width: 100% !important; }
+.site-header nav a[aria-current="page"], .site-header nav a.active { color: rgba(44,51,51,0.7) !important; }
+
+@media (prefers-color-scheme: dark) {
+  .site-header { background: rgba(33,49,49,0.9); color: #ffffff; }
+  body { background-color: var(--header-bg-dark) !important; }
+}
+
+/* Ensure consistent page background across all pages */
+body { background-color: var(--page-background) !important; }
+
+/* Base UX polish */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--text-main);
+  line-height: 1.55;
+}
+
+.section-kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--brand-primary);
+}
+
+.section-headline {
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.section-copy {
+  max-width: 64ch;
+  color: rgba(44, 51, 51, 0.78);
+}
+
+.form-feedback {
+  border-radius: 0.9rem;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.form-feedback--success {
+  border: 1px solid rgba(22, 163, 74, 0.2);
+  background: rgba(22, 163, 74, 0.08);
+  color: #166534;
+}
+
+.form-feedback--error {
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  background: rgba(220, 38, 38, 0.08);
+  color: #991b1b;
+}
+
+.field-help {
+  font-size: 0.78rem;
+  color: rgba(44, 51, 51, 0.62);
+}
+
+.field-error {
+  font-size: 0.78rem;
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.is-invalid {
+  border-color: rgba(220, 38, 38, 0.6) !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15) !important;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 3px var(--ring-focus);
+  border-radius: 0.6rem;
+}
+
+/* Subtle elevation for clickable cards and CTA anchors */
+a[class*="rounded"]:hover,
+button[class*="rounded"]:hover {
+  transform: translateY(-1px);
+}
+
+/* Unify common CTA rhythm across pages using existing Tailwind utility combinations */
+main a[class*="rounded"][class*="px-"],
+main button[class*="rounded"][class*="px-"] {
+  letter-spacing: 0.01em;
+}
+
+main a[class*="bg-primary"],
+main button[class*="bg-primary"] {
+  box-shadow: 0 10px 20px rgba(52,121,105,0.16);
+}
+
+main a[class*="bg-primary"]:hover,
+main button[class*="bg-primary"]:hover {
+  box-shadow: 0 12px 24px rgba(52,121,105,0.2);
+}
+
+/* Keep card-like surfaces visually coherent even when authored with different utility stacks */
+main [class*="rounded-2xl"][class*="bg-white"],
+main [class*="rounded-3xl"][class*="bg-white"] {
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--surface-shadow);
+}
+
+/* Ensure anchored sections remain readable under sticky header jumps */
+main > section {
+  scroll-margin-top: 5.5rem;
+}
+
+/* Keep sticky headers visually consistent across pages */
+.site-header {
+  box-shadow: 0 1px 0 rgba(44,51,51,0.05);
+}
+
+/* Utility: allow components to opt into the branding (used alongside Tailwind classes) */
+.header-branded { background: var(--header-bg-light); border-bottom-color: var(--header-border); }
+
+/* Filter pill styles — mobile-first pill appearance matching reference image */
+.filter-btn,
+.filter-modal-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px; /* pill */
+  background: transparent;
+  color: rgba(96,133,125,1); /* muted eucalyptus */
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background .18s ease, transform .12s ease, box-shadow .12s ease;
+}
+
+.filter-btn:hover,
+.filter-modal-btn:hover {
+  background: rgba(96,133,125,0.06);
+}
+
+/* Active pill — soft brand fill with emphasized text and subtle shadow */
+.filter-btn[aria-current="true"],
+.filter-modal-btn[aria-current="true"],
+.filter-btn.active,
+.filter-modal-btn.active {
+  background: rgba(52,121,105,0.12); /* soft brand tint */
+  color: var(--brand-primary);
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(52,121,105,0.06);
+  transform: translateY(-1px);
+}
+
+/* Make the inline pill strip nicely scrollable on small screens */
+@media (max-width: 768px) {
+  .filter-btn, .filter-modal-btn { white-space: nowrap; }
+  .hidden\:lg\:flex, .lg\:hidden { /* utility compatibility placeholders in case Tailwind variants used */ }
+  /* mobile-friendly inline strip */
+  .filter-strip {
+    gap: .5rem;
+    padding: .25rem 0;
+  }
+  .filter-strip .filter-btn { flex: 0 0 auto; }
+  /* ensure the modal shows a horizontal pill strip for quick switching (legacy, harmless if modal removed) */
+  #filterModal .grid {
+    display: flex !important;
+    gap: .5rem !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: .5rem !important;
+  }
+  #filterModal .filter-modal-btn { flex: 0 0 auto; }
+}
+
+/* Gentle section reveal for a more premium first impression */
+@media (prefers-reduced-motion: no-preference) {
+  main > section {
+    animation: fade-up .45s ease both;
+  }
+
+  main > section:nth-of-type(2) { animation-delay: .06s; }
+  main > section:nth-of-type(3) { animation-delay: .12s; }
+  main > section:nth-of-type(4) { animation-delay: .18s; }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+

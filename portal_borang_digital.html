@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
+<html class="light" lang="ms"><head>
 <meta charset="utf-8"/>
+
+
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="Portal rasmi Banjaria Court untuk notis, kemudahan, komuniti, laporan dan perkhidmatan penduduk."/>
 <title>Banjaria Court Portal - Borang Digital</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
@@ -48,7 +51,7 @@
             background: #94a3b8; 
         }
     </style>
-</head>
+<link rel="stylesheet" href="assets/css/palette.css"/></head>
 <body class="bg-background-light dark:bg-background-dark text-text-primary transition-colors duration-300">
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
 <div class="layout-container flex h-full grow flex-col">
@@ -59,14 +62,14 @@
         <span>Notis: Penjagaan taman tahunan dijalankan hujung minggu ini.</span>
     </p>
 </div>
-<header class="sticky top-0 z-50 bg-[#f0f9f7]/90 backdrop-blur-md border-b border-stone-200/60">
+<header class="site-header sticky top-0 z-50 bg-[#f0f9f7]/90 backdrop-blur-md border-b border-stone-200/60">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
         <div class="flex items-center gap-3">
             <div class="bg-primary text-white p-2 rounded-xl">
                 <span class="material-symbols-outlined block">yard</span>
             </div>
             <div class="leading-tight">
-                <h1 class="text-xl font-bold tracking-tight text-primary">Banjaria<span class="font-light text-[#2C3333] ml-1">Court</span></h1>
+                <p class="text-xl font-bold tracking-tight text-primary">Banjaria<span class="font-light text-[#2C3333] ml-1">Court</span></p>
                 <p class="text-[0.65rem] font-medium tracking-widest uppercase text-[#2C3333]/50">Urban Sanctuary</p>
             </div>
         </div>
@@ -78,7 +81,7 @@
             <a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="laporan_agm_dan_egm.html">Laporan</a>
             <a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="maklumat_tender_terbuka.html">Tender</a>
             <a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="senarai_vendor_berdaftar.html">Vendor</a>
-        </nav>
+                    <a class="text-text-main/70 hover:text-primary transition-colors text-sm font-medium" href="portal_borang_digital.html">Portal</a></nav>
         <div class="flex items-center gap-4">
             <a class="hidden md:flex bg-white border border-stone-200 text-primary px-5 py-2.5 rounded-full text-sm font-bold hover:shadow-soft hover:-translate-y-0.5 transition-all items-center gap-2" href="admin.html">
                 <span class="material-symbols-outlined text-lg">admin_panel_settings</span>
@@ -116,9 +119,9 @@
 <h2 class="text-text-primary dark:text-white text-2xl font-bold leading-tight tracking-tight">Pilih Kategori Borang</h2>
 <p class="text-text-secondary dark:text-[#a1b5b0] text-sm mt-1">Pilih jenis permohonan yang ingin dihantar.</p>
 </div>
-<span class="text-primary text-sm font-semibold flex items-center gap-1 cursor-pointer hover:underline underline-offset-4 decoration-2">
+<a href="#portalGrid" class="text-primary text-sm font-semibold flex items-center gap-1 cursor-pointer hover:underline underline-offset-4 decoration-2">
                             Lihat Semua Kategori <span class="material-symbols-outlined text-base">arrow_forward</span>
-</span>
+</a>
 </div>
 <div id="portalGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
 </div>
@@ -131,28 +134,32 @@
 </div>
 <p class="text-text-secondary dark:text-[#a1b5b0] text-sm pl-9">Sila isi butiran di bawah untuk menempah fasiliti. Ruangan bertanda <span class="text-red-500">*</span> wajib diisi.</p>
 </div>
-<form class="p-8 lg:p-10 space-y-8">
+<form id="facilityBookingForm" class="p-8 lg:p-10 space-y-8" novalidate aria-describedby="bookingFormHint bookingFormAlert">
+<p id="bookingFormHint" class="field-help">Isi semua ruangan wajib untuk membolehkan semakan tempahan oleh pengurusan.</p>
+<div id="bookingFormAlert" class="hidden form-feedback" role="status" aria-live="polite"></div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 <div class="flex flex-col gap-2 group">
-<label class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1 group-focus-within:text-primary transition-colors">
+<label for="bookingName" class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1 group-focus-within:text-primary transition-colors">
                                         Nama Penuh <span class="text-red-500">*</span>
 </label>
-<input class="w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-[#fbfaf9] dark:bg-[#213131] dark:text-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-400" placeholder="cth. Ahmad bin Ali" type="text"/>
+<input id="bookingName" name="fullName" required minlength="3" autocomplete="name" class="w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-[#fbfaf9] dark:bg-[#213131] dark:text-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-400" placeholder="cth. Ahmad bin Ali" type="text" aria-describedby="bookingNameError"/>
+<p id="bookingNameError" class="field-error hidden"></p>
 </div>
 <div class="flex flex-col gap-2 group">
-<label class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1 group-focus-within:text-primary transition-colors">
+<label for="bookingUnit" class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1 group-focus-within:text-primary transition-colors">
                                         No. Unit <span class="text-red-500">*</span>
 </label>
-<input class="w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-[#fbfaf9] dark:bg-[#213131] dark:text-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-400" placeholder="cth. A-12-03" type="text"/>
+<input id="bookingUnit" name="unit" required autocomplete="off" class="w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-[#fbfaf9] dark:bg-[#213131] dark:text-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-400" placeholder="cth. A-12-03" type="text" aria-describedby="bookingUnitError"/>
+<p id="bookingUnitError" class="field-error hidden"></p>
 </div>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 <div class="flex flex-col gap-2 group">
-<label class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1 group-focus-within:text-primary transition-colors">
+<label for="bookingFacility" class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1 group-focus-within:text-primary transition-colors">
                                         Pilih Fasiliti <span class="text-red-500">*</span>
 </label>
 <div class="relative">
-<select class="w-full appearance-none rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-[#fbfaf9] dark:bg-[#213131] dark:text-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all cursor-pointer">
+<select id="bookingFacility" name="facility" required class="w-full appearance-none rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-[#fbfaf9] dark:bg-[#213131] dark:text-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all cursor-pointer" aria-describedby="bookingFacilityError">
 <option disabled="" selected="" value="">Pilih satu pilihan</option>
 <option>BBQ Pit (Zon A)</option>
 <option>Dewan Serbaguna</option>
@@ -163,44 +170,48 @@
 <span class="material-symbols-outlined text-xl">expand_more</span>
 </div>
 </div>
+<p id="bookingFacilityError" class="field-error hidden"></p>
 </div>
 <div class="flex flex-col gap-2 group">
-<label class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1 group-focus-within:text-primary transition-colors">
+<label for="bookingDate" class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1 group-focus-within:text-primary transition-colors">
                                         Tarikh <span class="text-red-500">*</span>
 </label>
-<input class="w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-[#fbfaf9] dark:bg-[#213131] dark:text-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all cursor-pointer" type="date"/>
+<input id="bookingDate" name="bookingDate" required class="w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-[#fbfaf9] dark:bg-[#213131] dark:text-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all cursor-pointer" type="date" aria-describedby="bookingDateError"/>
+<p id="bookingDateError" class="field-error hidden"></p>
 </div>
 </div>
 <div class="flex flex-col gap-3">
 <label class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1">
                                     Slot Masa <span class="text-red-500">*</span>
 </label>
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div id="bookingTimeslotGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
 <label class="cursor-pointer relative">
-<input checked="" class="peer sr-only" name="timeslot" type="radio"/>
+<input id="timeslotMorning" checked="" class="peer sr-only" name="timeslot" required type="radio" value="09:00 - 12:00"/>
 <div class="h-12 w-full rounded-xl border border-primary bg-primary/5 text-primary peer-checked:bg-primary peer-checked:text-white peer-checked:shadow-md flex items-center justify-center text-sm font-bold transition-all hover:bg-primary/10 peer-checked:hover:bg-primary">
                                             09:00 - 12:00
                                         </div>
 </label>
 <label class="cursor-pointer relative">
-<input class="peer sr-only" name="timeslot" type="radio"/>
+<input id="timeslotAfternoon" class="peer sr-only" name="timeslot" type="radio" value="14:00 - 17:00"/>
 <div class="h-12 w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-white dark:bg-[#213131] text-text-secondary peer-checked:border-primary peer-checked:bg-primary peer-checked:text-white peer-checked:shadow-md flex items-center justify-center text-sm font-bold transition-all hover:border-primary/50 hover:text-primary peer-checked:hover:bg-primary peer-checked:hover:border-primary">
                                             14:00 - 17:00
                                         </div>
 </label>
 <label class="cursor-pointer relative">
-<input class="peer sr-only" name="timeslot" type="radio"/>
+<input id="timeslotNight" class="peer sr-only" name="timeslot" type="radio" value="19:00 - 22:00"/>
 <div class="h-12 w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-white dark:bg-[#213131] text-text-secondary peer-checked:border-primary peer-checked:bg-primary peer-checked:text-white peer-checked:shadow-md flex items-center justify-center text-sm font-bold transition-all hover:border-primary/50 hover:text-primary peer-checked:hover:bg-primary peer-checked:hover:border-primary">
                                             19:00 - 22:00
                                         </div>
 </label>
 </div>
+<p id="bookingTimeslotError" class="field-error hidden"></p>
 </div>
 <div class="flex flex-col gap-2 group">
-<label class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1 group-focus-within:text-primary transition-colors">
+<label for="bookingNotes" class="text-sm font-bold text-text-primary dark:text-[#d1dcd9] flex items-center gap-1 group-focus-within:text-primary transition-colors">
                                     Catatan Tambahan (Pilihan)
                                 </label>
-<textarea class="w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-[#fbfaf9] dark:bg-[#213131] dark:text-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-400 min-h-[120px]" placeholder="Nyatakan keperluan khas atau bilangan tetamu..." rows="3"></textarea>
+<textarea id="bookingNotes" name="notes" maxlength="300" class="w-full rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] bg-[#fbfaf9] dark:bg-[#213131] dark:text-white px-4 py-3 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all placeholder:text-gray-400 min-h-[120px]" placeholder="Nyatakan keperluan khas atau bilangan tetamu..." rows="3" aria-describedby="bookingNoteCount"></textarea>
+<p id="bookingNoteCount" class="field-help">0/300 aksara</p>
 </div>
 <div class="pt-6 flex flex-col md:flex-row items-center justify-between gap-6 border-t border-[#eaf0ef] dark:border-[#3a4d49] mt-2">
 <div class="flex items-start gap-3 text-text-secondary bg-[#fffbef] dark:bg-[#3d3d2e] px-5 py-3 rounded-xl border border-[#f0e6c5] dark:border-[#4d4d3a] w-full md:w-auto md:max-w-sm">
@@ -208,8 +219,8 @@
 <span class="text-xs font-medium leading-relaxed">Deposit boleh balik <strong>RM50.00</strong> diperlukan selepas kelulusan. Sila buat bayaran di pejabat pengurusan.</span>
 </div>
 <div class="flex w-full md:w-auto gap-4">
-<button class="flex-1 md:flex-none px-6 py-3 rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] text-text-secondary dark:text-[#a1b5b0] font-bold hover:bg-gray-50 dark:hover:bg-gray-800 transition-all text-sm" type="button">Batal</button>
-<button class="flex-1 md:flex-none px-8 py-3 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/30 hover:bg-[#2a6356] hover:shadow-primary/40 hover:-translate-y-0.5 transition-all transform active:scale-95 text-sm flex items-center justify-center gap-2" type="submit">
+<button id="bookingResetBtn" class="flex-1 md:flex-none px-6 py-3 rounded-xl border border-[#d6e1de] dark:border-[#4a5f5a] text-text-secondary dark:text-[#a1b5b0] font-bold hover:bg-gray-50 dark:hover:bg-gray-800 transition-all text-sm" type="reset">Batal</button>
+<button id="bookingSubmitBtn" class="flex-1 md:flex-none px-8 py-3 rounded-xl bg-primary text-white font-bold shadow-lg shadow-primary/30 hover:bg-[#2a6356] hover:shadow-primary/40 hover:-translate-y-0.5 transition-all transform active:scale-95 text-sm flex items-center justify-center gap-2" type="submit" data-default-label="Hantar Permohonan">
 <span>Hantar Permohonan</span>
 <span class="material-symbols-outlined text-lg">send</span>
 </button>
@@ -229,7 +240,7 @@
                 title: "Permit Renovasi",
                 description: "Mohon pengubahsuaian atau pembaikan unit.",
                 icon: "construction",
-                url: "#",
+                url: "hubungi_pengurusan_banjaria.html?kategori=penyelenggaraan",
                 highlight: false,
             },
             {
@@ -243,14 +254,14 @@
                 title: "Notis Pindah",
                 description: "Jadualkan logistik masuk atau keluar.",
                 icon: "local_shipping",
-                url: "#",
+                url: "hubungi_pengurusan_banjaria.html?kategori=umum",
                 highlight: false,
             },
             {
                 title: "Kad Akses",
                 description: "Mohon kad baharu atau gantian.",
                 icon: "badge",
-                url: "#",
+                url: "hubungi_pengurusan_banjaria.html?kategori=keselamatan",
                 highlight: false,
             },
         ];
@@ -289,6 +300,200 @@
                 </a>
             `;
         }).join("");
+
+        const bookingForm = document.getElementById("facilityBookingForm");
+        const bookingAlert = document.getElementById("bookingFormAlert");
+        const bookingSubmitBtn = document.getElementById("bookingSubmitBtn");
+        const bookingResetBtn = document.getElementById("bookingResetBtn");
+        const bookingNotes = document.getElementById("bookingNotes");
+        const bookingNoteCount = document.getElementById("bookingNoteCount");
+
+        const bookingFields = {
+            name: document.getElementById("bookingName"),
+            unit: document.getElementById("bookingUnit"),
+            facility: document.getElementById("bookingFacility"),
+            date: document.getElementById("bookingDate"),
+        };
+
+        const timeslotInputs = Array.from(document.querySelectorAll('input[name="timeslot"]'));
+        const timeslotError = document.getElementById("bookingTimeslotError");
+
+        function setBookingAlert(type, message) {
+            if (!bookingAlert) return;
+            bookingAlert.className = "form-feedback";
+            bookingAlert.classList.add(type === "success" ? "form-feedback--success" : "form-feedback--error");
+            bookingAlert.textContent = message;
+            bookingAlert.classList.remove("hidden");
+        }
+
+        function clearBookingAlert() {
+            if (!bookingAlert) return;
+            bookingAlert.textContent = "";
+            bookingAlert.classList.add("hidden");
+        }
+
+        function setFieldError(input, message) {
+            if (!input) return;
+            const errorEl = document.getElementById(input.id + "Error");
+            input.classList.add("is-invalid");
+            input.setAttribute("aria-invalid", "true");
+            if (errorEl) {
+                errorEl.textContent = message;
+                errorEl.classList.remove("hidden");
+            }
+        }
+
+        function clearFieldError(input) {
+            if (!input) return;
+            const errorEl = document.getElementById(input.id + "Error");
+            input.classList.remove("is-invalid");
+            input.removeAttribute("aria-invalid");
+            if (errorEl) {
+                errorEl.textContent = "";
+                errorEl.classList.add("hidden");
+            }
+        }
+
+        function setTimeslotError(message) {
+            if (!timeslotError) return;
+            timeslotError.textContent = message;
+            timeslotError.classList.remove("hidden");
+        }
+
+        function clearTimeslotError() {
+            if (!timeslotError) return;
+            timeslotError.textContent = "";
+            timeslotError.classList.add("hidden");
+        }
+
+        function validateBookingField(key) {
+            const input = bookingFields[key];
+            if (!input) return true;
+            const value = (input.value || "").trim();
+
+            if (key === "name" && value.length < 3) {
+                setFieldError(input, "Nama perlu sekurang-kurangnya 3 aksara.");
+                return false;
+            }
+
+            if (key === "unit" && !value) {
+                setFieldError(input, "No. Unit wajib diisi.");
+                return false;
+            }
+
+            if (key === "facility" && !value) {
+                setFieldError(input, "Sila pilih fasiliti.");
+                return false;
+            }
+
+            if (key === "date") {
+                if (!value) {
+                    setFieldError(input, "Sila pilih tarikh tempahan.");
+                    return false;
+                }
+                const picked = new Date(value + "T00:00:00");
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                if (picked < today) {
+                    setFieldError(input, "Tarikh tidak boleh sebelum hari ini.");
+                    return false;
+                }
+            }
+
+            clearFieldError(input);
+            return true;
+        }
+
+        function validateTimeslot() {
+            const selected = timeslotInputs.find(input => input.checked);
+            if (!selected) {
+                setTimeslotError("Sila pilih slot masa.");
+                return false;
+            }
+            clearTimeslotError();
+            return true;
+        }
+
+        function updateNoteCount() {
+            if (!bookingNotes || !bookingNoteCount) return;
+            bookingNoteCount.textContent = (bookingNotes.value || "").length + "/300 aksara";
+        }
+
+        if (bookingFields.date) {
+            const todayValue = new Date().toISOString().slice(0, 10);
+            bookingFields.date.setAttribute("min", todayValue);
+        }
+
+        Object.keys(bookingFields).forEach(key => {
+            const input = bookingFields[key];
+            if (!input) return;
+            const eventName = key === "facility" ? "change" : "blur";
+            input.addEventListener(eventName, () => validateBookingField(key));
+            input.addEventListener("input", () => {
+                if (input.classList.contains("is-invalid")) {
+                    validateBookingField(key);
+                }
+            });
+        });
+
+        timeslotInputs.forEach(input => {
+            input.addEventListener("change", validateTimeslot);
+        });
+
+        if (bookingNotes) {
+            bookingNotes.addEventListener("input", updateNoteCount);
+            updateNoteCount();
+        }
+
+        if (bookingResetBtn) {
+            bookingResetBtn.addEventListener("click", () => {
+                clearBookingAlert();
+                Object.values(bookingFields).forEach(clearFieldError);
+                clearTimeslotError();
+                setTimeout(updateNoteCount, 0);
+            });
+        }
+
+        if (bookingForm) {
+            bookingForm.addEventListener("submit", event => {
+                event.preventDefault();
+                clearBookingAlert();
+
+                let valid = true;
+                Object.keys(bookingFields).forEach(key => {
+                    if (!validateBookingField(key)) valid = false;
+                });
+                if (!validateTimeslot()) valid = false;
+
+                if (!valid) {
+                    setBookingAlert("error", "Permohonan belum lengkap. Sila semak ruangan yang ditanda.");
+                    const firstInvalid = bookingForm.querySelector(".is-invalid");
+                    if (firstInvalid) firstInvalid.focus();
+                    return;
+                }
+
+                const selectedFacility = bookingFields.facility ? bookingFields.facility.value : "Fasiliti";
+                const selectedDate = bookingFields.date ? bookingFields.date.value : "";
+                const selectedSlot = (timeslotInputs.find(input => input.checked) || {}).value || "";
+
+                const label = bookingSubmitBtn ? bookingSubmitBtn.querySelector("span") : null;
+                const defaultLabel = bookingSubmitBtn ? (bookingSubmitBtn.getAttribute("data-default-label") || "Hantar Permohonan") : "Hantar Permohonan";
+                if (bookingSubmitBtn) bookingSubmitBtn.disabled = true;
+                if (label) label.textContent = "Menghantar...";
+
+                const ref = "BK-" + Date.now().toString().slice(-6);
+                setBookingAlert(
+                    "success",
+                    "Permohonan diterima untuk " + selectedFacility + " pada " + selectedDate + " (" + selectedSlot + "). Rujukan: " + ref + "."
+                );
+
+                bookingForm.reset();
+                updateNoteCount();
+
+                if (bookingSubmitBtn) bookingSubmitBtn.disabled = false;
+                if (label) label.textContent = defaultLabel;
+            });
+        }
     })();
 </script>
 <footer class="bg-white border-t border-stone-200 pt-16 pb-10 px-4 lg:px-8">
@@ -299,16 +504,16 @@
 <div class="bg-stone-100 p-2 rounded-lg text-primary">
 <span class="material-symbols-outlined block">yard</span>
 </div>
-<h1 class="text-lg font-bold tracking-tight text-text-main">Banjaria Court</h1>
+<p class="text-lg font-bold tracking-tight text-text-main">Banjaria Court</p>
 </div>
 <p class="text-text-main/60 text-sm leading-relaxed mb-6 font-light">
                             Komuniti kediaman premium yang menitikberatkan ketenangan, keselamatan, dan gaya hidup moden.
                         </p>
 <div class="flex gap-3">
-<a class="w-9 h-9 rounded-full bg-stone-50 border border-stone-100 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#">
+<a class="w-9 h-9 rounded-full bg-stone-50 border border-stone-100 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="https://wa.me/60312345678" target="_blank" rel="noopener">
 <span class="material-symbols-outlined text-lg">share</span>
 </a>
-<a class="w-9 h-9 rounded-full bg-stone-50 border border-stone-100 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#">
+<a class="w-9 h-9 rounded-full bg-stone-50 border border-stone-100 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="mailto:management@banjaria.com">
 <span class="material-symbols-outlined text-lg">mail</span>
 </a>
 </div>
@@ -353,9 +558,9 @@
                         © 2024 Pengurusan Banjaria Court. Hak cipta terpelihara.
                     </p>
 <div class="flex gap-6 text-xs text-text-main/40 font-medium">
-<a class="hover:text-primary transition-colors" href="#">Privasi</a>
-<a class="hover:text-primary transition-colors" href="#">Terma</a>
-<a class="hover:text-primary transition-colors" href="#">Peta Laman</a>
+<a class="hover:text-primary transition-colors" href="hubungi_pengurusan_banjaria.html">Privasi</a>
+<a class="hover:text-primary transition-colors" href="hubungi_pengurusan_banjaria.html">Terma</a>
+<a class="hover:text-primary transition-colors" href="index.html">Peta Laman</a>
 </div>
 </div>
 </div>
@@ -363,4 +568,5 @@
 </div>
 </div>
 
-</body></html>
+<script src="assets/js/site.js"></script></body></html>
+

@@ -2,8 +2,11 @@
 <html class="light" lang="ms">
 <head>
   <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Admin Notis | Banjaria Court</title>
+  
+
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="Portal rasmi Banjaria Court untuk notis, kemudahan, komuniti, laporan dan perkhidmatan penduduk."/>
+<title>Admin Notis | Banjaria Court</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
@@ -35,7 +38,7 @@
     .sidebar-collapsed .collapse-chevron { transform: rotate(180deg); }
     .nav-link.active { background-color: rgba(74, 103, 65, 0.12); color: #4A6741; border: 1px solid rgba(74, 103, 65, 0.25); }
   </style>
-</head>
+<link rel="stylesheet" href="assets/css/palette.css"/></head>
 <body class="bg-cream text-text-main">
   <div class="min-h-screen flex bg-cream">
     <aside id="adminSidebar" class="w-72 shrink-0 border-r border-stone-200 bg-white/80 backdrop-blur-md shadow-soft transition-all duration-300">
@@ -95,7 +98,7 @@
         </nav>
         <p class="section-title text-xs font-semibold uppercase tracking-[0.2em] text-text-main/60 px-3 pt-2">Sesi</p>
         <nav class="space-y-1">
-          <button id="resetSampleBtn" class="nav-link w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
+          <button id="resetSampleBtnNav" class="nav-link w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
             <span class="material-symbols-outlined text-base">restart_alt</span>
             <span class="nav-label">Reset Notis Contoh</span>
           </button>
@@ -108,7 +111,7 @@
     </aside>
 
     <div class="flex-1 flex flex-col">
-      <header class="sticky top-0 z-30 bg-cream/95 backdrop-blur-md border-b border-stone-200/70">
+      <header class="site-header sticky top-0 z-30 bg-cream/95 backdrop-blur-md border-b border-stone-200/70">
         <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div class="flex items-center gap-3">
             <button data-sidebar-toggle class="lg:hidden p-2 rounded-lg border border-stone-200 hover:bg-white" aria-label="Toggle sidebar">
@@ -139,7 +142,7 @@
               </div>
               <div class="flex flex-wrap items-center gap-3 text-sm text-text-main/70">
                 <span class="px-3 py-1 bg-primary/10 text-primary rounded-full border border-primary/20" id="notisCount"></span>
-                <button id="resetSampleBtn" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-stone-200 text-text-main hover:bg-stone-50 text-sm font-semibold">
+                <button id="resetSampleBtnMain" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-stone-200 text-text-main hover:bg-stone-50 text-sm font-semibold">
                   <span class="material-symbols-outlined text-base">restart_alt</span>
                   Reset Notis Contoh
                 </button>
@@ -240,7 +243,7 @@
         title: 'Utama',
         subtitle: 'Kad hero dan hab penduduk di halaman utama.',
         cards: [
-          { tag: 'Hero', title: 'Selamat Datang ke Banjaria Court', summary: 'Highlight kediaman hijau dan ajakan “Lihat Kemudahan” & “Pendaftaran Pelawat”.', bg: 'bg-gradient-to-r from-primary/10 to-accent-warm/10' },
+          { tag: 'Hero', title: 'Selamat Datang ke Banjaria Court', summary: 'Highlight kediaman hijau dan ajakan “Lihat Kemudahan” & “Pendaftaran Pelawat”.', bg: 'bg-gradient-to-r from-primary/10 to-accent-warm/10' },
           { tag: 'Hab Penduduk', title: 'Kumpulan servis utama', summary: 'Notis, Tempahan, Pembayaran, Sokongan sebagai pintu masuk utama.' },
         ],
       },
@@ -620,7 +623,7 @@
 
     const listEl = document.getElementById('notisList');
     const countEl = document.getElementById('notisCount');
-    const resetSampleBtn = document.getElementById('resetSampleBtn');
+    const resetSampleBtns = document.querySelectorAll('#resetSampleBtnNav, #resetSampleBtnMain');
     const logoutBtn = document.getElementById('logoutBtn');
     const addItemBtn = document.getElementById('addItemBtn');
     let editModal = document.getElementById('editModal');
@@ -697,13 +700,15 @@
       });
     }
 
-    resetSampleBtn.addEventListener('click', () => {
-      if (!confirm('Gantikan notis dengan 6 contoh asal?')) return;
-      notices = dataService.resetNotices();
-      dataService.saveNotices(notices);
-      renderNotices();
-      setActivePage(currentPage);
-      showToast('Notis contoh dipulihkan.', 'success');
+    resetSampleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (!confirm('Gantikan notis dengan 6 contoh asal?')) return;
+        notices = dataService.resetNotices();
+        dataService.saveNotices(notices);
+        renderNotices();
+        setActivePage(currentPage);
+        showToast('Notis contoh dipulihkan.', 'success');
+      });
     });
 
     logoutBtn.addEventListener('click', () => {
@@ -1142,5 +1147,7 @@
       return d.toLocaleDateString('ms-MY', { year: 'numeric', month: 'short', day: 'numeric' });
     }
   </script>
-</body>
+<script src="assets/js/site.js"></script></body>
 </html>
+
+

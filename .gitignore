@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Local build and package manager artifacts
+package-lock.json
+
+# Generated screenshots and exports
+screenshots/
+*.zip
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
