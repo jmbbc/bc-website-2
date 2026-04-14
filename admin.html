@@ -84,28 +84,162 @@
 
           <form id="adminLoginForm" class="space-y-4">
             <div>
-              <label class="text-sm font-semibold text-text-main/80">Emel</label>
-              <input required type="email" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="admin@banjaria.local" />
+              <label for="adminAuthMode" class="text-sm font-semibold text-text-main/80">Mod</label>
+              <select id="adminAuthMode" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30">
+                <option value="login">Log Masuk Admin</option>
+                <option value="register">Daftar Admin (Kali Pertama)</option>
+              </select>
+            </div>
+            <div id="adminDisplayNameWrap" class="hidden">
+              <label for="adminDisplayName" class="text-sm font-semibold text-text-main/80">Nama Admin</label>
+              <input id="adminDisplayName" type="text" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="Nama penuh admin" />
             </div>
             <div>
-              <label class="text-sm font-semibold text-text-main/80">Kata Laluan</label>
-              <input required type="password" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="••••••••" />
+              <label for="adminEmail" class="text-sm font-semibold text-text-main/80">Emel</label>
+              <input id="adminEmail" required type="email" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="admin@banjaria.local" />
             </div>
-            <p class="text-xs text-text-main/60">Gunakan kelayakan yang sah. (Buat masa ini, sebarang emel & kata laluan akan diterima untuk demo tempatan.)</p>
-            <button type="submit" class="w-full rounded-xl bg-primary text-white font-bold py-3 shadow-lg shadow-primary/20 hover:-translate-y-0.5 transition-all">Log Masuk</button>
+            <div>
+              <label for="adminPassword" class="text-sm font-semibold text-text-main/80">Kata Laluan</label>
+              <input id="adminPassword" required minlength="6" type="password" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="••••••••" />
+            </div>
+            <p id="adminAuthHint" class="text-xs text-text-main/60">Isi konfigurasi Firebase dahulu dalam <code>assets/js/firebase-config.js</code> untuk aktifkan login sebenar.</p>
+            <p id="adminAuthMessage" class="hidden form-feedback"></p>
+            <button id="adminSubmitBtn" type="submit" class="w-full rounded-xl bg-primary text-white font-bold py-3 shadow-lg shadow-primary/20 hover:-translate-y-0.5 transition-all">Log Masuk</button>
           </form>
         </div>
       </div>
     </main>
   </div>
 
+  <script src="assets/js/firebase-config.js"></script>
+  <script src="assets/js/firebase-bridge.js"></script>
   <script>
-    const form = document.getElementById('adminLoginForm');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      localStorage.setItem('adminAuthed', 'true');
-      window.location.href = 'admin-notis.html';
-    });
+    (async () => {
+      const form = document.getElementById("adminLoginForm");
+      const modeInput = document.getElementById("adminAuthMode");
+      const nameWrap = document.getElementById("adminDisplayNameWrap");
+      const nameInput = document.getElementById("adminDisplayName");
+      const emailInput = document.getElementById("adminEmail");
+      const passwordInput = document.getElementById("adminPassword");
+      const hintEl = document.getElementById("adminAuthHint");
+      const messageEl = document.getElementById("adminAuthMessage");
+      const submitBtn = document.getElementById("adminSubmitBtn");
+
+      if (!form || !modeInput || !emailInput || !passwordInput || !submitBtn) {
+        return;
+      }
+
+      if (window.BCDataReady) {
+        try {
+          await window.BCDataReady;
+        } catch (_) {
+          // Fallback mode will still work.
+        }
+      }
+
+      const bridge = window.BCDataBridge || null;
+      const config = window.BCFirebaseConfig || {};
+      const allowSelfRegistration = !!(config && config.allowAdminSelfRegistration === true);
+      const registerOption = modeInput.querySelector('option[value="register"]');
+
+      if (!allowSelfRegistration && registerOption) {
+        registerOption.remove();
+      }
+
+      if (!allowSelfRegistration && modeInput.value === "register") {
+        modeInput.value = "login";
+      }
+
+      function setMessage(type, text) {
+        if (!messageEl) {
+          return;
+        }
+        if (!text) {
+          messageEl.textContent = "";
+          messageEl.className = "hidden form-feedback";
+          return;
+        }
+
+        messageEl.textContent = text;
+        messageEl.className = "form-feedback " + (type === "success" ? "form-feedback--success" : "form-feedback--error");
+      }
+
+      function setModeUI(mode) {
+        const isRegister = mode === "register" && allowSelfRegistration;
+        nameWrap.classList.toggle("hidden", !isRegister);
+        nameInput.toggleAttribute("required", isRegister);
+        submitBtn.textContent = isRegister ? "Daftar Admin" : "Log Masuk";
+      }
+
+      setModeUI(modeInput.value);
+      modeInput.addEventListener("change", function () {
+        setMessage("", "");
+        setModeUI(modeInput.value);
+      });
+
+      if (bridge && bridge.isFirebaseEnabled()) {
+        hintEl.textContent = allowSelfRegistration
+          ? "Sistem menggunakan Firebase Auth + Firestore. Mod daftar admin sedang dibuka sementara."
+          : "Sistem menggunakan Firebase Auth + Firestore. Pendaftaran admin baharu telah ditutup.";
+        const isAdmin = await bridge.isCurrentUserAdmin();
+        if (isAdmin) {
+          window.location.href = "admin-notis.html";
+          return;
+        }
+      } else {
+        hintEl.textContent = "Firebase belum dikonfigurasi. Sistem fallback ke mod demo tempatan.";
+      }
+
+      form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        setMessage("", "");
+
+        const mode = modeInput.value || "login";
+        const email = String(emailInput.value || "").trim();
+        const password = String(passwordInput.value || "");
+        const displayName = String(nameInput.value || "").trim();
+
+        if (!email || !password) {
+          setMessage("error", "Emel dan kata laluan diperlukan.");
+          return;
+        }
+        if (mode === "register" && displayName.length < 3) {
+          setMessage("error", "Nama admin perlu sekurang-kurangnya 3 aksara.");
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.classList.add("opacity-70", "cursor-not-allowed");
+
+        try {
+          if (bridge && bridge.isFirebaseEnabled()) {
+            if (mode === "register") {
+              if (!allowSelfRegistration || !bridge.isAdminSelfRegistrationEnabled()) {
+                throw new Error("Pendaftaran admin baharu telah ditutup. Hubungi super admin.");
+              }
+              await bridge.registerAdmin(email, password, displayName);
+              setMessage("success", "Admin berjaya didaftarkan. Log masuk sedang diproses...");
+            } else {
+              await bridge.signIn(email, password);
+            }
+
+            const allowed = await bridge.isCurrentUserAdmin();
+            if (!allowed) {
+              await bridge.signOut();
+              throw new Error("Akaun ini belum diberi akses admin.");
+            }
+          }
+
+          localStorage.setItem("adminAuthed", "true");
+          window.location.href = "admin-notis.html";
+        } catch (error) {
+          setMessage("error", (error && error.message) || "Log masuk gagal. Sila semak semula maklumat anda.");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove("opacity-70", "cursor-not-allowed");
+        }
+      });
+    })();
   </script>
 <script src="assets/js/site.js"></script></body>
 </html>

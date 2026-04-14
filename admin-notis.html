@@ -256,11 +256,29 @@
     </article>
   </template>
 
+  <script src="assets/js/firebase-config.js"></script>
+  <script src="assets/js/firebase-bridge.js"></script>
   <script>
+    (async () => {
     const authKey = 'adminAuthed';
 
-    if (localStorage.getItem(authKey) !== 'true') {
+    if (window.BCDataReady) {
+      try {
+        await window.BCDataReady;
+      } catch (_) {
+        // Continue with local fallback if Firebase is unavailable.
+      }
+    }
+
+    if (window.BCDataBridge && window.BCDataBridge.isFirebaseEnabled()) {
+      const isAdmin = await window.BCDataBridge.requireAdmin('admin.html');
+      if (!isAdmin) {
+        return;
+      }
+      localStorage.setItem(authKey, 'true');
+    } else if (localStorage.getItem(authKey) !== 'true') {
       window.location.href = 'admin.html';
+      return;
     }
 
     const defaultNotices = [
@@ -827,7 +845,14 @@
       });
     });
 
-    logoutBtn.addEventListener('click', () => {
+    logoutBtn.addEventListener('click', async () => {
+      if (window.BCDataBridge && window.BCDataBridge.isFirebaseEnabled()) {
+        try {
+          await window.BCDataBridge.signOut();
+        } catch (_) {
+          // fallback below
+        }
+      }
       localStorage.removeItem(authKey);
       window.location.href = 'admin.html';
     });
@@ -1349,6 +1374,7 @@
       const d = new Date(dateStr);
       return d.toLocaleDateString('ms-MY', { year: 'numeric', month: 'short', day: 'numeric' });
     }
+    })();
   </script>
 <script src="assets/js/site.js"></script></body>
 </html>

@@ -242,6 +242,9 @@
 </a>
 </div>
 
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/firebase-bridge.js"></script>
+
 <script>
     const facilityStorageKey = 'pageDataV1';
     const facilityPageKey = 'kemudahan';
@@ -382,7 +385,17 @@
         });
     }
 
-    renderFacilities();
+    (async function initFacilitiesPage() {
+        try {
+            if (window.BCDataReady) {
+                await window.BCDataReady;
+            }
+        } catch (err) {
+            console.warn('Cloud bootstrap failed for facilities page:', err);
+        }
+
+        renderFacilities();
+    })();
 </script>
 
 <script src="assets/js/site.js"></script></body></html>

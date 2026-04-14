@@ -194,8 +194,17 @@
 </footer>
     </div>
 </div>
+<script src="assets/js/firebase-config.js"></script>
+<script src="assets/js/firebase-bridge.js"></script>
 <script>
-    (() => {
+    (async () => {
+        if (window.BCDataReady) {
+            try {
+                await window.BCDataReady;
+            } catch (_) {
+                // Continue with local fallback.
+            }
+        }
         const storageKey = 'pageDataV1';
         const pageKey = 'komuniti';
         const gridEl = document.getElementById('activityGrid');
