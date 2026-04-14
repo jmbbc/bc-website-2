@@ -67,6 +67,10 @@
             <span class="material-symbols-outlined text-base">feed</span>
             <span class="nav-label">Papan Notis</span>
           </button>
+          <button data-page="announcement" class="nav-link flex w-full items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
+            <span class="material-symbols-outlined text-base">campaign</span>
+            <span class="nav-label">Announcement Bar</span>
+          </button>
           <button data-page="kemudahan" class="nav-link flex w-full items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-text-main hover:bg-primary/10 hover:text-primary transition-colors" type="button">
             <span class="material-symbols-outlined text-base">calendar_month</span>
             <span class="nav-label">Kemudahan</span>
@@ -133,6 +137,22 @@
       </header>
 
       <main class="flex-1 w-full px-4 sm:px-6 py-8">
+        <div class="mb-6 -mx-4 sm:-mx-6 px-6 lg:px-40">
+          <div class="@container">
+            <div class="flex min-h-[280px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-2xl items-center justify-center p-10 relative overflow-hidden group shadow-xl" style='background-image: linear-gradient(to bottom, rgba(35, 69, 61, 0.85), rgba(33, 49, 49, 0.9)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuASguCSTGksx83hkoNqqJPgh38wNiIR0Y6Qn2so7wEDipNyhlC_257tf1glqN_I1lAeslChomfCivlaGF3zzbouik6o_uqvC7GlBvlIq1h-2PHjTRrJR3aR0vA7qT9VaUYS2wUuxC03KwT2_2TdlO8DLbAZswqU50zJuc5pgJOrAskL2nI9GoD6tDuGgYFr72vlM32gzDeoTVAeq9XMVGsiwBj5KZFZbrubKaMPO2SbToBGlgiumyswFvtPbOUbfxUg25q8NOhdY8I");'>
+              <div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+              <div class="flex flex-col gap-4 text-center relative z-10 max-w-3xl">
+                <span class="text-white/80 uppercase tracking-widest text-xs font-bold mb-2">Panel Admin</span>
+                <h2 class="text-white text-4xl font-black leading-tight tracking-tight @[480px]:text-6xl drop-shadow-sm">Urus Notis Komuniti</h2>
+                <p class="text-white/90 text-lg max-w-xl mx-auto font-light leading-relaxed">Pantau, kemas kini, dan susun kandungan setiap halaman dari satu pusat kawalan.</p>
+              </div>
+              <a class="mt-4 flex min-w-[200px] cursor-pointer items-center justify-center rounded-xl h-14 px-8 bg-white text-primary text-base font-bold transition-all hover:bg-[#f0f9f7] hover:-translate-y-1 hover:shadow-lg relative z-10 border border-transparent hover:border-white/50" href="#notisAdminLayout">
+                <span class="truncate">Lihat Notis Semasa</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
         <div id="notisAdminLayout" class="max-w-6xl mx-auto">
           <section class="bg-white rounded-3xl border border-stone-200 shadow-soft p-6 lg:p-8">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
@@ -173,6 +193,36 @@
 
           <div id="previewCards" class="grid gap-3 md:grid-cols-2 lg:grid-cols-3"></div>
           <p id="previewEmpty" class="hidden text-sm text-text-main/60">Tiada kad untuk dipaparkan.</p>
+        </div>
+
+        <div id="announcementAdminLayout" class="hidden max-w-6xl mx-auto">
+          <section class="bg-white rounded-3xl border border-stone-200 shadow-soft p-6 lg:p-8">
+            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Konfigurasi Announcement</p>
+                <h2 class="text-2xl font-extrabold">Pilih Notis Untuk Announcement Bar</h2>
+                <p class="text-sm text-text-main/60 mt-1">Tandakan notis yang mahu dipaparkan dalam ticker di atas header.</p>
+              </div>
+              <div class="flex flex-wrap items-center gap-2 text-sm">
+                <span id="announcementSelectedCount" class="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 font-semibold">0 dipilih</span>
+                <span id="announcementTotalCount" class="px-3 py-1 rounded-full bg-stone-100 text-text-main/70 border border-stone-200 font-semibold">0 notis</span>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2 mb-5">
+              <button id="announcementSelectAllBtn" class="px-3 py-1.5 rounded-lg border border-primary/20 text-primary text-sm font-semibold hover:bg-primary/10" type="button">Pilih Semua</button>
+              <button id="announcementClearBtn" class="px-3 py-1.5 rounded-lg border border-stone-200 text-text-main text-sm font-semibold hover:bg-stone-50" type="button">Nyahpilih Semua</button>
+              <span class="text-xs text-text-main/60">Disimpan automatik ke sistem.</span>
+            </div>
+
+            <div id="announcementNoticeList" class="grid gap-3 md:grid-cols-2"></div>
+            <p id="announcementEmpty" class="hidden text-sm text-text-main/60">Tiada notis untuk dipilih.</p>
+
+            <div class="mt-6 p-4 rounded-2xl border border-stone-200 bg-stone-50">
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-text-main/60 mb-2">Pratonton Teks</p>
+              <p id="announcementPreview" class="text-sm text-text-main/80 leading-relaxed">Tiada notis dipilih.</p>
+            </div>
+          </section>
         </div>
       </main>
     </div>
@@ -480,6 +530,7 @@
     function createLocalDataService() {
       const noticeKey = 'notices';
       const pageKey = 'pageDataV1';
+      const announcementKey = 'announcementNoticeIds';
 
       const normalizeEntry = (pageName, entry) => {
         if (Array.isArray(entry)) {
@@ -526,6 +577,25 @@
         },
         saveNotices(list) {
           localStorage.setItem(noticeKey, JSON.stringify(list));
+        },
+        loadAnnouncementSelection() {
+          const saved = localStorage.getItem(announcementKey);
+          if (!saved) return null;
+          const parsed = safeParse(saved, [], 'announcement selection');
+          if (!Array.isArray(parsed)) {
+            localStorage.removeItem(announcementKey);
+            return null;
+          }
+          const normalized = parsed.map(id => String(id)).filter(Boolean);
+          localStorage.setItem(announcementKey, JSON.stringify(normalized));
+          return normalized;
+        },
+        saveAnnouncementSelection(ids) {
+          const normalized = (ids || []).map(id => String(id)).filter(Boolean);
+          localStorage.setItem(announcementKey, JSON.stringify(normalized));
+        },
+        clearAnnouncementSelection() {
+          localStorage.removeItem(announcementKey);
         },
         resetNotices() {
           const seeded = defaultNotices.map(n => ({ ...n, id: crypto.randomUUID() }));
@@ -605,6 +675,14 @@
     const navLinks = document.querySelectorAll('#navLinks .nav-link');
     const notisLayout = document.getElementById('notisAdminLayout');
     const previewLayout = document.getElementById('pagePreviewLayout');
+    const announcementLayout = document.getElementById('announcementAdminLayout');
+    const announcementNoticeList = document.getElementById('announcementNoticeList');
+    const announcementSelectedCount = document.getElementById('announcementSelectedCount');
+    const announcementTotalCount = document.getElementById('announcementTotalCount');
+    const announcementPreview = document.getElementById('announcementPreview');
+    const announcementEmpty = document.getElementById('announcementEmpty');
+    const announcementSelectAllBtn = document.getElementById('announcementSelectAllBtn');
+    const announcementClearBtn = document.getElementById('announcementClearBtn');
     const previewTitle = document.getElementById('previewTitle');
     const previewSubtitle = document.getElementById('previewSubtitle');
     const previewCount = document.getElementById('previewCount');
@@ -649,6 +727,42 @@
       const page = link.getAttribute('data-page');
       setActivePage(page);
     }));
+
+    if (announcementNoticeList) {
+      announcementNoticeList.addEventListener('change', (evt) => {
+        const input = evt.target.closest('input[data-announcement-id]');
+        if (!input) return;
+        const id = String(input.getAttribute('data-announcement-id') || '');
+        if (!id) return;
+
+        const selected = syncAnnouncementSelection();
+        const next = new Set(selected);
+        if (input.checked) {
+          next.add(id);
+        } else {
+          next.delete(id);
+        }
+
+        dataService.saveAnnouncementSelection(Array.from(next));
+        renderAnnouncementAdmin();
+      });
+    }
+
+    if (announcementSelectAllBtn) {
+      announcementSelectAllBtn.addEventListener('click', () => {
+        dataService.clearAnnouncementSelection();
+        renderAnnouncementAdmin();
+        showToast('Announcement bar ditetapkan kepada semua notis.', 'success');
+      });
+    }
+
+    if (announcementClearBtn) {
+      announcementClearBtn.addEventListener('click', () => {
+        dataService.saveAnnouncementSelection([]);
+        renderAnnouncementAdmin();
+        showToast('Semua notis telah dinyahpilih untuk announcement bar.', 'success');
+      });
+    }
 
     if (addItemBtn) {
       addItemBtn.addEventListener('click', () => {
@@ -705,7 +819,9 @@
         if (!confirm('Gantikan notis dengan 6 contoh asal?')) return;
         notices = dataService.resetNotices();
         dataService.saveNotices(notices);
+        syncAnnouncementSelection();
         renderNotices();
+        renderAnnouncementAdmin();
         setActivePage(currentPage);
         showToast('Notis contoh dipulihkan.', 'success');
       });
@@ -718,6 +834,7 @@
 
     function renderNotices() {
       ensureNoticeData();
+      syncAnnouncementSelection();
       listEl.innerHTML = '';
       if (!notices.length) {
         listEl.innerHTML = '<p class="text-sm text-text-main/60">Tiada notis. Tambah notis baharu.</p>';
@@ -754,11 +871,80 @@
       countEl.textContent = `${notices.length} notis`;
     }
 
+    function getAllNoticeIds() {
+      return (notices || []).map(n => String(n.id || '')).filter(Boolean);
+    }
+
+    function syncAnnouncementSelection() {
+      const allIds = getAllNoticeIds();
+      const selected = dataService.loadAnnouncementSelection();
+
+      if (selected === null) {
+        return allIds;
+      }
+
+      const valid = selected.filter(id => allIds.includes(id));
+      if (selected.length && !valid.length && allIds.length) {
+        dataService.clearAnnouncementSelection();
+        return allIds;
+      }
+
+      if (valid.length !== selected.length) {
+        dataService.saveAnnouncementSelection(valid);
+      }
+      return valid;
+    }
+
+    function renderAnnouncementAdmin() {
+      if (!announcementNoticeList) return;
+
+      ensureNoticeData();
+      const selectedIds = syncAnnouncementSelection();
+      const selectedSet = new Set(selectedIds);
+
+      announcementNoticeList.innerHTML = '';
+      announcementEmpty.classList.toggle('hidden', notices.length > 0);
+
+      if (!notices.length) {
+        announcementPreview.textContent = 'Tiada notis dipilih.';
+        announcementSelectedCount.textContent = '0 dipilih';
+        announcementTotalCount.textContent = '0 notis';
+        return;
+      }
+
+      notices.forEach((notis, idx) => {
+        const isChecked = selectedSet.has(String(notis.id));
+        const card = document.createElement('label');
+        card.className = 'flex items-start gap-3 border border-stone-200 rounded-xl p-3 bg-white hover:border-primary/40 transition-colors cursor-pointer';
+        card.innerHTML = `
+          <input data-announcement-id="${String(notis.id)}" type="checkbox" class="mt-1 rounded border-stone-300 text-primary focus:ring-primary/40" ${isChecked ? 'checked' : ''} />
+          <div class="min-w-0">
+            <p class="text-sm font-bold text-text-main truncate">${notis.title || `Notis #${idx + 1}`}</p>
+            <p class="text-xs text-text-main/60 mt-1">${formatDate(notis.date) || 'Tiada tarikh'}${notis.category ? ` • ${notis.category}` : ''}</p>
+            <p class="text-xs text-text-main/70 mt-1 line-clamp-2">${notis.summary || ''}</p>
+          </div>
+        `;
+        announcementNoticeList.appendChild(card);
+      });
+
+      const selectedTitles = notices
+        .filter(n => selectedSet.has(String(n.id)))
+        .map(n => (n.title || '').trim())
+        .filter(Boolean);
+
+      announcementSelectedCount.textContent = `${selectedTitles.length} dipilih`;
+      announcementTotalCount.textContent = `${notices.length} notis`;
+      announcementPreview.textContent = selectedTitles.length
+        ? `Notis: ${selectedTitles.join(' • ')}`
+        : 'Tiada notis dipilih. Announcement bar akan memaparkan mesej lalai.';
+    }
+
     function deleteNoticeById(id) {
       const idx = notices.findIndex(n => n.id === id);
       if (idx === -1) return;
       notices.splice(idx, 1);
       dataService.saveNotices(notices);
+      syncAnnouncementSelection();
       setActivePage('notis-public');
       showToast('Notis dipadam.', 'success');
     }
@@ -967,10 +1153,27 @@
       currentPage = page;
       navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('data-page') === page));
 
+      const isAnnouncementPage = page === 'announcement';
+      if (addItemBtn) addItemBtn.classList.toggle('hidden', isAnnouncementPage);
+      if (resetPageBtn) resetPageBtn.classList.toggle('hidden', isAnnouncementPage);
+
       const useNoticeGrid = page !== 'notis-admin';
       previewCards.className = useNoticeGrid ? noticeGridClass : compactGridClass;
 
       notisLayout.classList.add('hidden');
+      previewLayout.classList.add('hidden');
+      if (announcementLayout) {
+        announcementLayout.classList.add('hidden');
+      }
+
+      if (isAnnouncementPage) {
+        if (announcementLayout) {
+          announcementLayout.classList.remove('hidden');
+        }
+        renderAnnouncementAdmin();
+        return;
+      }
+
       previewLayout.classList.remove('hidden');
 
       if (page === 'notis-public') {

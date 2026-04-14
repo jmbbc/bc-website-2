@@ -84,6 +84,7 @@
             <a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="laporan_agm_dan_egm.html">Laporan</a>
             <a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="maklumat_tender_terbuka.html">Tender</a>
             <a class="text-primary font-bold text-sm relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-full after:h-0.5 after:bg-primary after:rounded-full" href="senarai_vendor_berdaftar.html">Vendor</a>
+                <a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="hubungi_pengurusan_banjaria.html">Hubungi</a>
                     <a class="text-text-main/70 hover:text-primary transition-colors text-sm font-medium" href="portal_borang_digital.html">Portal</a></nav>
         <div class="flex items-center gap-4">
             <a class="hidden md:flex bg-white border border-stone-200 text-primary px-5 py-2.5 rounded-full text-sm font-bold hover:shadow-soft hover:-translate-y-0.5 transition-all items-center gap-2" href="admin.html">
@@ -96,39 +97,25 @@
         </div>
     </div>
 </header>
-<main class="flex-1 max-w-7xl mx-auto w-full px-6 md:px-20 py-10">
+<main class="flex-1">
+<div class="px-6 lg:px-40 py-10">
 <section class="mb-12">
-<div class="relative overflow-hidden rounded-3xl bg-primary/5 p-8 md:p-16 flex flex-col items-center text-center border border-primary/5">
-<div class="absolute top-0 right-0 p-8 opacity-[0.07] pointer-events-none select-none">
-<span class="material-symbols-outlined !text-[240px]">eco</span>
+<div class="@container">
+<div class="flex min-h-[360px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-2xl items-center justify-center p-10 relative overflow-hidden group shadow-xl" style='background-image: linear-gradient(to bottom, rgba(35, 69, 61, 0.85), rgba(33, 49, 49, 0.9)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuASguCSTGksx83hkoNqqJPgh38wNiIR0Y6Qn2so7wEDipNyhlC_257tf1glqN_I1lAeslChomfCivlaGF3zzbouik6o_uqvC7GlBvlIq1h-2PHjTRrJR3aR0vA7qT9VaUYS2wUuxC03KwT2_2TdlO8DLbAZswqU50zJuc5pgJOrAskL2nI9GoD6tDuGgYFr72vlM32gzDeoTVAeq9XMVGsiwBj5KZFZbrubKaMPO2SbToBGlgiumyswFvtPbOUbfxUg25q8NOhdY8I");'>
+<div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+<div class="flex flex-col gap-4 text-center relative z-10 max-w-3xl">
+<span class="text-white/80 uppercase tracking-widest text-xs font-bold mb-2">Direktori Diiktiraf</span>
+<h1 class="text-white text-4xl font-black leading-tight tracking-tight @[480px]:text-6xl drop-shadow-sm">Senarai Vendor Berdaftar</h1>
+<p class="text-white/90 text-lg max-w-xl mx-auto font-light leading-relaxed">Profesional dipercayai yang disemak kualiti dan kebolehpercayaan bagi menyelenggara kediaman anda di Banjaria Court.</p>
 </div>
-<div class="absolute bottom-0 left-0 p-8 opacity-[0.07] pointer-events-none rotate-180 select-none">
-<span class="material-symbols-outlined !text-[240px]">spa</span>
-</div>
-<div class="relative z-10 max-w-2xl">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-surface-dark border border-primary/20 text-primary text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
-<span class="material-symbols-outlined !text-[14px]">verified_user</span>
-                        Direktori Diiktiraf
-                    </div>
-<h1 class="text-4xl md:text-5xl font-extrabold text-[#111816] dark:text-white mb-6 tracking-tight leading-tight">
-                        Senarai Vendor Berdaftar
-                    </h1>
-<p class="text-lg text-gray-600 dark:text-gray-300 font-medium mb-8 leading-relaxed">
-                        Profesional dipercayai yang disemak kualiti dan kebolehpercayaan bagi menyelenggara kediaman anda di Banjaria Court. Cari bantuan yang anda perlukan dengan segera.
-                    </p>
-<div class="flex flex-wrap justify-center gap-4">
-<a class="bg-primary text-white px-8 py-3.5 rounded-xl font-bold hover:scale-[1.02] hover:bg-primary-dark transition-all shadow-soft flex items-center gap-2" href="hubungi_pengurusan_banjaria.html">
-<span class="material-symbols-outlined">person_add</span>
-                            Daftar Sebagai Vendor
-                        </a>
-<a class="bg-white dark:bg-surface-dark border border-primary/20 px-8 py-3.5 rounded-xl font-bold hover:bg-primary/5 transition-all text-primary flex items-center gap-2" href="portal_borang_digital.html">
-<span class="material-symbols-outlined">description</span>
-                            Muat Turun Garis Panduan
-                        </a>
-</div>
+<a class="mt-4 flex min-w-[200px] cursor-pointer items-center justify-center rounded-xl h-14 px-8 bg-white text-primary text-base font-bold transition-all hover:bg-[#f0f9f7] hover:-translate-y-1 hover:shadow-lg relative z-10 border border-transparent hover:border-white/50" href="#vendorGrid">
+<span class="truncate">Lihat Vendor Disahkan</span>
+</a>
 </div>
 </div>
 </section>
+ </div>
+<div class="max-w-7xl mx-auto w-full px-6 md:px-20 pb-10">
 <section class="mb-10">
 <div id="vendorFilters" class="flex items-center gap-3 pb-4 overflow-x-auto no-scrollbar"></div>
 </section>
@@ -160,6 +147,7 @@
 
         const defaultVendors = [
             {
+                id: "syarikat-paip-jitu",
                 name: "Syarikat Paip Jitu",
                 category: "Paip",
                 icon: "plumbing",
@@ -169,9 +157,13 @@
                 years: 12,
                 verified: true,
                 whatsapp: "https://wa.me/60123456789",
-                profileUrl: "#",
+                about: "Pakar kebocoran paip, tekanan air rendah, dan kerja penggantian paip utama kediaman.",
+                services: ["Pembaikan kebocoran", "Penggantian paip", "Servis pemanas air"],
+                hours: "Isnin - Sabtu, 9:00 pagi - 7:00 petang",
+                area: "Batu Caves, Selayang, Kepong",
             },
             {
+                id: "arus-elektrik-enterprise",
                 name: "Arus Elektrik Enterprise",
                 category: "Elektrik",
                 icon: "bolt",
@@ -181,9 +173,13 @@
                 years: 8,
                 verified: true,
                 whatsapp: "https://wa.me/60139876543",
-                profileUrl: "#",
+                about: "Menyediakan servis pendawaian semula, troubleshooting trip elektrik, dan pemasangan aksesori elektrik.",
+                services: ["Pendawaian semula", "Pemasangan lampu", "Pemeriksaan keselamatan elektrik"],
+                hours: "Setiap hari, 10:00 pagi - 8:00 malam",
+                area: "Batu Caves dan sekitar Gombak",
             },
             {
+                id: "coolair-solutions",
                 name: "CoolAir Solutions",
                 category: "Penyaman Udara",
                 icon: "ac_unit",
@@ -193,9 +189,13 @@
                 years: 15,
                 verified: true,
                 whatsapp: "https://wa.me/60175551234",
-                profileUrl: "#",
+                about: "Pakar servis dan overhaul penyaman udara rumah serta pemeriksaan berkala sistem penyejukan.",
+                services: ["Servis berkala", "Topup gas", "Pembaikan kompresor"],
+                hours: "Isnin - Ahad, 9:00 pagi - 9:00 malam",
+                area: "Kuala Lumpur Utara & Batu Caves",
             },
             {
+                id: "cleanhome-services",
                 name: "CleanHome Services",
                 category: "Pembersihan",
                 icon: "cleaning_services",
@@ -205,9 +205,13 @@
                 years: 5,
                 verified: false,
                 whatsapp: "https://wa.me/60112324455",
-                profileUrl: "#",
+                about: "Servis pembersihan unit kediaman, kawasan common area, dan pembersihan selepas renovasi.",
+                services: ["Pembersihan rumah", "Deep cleaning", "Pembersihan selepas renovasi"],
+                hours: "Isnin - Sabtu, 8:30 pagi - 6:30 petang",
+                area: "Batu Caves dan Sentul",
             },
             {
+                id: "buildright-reno",
                 name: "BuildRight Reno",
                 category: "Renovasi",
                 icon: "format_paint",
@@ -217,9 +221,13 @@
                 years: 10,
                 verified: true,
                 whatsapp: "https://wa.me/60193334444",
-                profileUrl: "#",
+                about: "Mengurus kerja renovasi kecil ke sederhana termasuk cat semula, kabinet asas, dan baik pulih dalaman.",
+                services: ["Kerja cat", "Partition gypsum", "Pemasangan kabinet"],
+                hours: "Isnin - Jumaat, 9:00 pagi - 6:00 petang",
+                area: "Batu Caves, Setapak, Wangsa Maju",
             },
             {
+                id: "plumbmaster-pro",
                 name: "PlumbMaster Pro",
                 category: "Baik Pulih",
                 icon: "construction",
@@ -229,7 +237,10 @@
                 years: 6,
                 verified: false,
                 whatsapp: "https://wa.me/60142213322",
-                profileUrl: "#",
+                about: "Penyedia servis baik pulih am untuk isu kediaman harian termasuk fitting rosak, kebocoran ringan, dan penyelenggaraan kecil.",
+                services: ["Baik pulih am", "Pembaikan fitting", "Servis kecemasan asas"],
+                hours: "Isnin - Ahad, 9:00 pagi - 10:00 malam",
+                area: "Batu Caves dan kawasan berdekatan",
             },
         ];
 
@@ -242,8 +253,189 @@
             return stored.vendor;
         };
 
-        const vendors = loadVendors();
+        const slugify = value => String(value || "")
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9\s-]/g, "")
+            .replace(/\s+/g, "-")
+            .replace(/-+/g, "-");
+
+        const getVendorSlug = (vendor, index) => {
+            if (!vendor || typeof vendor !== "object") {
+                return `vendor-${index + 1}`;
+            }
+            if (vendor.id) {
+                return slugify(vendor.id) || `vendor-${index + 1}`;
+            }
+            const fromName = slugify(vendor.name);
+            return fromName || `vendor-${index + 1}`;
+        };
+
+        const vendors = loadVendors().map((vendor, index) => ({
+            ...vendor,
+            _slug: getVendorSlug(vendor, index),
+        }));
+
+        const vendorBySlug = vendors.reduce((acc, vendor) => {
+            if (vendor && vendor._slug) {
+                acc[vendor._slug] = vendor;
+            }
+            return acc;
+        }, {});
+
         const getCategories = () => Array.from(new Set(vendors.map(v => v.category || "Lain-lain")));
+
+        const escapeHtml = value => String(value || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/\"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+
+        const formatPhoneHref = phone => String(phone || "").replace(/[^+\d]/g, "");
+
+        const readServices = vendor => {
+            if (Array.isArray(vendor.services)) {
+                return vendor.services.map(item => String(item || "").trim()).filter(Boolean);
+            }
+            if (typeof vendor.services === "string") {
+                return vendor.services.split(",").map(item => item.trim()).filter(Boolean);
+            }
+            return [];
+        };
+
+        const ensureVendorModal = () => {
+            let modal = document.getElementById("vendorProfileModal");
+            if (modal) {
+                return modal;
+            }
+
+            modal = document.createElement("div");
+            modal.id = "vendorProfileModal";
+            modal.className = "fixed inset-0 z-[80] hidden";
+            modal.setAttribute("aria-hidden", "true");
+            modal.setAttribute("role", "dialog");
+            modal.setAttribute("aria-modal", "true");
+            modal.setAttribute("aria-labelledby", "vendorProfileTitle");
+            modal.innerHTML = `
+                <div class="absolute inset-0 bg-[#111816]/55 backdrop-blur-[1px]" data-modal-close="overlay"></div>
+                <div class="relative min-h-full flex items-center justify-center p-4">
+                    <div class="w-full max-w-2xl rounded-3xl bg-white p-6 md:p-8 border border-primary/20 shadow-2xl">
+                        <div class="flex items-start justify-between gap-4 mb-6">
+                            <div>
+                                <p class="text-[11px] uppercase tracking-[0.2em] font-bold text-primary/70">Profil Vendor</p>
+                                <h3 id="vendorProfileTitle" class="text-2xl md:text-3xl font-extrabold text-primary mt-1"></h3>
+                            </div>
+                            <button type="button" class="h-10 w-10 rounded-full border border-stone-200 text-text-main hover:bg-stone-100" data-modal-close="button" aria-label="Tutup profil vendor">
+                                <span class="material-symbols-outlined text-base">close</span>
+                            </button>
+                        </div>
+                        <div id="vendorProfileBody" class="space-y-4 text-sm text-text-main/85"></div>
+                        <div class="mt-7 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <a id="vendorModalWhatsapp" class="flex items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl text-sm font-bold hover:brightness-110" href="https://wa.me/60312345678" target="_blank" rel="noopener">
+                                <span class="material-symbols-outlined text-base">chat</span>
+                                WhatsApp Vendor
+                            </a>
+                            <a id="vendorModalCall" class="flex items-center justify-center gap-2 border border-primary/20 text-primary py-3 rounded-xl text-sm font-bold hover:bg-primary/5" href="tel:+60312345678">
+                                <span class="material-symbols-outlined text-base">call</span>
+                                Telefon Vendor
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(modal);
+            return modal;
+        };
+
+        const syncVendorQuery = slug => {
+            if (!window.history || typeof window.history.replaceState !== "function") {
+                return;
+            }
+
+            const url = new URL(window.location.href);
+            if (slug) {
+                url.searchParams.set("vendor", slug);
+            } else {
+                url.searchParams.delete("vendor");
+            }
+            window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+        };
+
+        const closeVendorModal = (syncQuery = true) => {
+            const modal = document.getElementById("vendorProfileModal");
+            if (!modal || modal.classList.contains("hidden")) {
+                return;
+            }
+
+            modal.classList.add("hidden");
+            modal.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("overflow-hidden");
+
+            if (syncQuery) {
+                syncVendorQuery("");
+            }
+        };
+
+        const openVendorModal = (slug, syncQuery = true) => {
+            const vendor = vendorBySlug[slug];
+            if (!vendor) {
+                return;
+            }
+
+            const modal = ensureVendorModal();
+            const titleEl = modal.querySelector("#vendorProfileTitle");
+            const bodyEl = modal.querySelector("#vendorProfileBody");
+            const whatsappEl = modal.querySelector("#vendorModalWhatsapp");
+            const callEl = modal.querySelector("#vendorModalCall");
+
+            if (!titleEl || !bodyEl || !whatsappEl || !callEl) {
+                return;
+            }
+
+            const category = vendor.category || "Servis Kediaman";
+            const about = String(vendor.about || "Maklumat terperinci vendor ini dikemas kini oleh pihak pengurusan Banjaria Court.").trim();
+            const services = readServices(vendor);
+            const years = formatYears(vendor.years);
+            const area = String(vendor.area || "Batu Caves dan kawasan berdekatan").trim();
+            const hours = String(vendor.hours || "Isnin - Sabtu, 9:00 pagi - 6:00 petang").trim();
+            const phone = String(vendor.phone || "Tidak dinyatakan").trim();
+            const callPhone = formatPhoneHref(phone);
+            const callHref = callPhone ? `tel:${callPhone}` : "tel:+60312345678";
+            const whatsappHref = vendor.whatsapp || callHref;
+
+            titleEl.textContent = vendor.name || "Vendor Berdaftar";
+            bodyEl.innerHTML = `
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-bold text-primary">${escapeHtml(category)}</span>
+                    ${vendor.verified ? '<span class="inline-flex items-center rounded-full bg-green-50 px-3 py-1 text-xs font-bold text-green-700">Disahkan</span>' : '<span class="inline-flex items-center rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-700">Semakan Berkala</span>'}
+                </div>
+                <p class="leading-relaxed">${escapeHtml(about)}</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                    <div class="rounded-xl border border-stone-200 bg-stone-50/70 px-3 py-2"><span class="font-semibold">Rating:</span> ${vendor.rating ? vendor.rating.toFixed(1) : "-"} ${vendor.reviews ? `(${vendor.reviews} ulasan)` : ""}</div>
+                    <div class="rounded-xl border border-stone-200 bg-stone-50/70 px-3 py-2"><span class="font-semibold">Pengalaman:</span> ${escapeHtml(years)}</div>
+                    <div class="rounded-xl border border-stone-200 bg-stone-50/70 px-3 py-2"><span class="font-semibold">Kawasan:</span> ${escapeHtml(area)}</div>
+                    <div class="rounded-xl border border-stone-200 bg-stone-50/70 px-3 py-2"><span class="font-semibold">Waktu Operasi:</span> ${escapeHtml(hours)}</div>
+                </div>
+                ${services.length ? `<div><p class="font-semibold mb-2">Perkhidmatan Utama</p><ul class="space-y-1 list-disc pl-5">${services.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul></div>` : ""}
+            `;
+
+            whatsappEl.href = whatsappHref;
+            callEl.href = callHref;
+            callEl.innerHTML = `
+                <span class="material-symbols-outlined text-base">call</span>
+                ${escapeHtml(phone)}
+            `;
+
+            modal.classList.remove("hidden");
+            modal.setAttribute("aria-hidden", "false");
+            document.body.classList.add("overflow-hidden");
+
+            if (syncQuery) {
+                syncVendorQuery(slug);
+            }
+        };
 
         const createFilterButton = (label, value, isPrimary) => {
             const btn = document.createElement("button");
@@ -278,12 +470,13 @@
 
             vendorCount.textContent = `Menunjukkan ${filtered.length} vendor disahkan`;
 
-            vendorGrid.innerHTML = filtered.map(vendor => {
+            vendorGrid.innerHTML = filtered.map((vendor, index) => {
                 const icon = vendor.icon || "handyman";
                 const category = vendor.category || "Servis Kediaman";
                 const phone = vendor.phone || "N/A";
                 const whatsappHref = vendor.whatsapp || (phone !== "N/A" ? `tel:${phone}` : "#");
-                const profileUrl = vendor.profileUrl || "#";
+                const slug = vendor._slug || getVendorSlug(vendor, index);
+                const profileUrl = `senarai_vendor_berdaftar.html?vendor=${encodeURIComponent(slug)}`;
                 return `
                     <div class="group bg-white dark:bg-surface-dark rounded-2xl p-6 garden-border shadow-sm hover:shadow-hover hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
                         <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700"></div>
@@ -320,7 +513,7 @@
                                     <span class="material-symbols-outlined !text-[18px]">chat</span>
                                     WhatsApp
                                 </a>
-                                <a href="${profileUrl}" class="flex items-center justify-center gap-2 border border-primary/20 bg-white dark:bg-surface-dark text-primary py-3 rounded-xl text-sm font-bold hover:bg-primary/5 transition-all" target="_blank" rel="noopener">
+                                <a href="${profileUrl}" data-vendor-profile="${slug}" class="flex items-center justify-center gap-2 border border-primary/20 bg-white dark:bg-surface-dark text-primary py-3 rounded-xl text-sm font-bold hover:bg-primary/5 transition-all">
                                     Profil
                                 </a>
                             </div>
@@ -339,12 +532,53 @@
             render(value);
         };
 
+        const handleVendorClick = event => {
+            const profileLink = event.target.closest("a[data-vendor-profile]");
+            if (!profileLink) return;
+            event.preventDefault();
+            const slug = profileLink.getAttribute("data-vendor-profile") || "";
+            if (!slug) return;
+            openVendorModal(slug, true);
+        };
+
+        const initVendorModalEvents = () => {
+            const modal = ensureVendorModal();
+            modal.addEventListener("click", event => {
+                const closeTrigger = event.target.closest("[data-modal-close]");
+                if (closeTrigger) {
+                    closeVendorModal(true);
+                }
+            });
+
+            document.addEventListener("keydown", event => {
+                if (event.key === "Escape") {
+                    closeVendorModal(true);
+                }
+            });
+        };
+
+        const openVendorFromQuery = () => {
+            const params = new URLSearchParams(window.location.search);
+            const vendorSlug = (params.get("vendor") || "").trim();
+            if (!vendorSlug) {
+                return;
+            }
+            if (!vendorBySlug[vendorSlug]) {
+                return;
+            }
+            openVendorModal(vendorSlug, false);
+        };
+
         buildFilters();
         render();
+        initVendorModalEvents();
         filterWrap.addEventListener("click", handleFilterClick);
+        vendorGrid.addEventListener("click", handleVendorClick);
+        openVendorFromQuery();
     })();
 </script>
 </section>
+</div>
 </main>
 <footer class="bg-white border-t border-stone-200 pt-16 pb-10 px-4 lg:px-8">
 <div class="max-w-7xl mx-auto">
@@ -378,6 +612,7 @@
 <li><a class="hover:text-primary transition-colors" href="laporan_agm_dan_egm.html">Laporan AGM/EGM</a></li>
 <li><a class="hover:text-primary transition-colors" href="maklumat_tender_terbuka.html">Tender Terbuka</a></li>
 <li><a class="hover:text-primary transition-colors" href="senarai_vendor_berdaftar.html">Vendor Berdaftar</a></li>
+<li><a class="hover:text-primary transition-colors" href="hubungi_pengurusan_banjaria.html">Hubungi Kami</a></li>
 </ul>
 </div>
 <div>
@@ -408,9 +643,9 @@
                         © 2024 Pengurusan Banjaria Court. Hak cipta terpelihara.
                     </p>
 <div class="flex gap-6 text-xs text-text-main/40 font-medium">
-<a class="hover:text-primary transition-colors" href="hubungi_pengurusan_banjaria.html">Privasi</a>
-<a class="hover:text-primary transition-colors" href="hubungi_pengurusan_banjaria.html">Terma</a>
-<a class="hover:text-primary transition-colors" href="index.html">Peta Laman</a>
+<a class="hover:text-primary transition-colors" href="privasi.html">Privasi</a>
+<a class="hover:text-primary transition-colors" href="terma.html">Terma</a>
+<a class="hover:text-primary transition-colors" href="peta_laman.html">Peta Laman</a>
 </div>
 </div>
 </div>

@@ -52,31 +52,49 @@
       </div>
     </header>
 
-    <main class="flex-1 flex items-center justify-center px-4 py-12">
-      <div class="w-full max-w-xl bg-white shadow-lg shadow-primary/5 rounded-3xl border border-stone-200 p-8 md:p-10">
-        <div class="flex items-start gap-3 mb-6">
-          <div class="bg-primary/10 text-primary p-2 rounded-xl">
-            <span class="material-symbols-outlined">lock</span>
-          </div>
-          <div>
-            <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Panel Admin</p>
-            <h2 class="text-2xl font-extrabold mt-1">Log Masuk Admin</h2>
-            <p class="text-sm text-text-main/70 mt-1">Untuk tambah, edit atau padam notis.</p>
+    <main class="flex-1">
+      <div class="px-6 lg:px-40 py-10">
+        <div class="@container">
+          <div class="flex min-h-[300px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-2xl items-center justify-center p-10 relative overflow-hidden group shadow-xl" style='background-image: linear-gradient(to bottom, rgba(35, 69, 61, 0.85), rgba(33, 49, 49, 0.9)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuASguCSTGksx83hkoNqqJPgh38wNiIR0Y6Qn2so7wEDipNyhlC_257tf1glqN_I1lAeslChomfCivlaGF3zzbouik6o_uqvC7GlBvlIq1h-2PHjTRrJR3aR0vA7qT9VaUYS2wUuxC03KwT2_2TdlO8DLbAZswqU50zJuc5pgJOrAskL2nI9GoD6tDuGgYFr72vlM32gzDeoTVAeq9XMVGsiwBj5KZFZbrubKaMPO2SbToBGlgiumyswFvtPbOUbfxUg25q8NOhdY8I");'>
+            <div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+            <div class="flex flex-col gap-4 text-center relative z-10 max-w-3xl">
+              <span class="text-white/80 uppercase tracking-widest text-xs font-bold mb-2">Panel Admin</span>
+              <h2 class="text-white text-4xl font-black leading-tight tracking-tight @[480px]:text-6xl drop-shadow-sm">Log Masuk Admin</h2>
+              <p class="text-white/90 text-lg max-w-xl mx-auto font-light leading-relaxed">Akses papan pemuka pengurusan notis dengan aliran kerja yang ringkas dan pantas.</p>
+            </div>
+            <a class="mt-4 flex min-w-[200px] cursor-pointer items-center justify-center rounded-xl h-14 px-8 bg-white text-primary text-base font-bold transition-all hover:bg-[#f0f9f7] hover:-translate-y-1 hover:shadow-lg relative z-10 border border-transparent hover:border-white/50" href="#adminLoginForm">
+              <span class="truncate">Log Masuk Sekarang</span>
+            </a>
           </div>
         </div>
+      </div>
 
-        <form id="adminLoginForm" class="space-y-4">
-          <div>
-            <label class="text-sm font-semibold text-text-main/80">Emel</label>
-            <input required type="email" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="admin@banjaria.local" />
+      <div class="px-4 pb-12 flex items-center justify-center">
+        <div class="w-full max-w-xl bg-white shadow-lg shadow-primary/5 rounded-3xl border border-stone-200 p-8 md:p-10">
+          <div class="flex items-start gap-3 mb-6">
+            <div class="bg-primary/10 text-primary p-2 rounded-xl">
+              <span class="material-symbols-outlined">lock</span>
+            </div>
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.2em] text-primary">Panel Admin</p>
+              <h2 class="text-2xl font-extrabold mt-1">Log Masuk Admin</h2>
+              <p class="text-sm text-text-main/70 mt-1">Untuk tambah, edit atau padam notis.</p>
+            </div>
           </div>
-          <div>
-            <label class="text-sm font-semibold text-text-main/80">Kata Laluan</label>
-            <input required type="password" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="••••••••" />
-          </div>
-          <p class="text-xs text-text-main/60">Gunakan kelayakan yang sah. (Buat masa ini, sebarang emel & kata laluan akan diterima untuk demo tempatan.)</p>
-          <button type="submit" class="w-full rounded-xl bg-primary text-white font-bold py-3 shadow-lg shadow-primary/20 hover:-translate-y-0.5 transition-all">Log Masuk</button>
-        </form>
+
+          <form id="adminLoginForm" class="space-y-4">
+            <div>
+              <label class="text-sm font-semibold text-text-main/80">Emel</label>
+              <input required type="email" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="admin@banjaria.local" />
+            </div>
+            <div>
+              <label class="text-sm font-semibold text-text-main/80">Kata Laluan</label>
+              <input required type="password" class="mt-2 w-full rounded-xl border border-stone-200 px-4 py-3 text-sm focus:border-primary focus:ring-primary/30" placeholder="••••••••" />
+            </div>
+            <p class="text-xs text-text-main/60">Gunakan kelayakan yang sah. (Buat masa ini, sebarang emel & kata laluan akan diterima untuk demo tempatan.)</p>
+            <button type="submit" class="w-full rounded-xl bg-primary text-white font-bold py-3 shadow-lg shadow-primary/20 hover:-translate-y-0.5 transition-all">Log Masuk</button>
+          </form>
+        </div>
       </div>
     </main>
   </div>

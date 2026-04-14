@@ -80,6 +80,7 @@
             <a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="laporan_agm_dan_egm.html">Laporan</a>
             <a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="maklumat_tender_terbuka.html">Tender</a>
             <a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="senarai_vendor_berdaftar.html">Vendor</a>
+                <a class="text-[#2C3333]/70 hover:text-primary transition-colors text-sm font-medium" href="hubungi_pengurusan_banjaria.html">Hubungi</a>
                     <a class="text-text-main/70 hover:text-primary transition-colors text-sm font-medium" href="portal_borang_digital.html">Portal</a></nav>
         <div class="flex items-center gap-4">
             <a class="hidden md:flex bg-white border border-stone-200 text-primary px-5 py-2.5 rounded-full text-sm font-bold hover:shadow-soft hover:-translate-y-0.5 transition-all items-center gap-2" href="admin.html">
@@ -102,10 +103,26 @@
         <a class="hover:text-primary" href="maklumat_tender_terbuka.html">Tender</a>
         <a class="hover:text-primary" href="portal_borang_digital.html">Portal</a>
         <a class="hover:text-primary" href="senarai_vendor_berdaftar.html">Vendor</a>
+        <a class="hover:text-primary" href="hubungi_pengurusan_banjaria.html">Hubungi</a>
     </div>
 </div>
-<main class="flex-grow pt-10 pb-20">
-<div class="max-w-4xl mx-auto px-6">
+<main class="flex-1 bg-background-light dark:bg-background-dark">
+<div class="px-6 lg:px-40 py-10">
+<div class="@container">
+<div class="flex min-h-[360px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-2xl items-center justify-center p-10 relative overflow-hidden group shadow-xl" style='background-image: linear-gradient(to bottom, rgba(35, 69, 61, 0.85), rgba(33, 49, 49, 0.9)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCTq7zizUdokZtsDQ6oljg1rEGo5VCLDYUNvre8k2dREHncdAYwlk2zI6q36VQH6QdBzc9yH6LQeF_xXJqZn87Qq6KHlK02FMxyFj9pB8NQQZwysSGtqtmzG3O0sp7cy2nVRBQ5LkuGnnbQ_l__WETLiESavJODz3hpyexbAi5gOmH80mZ0rRjjtucK74NvAjx_OdeulP1H5nRfGF7V8W8In6jY0z8ge572QwO2_5dP0_1HodK1da7Zogefklpy7_w2YwgzP7Wu6ms");'>
+<div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+<div class="flex flex-col gap-4 text-center relative z-10 max-w-3xl">
+<span class="text-white/80 uppercase tracking-widest text-xs font-bold mb-2">Papan Kenyataan</span>
+<h1 class="text-white text-4xl font-black leading-tight tracking-tight @[480px]:text-6xl drop-shadow-sm">Notis &amp; Pengumuman</h1>
+<p class="text-white/90 text-lg max-w-xl mx-auto font-light leading-relaxed">Kekal maklum dengan berita terkini, jadual penyelenggaraan, dan aktiviti komuniti kita.</p>
+</div>
+<a class="mt-4 flex min-w-[200px] cursor-pointer items-center justify-center rounded-xl h-14 px-8 bg-white text-primary text-base font-bold transition-all hover:bg-[#f0f9f7] hover:-translate-y-1 hover:shadow-lg relative z-10 border border-transparent hover:border-white/50" href="#notisList">
+<span class="truncate">Lihat Notis Terkini</span>
+</a>
+</div>
+</div>
+</div>
+<div class="max-w-4xl mx-auto px-6 pb-20">
 <div class="flex flex-col gap-6 mb-12">
 <div class="text-center md:text-left">
 <span class="text-eucalyptus font-bold tracking-widest text-xs uppercase mb-2 block">Papan Kenyataan</span>
@@ -188,6 +205,7 @@
 <li><a class="hover:text-primary transition-colors" href="laporan_agm_dan_egm.html">Laporan AGM/EGM</a></li>
 <li><a class="hover:text-primary transition-colors" href="maklumat_tender_terbuka.html">Tender Terbuka</a></li>
 <li><a class="hover:text-primary transition-colors" href="senarai_vendor_berdaftar.html">Vendor Berdaftar</a></li>
+<li><a class="hover:text-primary transition-colors" href="hubungi_pengurusan_banjaria.html">Hubungi Kami</a></li>
 </ul>
 </div>
 <div>
@@ -218,9 +236,9 @@
                         © 2024 Pengurusan Banjaria Court. Hak cipta terpelihara.
                     </p>
 <div class="flex gap-6 text-xs text-text-main/40 font-medium">
-<a class="hover:text-primary transition-colors" href="hubungi_pengurusan_banjaria.html">Privasi</a>
-<a class="hover:text-primary transition-colors" href="hubungi_pengurusan_banjaria.html">Terma</a>
-<a class="hover:text-primary transition-colors" href="index.html">Peta Laman</a>
+<a class="hover:text-primary transition-colors" href="privasi.html">Privasi</a>
+<a class="hover:text-primary transition-colors" href="terma.html">Terma</a>
+<a class="hover:text-primary transition-colors" href="peta_laman.html">Peta Laman</a>
 </div>
 </div>
 </div>
@@ -256,6 +274,14 @@
     let searchTerm = '';
     const pageSize = 7;
     let visibleCount = pageSize;
+    let pendingNoticeId = '';
+    let pendingNoticeHandled = false;
+
+    try {
+        pendingNoticeId = (new URLSearchParams(window.location.search).get('notice') || '').trim();
+    } catch (_) {
+        pendingNoticeId = '';
+    }
 
     function loadNotices() {
         const saved = localStorage.getItem(storageKey);
@@ -314,6 +340,33 @@
         noticeModal.classList.remove('flex');
     }
 
+    function tryOpenNoticeFromQuery(filtered, visible) {
+        if (!pendingNoticeId || pendingNoticeHandled) return;
+
+        const targetIndex = (filtered || []).findIndex(n => String(n.id || '') === pendingNoticeId);
+        if (targetIndex === -1) {
+            pendingNoticeHandled = true;
+            return;
+        }
+
+        if ((visible || []).length <= targetIndex) {
+            visibleCount = targetIndex + 1;
+            renderNotices();
+            return;
+        }
+
+        const targetNotice = filtered[targetIndex];
+        const imgSrc = targetNotice.image || fallbackImages[targetIndex % fallbackImages.length];
+        const targetCard = Array.from(listEl.querySelectorAll('[data-notice-id]')).find(el => el.getAttribute('data-notice-id') === pendingNoticeId);
+
+        if (targetCard) {
+            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        openNoticeModal(targetNotice, imgSrc);
+        pendingNoticeHandled = true;
+    }
+
     function renderNotices() {
         const notices = loadNotices();
         const filtered = filterNotices(notices);
@@ -332,7 +385,8 @@
         visible.forEach((n, idx) => {
             const el = document.createElement('article');
             el.className = 'group bg-white dark:bg-[#2d3d3d] rounded-2xl overflow-hidden border border-[#eaf0ef] dark:border-[#3d4d4d] hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col sm:flex-row';
-            el.id = `notis-${idx}`;
+            el.id = n.id ? `notis-${n.id}` : `notis-${idx}`;
+            el.setAttribute('data-notice-id', String(n.id || ''));
             const imgSrc = n.image || fallbackImages[idx % fallbackImages.length];
             const imageBlock = imgSrc ? `
                 <div class="sm:w-48 h-48 sm:h-auto shrink-0 relative overflow-hidden">
@@ -375,6 +429,8 @@
             loadMoreBtn.classList.toggle('hidden', !hasMore);
             loadMoreBtn.disabled = !hasMore;
         }
+
+        tryOpenNoticeFromQuery(filtered, visible);
     }
 
     function setActiveFilter(category) {

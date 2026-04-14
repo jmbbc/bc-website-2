@@ -66,11 +66,16 @@
 <link rel="stylesheet" href="assets/css/palette.css"/></head>
 <body class="bg-cream text-text-main font-display antialiased selection:bg-primary/20 selection:text-primary">
 <div class="mx-auto w-full">
-<div class="bg-primary/5 py-2 px-4 text-center border-b border-primary/10">
-<p class="text-xs md:text-sm font-medium text-primary flex items-center justify-center gap-2">
-<span class="material-symbols-outlined text-sm">spa</span>
-<span>Notis: Penjagaan taman tahunan dijalankan hujung minggu ini.</span>
-</p>
+<div id="announcementBar" class="bg-primary/5 py-2 px-4 border-b border-primary/10">
+<div class="max-w-7xl mx-auto flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm shrink-0" aria-hidden="true">campaign</span>
+<div class="announcement-marquee text-xs md:text-sm font-medium" aria-live="polite" aria-label="Notis semasa">
+<div id="announcementTicker" class="announcement-marquee-track" data-fallback="Notis: Penjagaan taman tahunan dijalankan hujung minggu ini.">
+<span class="announcement-item">Notis: Penjagaan taman tahunan dijalankan hujung minggu ini.</span>
+<span class="announcement-item" aria-hidden="true">Notis: Penjagaan taman tahunan dijalankan hujung minggu ini.</span>
+</div>
+</div>
+</div>
 </div>
 <header class="site-header sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b border-stone-200/60">
 <div class="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
@@ -91,6 +96,7 @@
 <a class="text-text-main/70 hover:text-primary transition-colors text-sm font-medium" href="laporan_agm_dan_egm.html">Laporan</a>
 <a class="text-text-main/70 hover:text-primary transition-colors text-sm font-medium" href="maklumat_tender_terbuka.html">Tender</a>
 <a class="text-text-main/70 hover:text-primary transition-colors text-sm font-medium" href="senarai_vendor_berdaftar.html">Vendor</a>
+<a class="text-text-main/70 hover:text-primary transition-colors text-sm font-medium" href="hubungi_pengurusan_banjaria.html">Hubungi</a>
             <a class="text-text-main/70 hover:text-primary transition-colors text-sm font-medium" href="portal_borang_digital.html">Portal</a></nav>
 <div class="flex items-center gap-4">
 <a class="hidden md:flex bg-white border border-stone-200 text-primary px-5 py-2.5 rounded-full text-sm font-bold hover:shadow-soft hover:-translate-y-0.5 transition-all items-center gap-2" href="admin.html">
@@ -302,6 +308,7 @@
 <li><a class="hover:text-primary transition-colors" href="laporan_agm_dan_egm.html">Laporan AGM/EGM</a></li>
 <li><a class="hover:text-primary transition-colors" href="maklumat_tender_terbuka.html">Tender Terbuka</a></li>
 <li><a class="hover:text-primary transition-colors" href="senarai_vendor_berdaftar.html">Vendor Berdaftar</a></li>
+<li><a class="hover:text-primary transition-colors" href="hubungi_pengurusan_banjaria.html">Hubungi Kami</a></li>
 </ul>
 </div>
 <div>
@@ -332,9 +339,9 @@
                         © 2024 Pengurusan Banjaria Court. Hak cipta terpelihara.
                     </p>
 <div class="flex gap-6 text-xs text-text-main/40 font-medium">
-<a class="hover:text-primary transition-colors" href="hubungi_pengurusan_banjaria.html">Privasi</a>
-<a class="hover:text-primary transition-colors" href="hubungi_pengurusan_banjaria.html">Terma</a>
-<a class="hover:text-primary transition-colors" href="index.html">Peta Laman</a>
+<a class="hover:text-primary transition-colors" href="privasi.html">Privasi</a>
+<a class="hover:text-primary transition-colors" href="terma.html">Terma</a>
+<a class="hover:text-primary transition-colors" href="peta_laman.html">Peta Laman</a>
 </div>
 </div>
 </div>
