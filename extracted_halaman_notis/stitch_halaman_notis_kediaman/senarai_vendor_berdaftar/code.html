@@ -6,6 +6,7 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../../../../assets/css/palette.css"/>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -55,7 +56,7 @@
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark text-[#111816] dark:text-gray-100 min-h-screen flex flex-col selection:bg-primary/20">
-<header class="flex items-center justify-between border-b border-solid border-primary/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-20 py-4 sticky top-0 z-50 transition-all duration-300">
+<header class="flex items-center justify-between sticky top-0 z-50 site-header bg-primary/5 dark:bg-[#213131]/90 backdrop-blur-md border-b border-primary/10 text-text-primary dark:text-white px-6 md:px-20 py-4 transition-all duration-300">
 <div class="flex items-center gap-8">
 <div class="flex items-center gap-3 group cursor-pointer">
 <div class="text-primary size-9 transition-transform group-hover:rotate-12 duration-500">
@@ -66,11 +67,11 @@
 <h2 class="text-xl font-extrabold tracking-tight text-primary-dark dark:text-white">Banjaria Court</h2>
 </div>
 <nav class="hidden lg:flex items-center gap-8">
-<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Home</a>
-<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Facilities</a>
-<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Announcements</a>
-<a class="text-primary text-sm font-bold border-b-2 border-primary pb-0.5" href="#">Vendors</a>
-<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Contact</a>
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="index.html">Home</a>
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="kemudahan_banjaria_court.html">Facilities</a>
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="halaman_notis_kediaman.html">Announcements</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-0.5" href="senarai_vendor_berdaftar.html">Vendors</a>
+<a class="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="hubungi_pengurusan_banjaria.html">Contact</a>
 </nav>
 </div>
 <div class="flex items-center gap-4">
@@ -78,7 +79,7 @@
 <div class="flex items-center pl-4 text-primary/60">
 <span class="material-symbols-outlined !text-[20px]">search</span>
 </div>
-<input class="w-full bg-transparent border-none focus:ring-0 text-sm placeholder:text-primary/40 px-3 text-primary-dark" placeholder="Cari vendor..." type="text"/>
+<input aria-label="Cari vendor" class="w-full bg-transparent border-none focus:ring-0 text-sm placeholder:text-primary/40 px-3 text-primary-dark" placeholder="Cari vendor..." type="text"/>
 </div>
 <button class="bg-primary hover:bg-primary-dark text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-md hover:shadow-lg active:scale-95">
                 Resident Login
@@ -156,7 +157,7 @@
 <div class="group bg-white dark:bg-surface-dark rounded-2xl p-6 garden-border shadow-sm hover:shadow-hover hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
 <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700"></div>
 <div class="relative flex justify-between items-start mb-5">
-<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" data-alt="Corporate logo for Syarikat Paip Jitu">
+<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" role="img" aria-label="Corporate logo for Syarikat Paip Jitu">
 <span class="material-symbols-outlined !text-[32px]">plumbing</span>
 </div>
 <div class="bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full flex items-center gap-1 border border-green-100 dark:border-green-800">
@@ -200,7 +201,7 @@
 <div class="group bg-white dark:bg-surface-dark rounded-2xl p-6 garden-border shadow-sm hover:shadow-hover hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
 <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700"></div>
 <div class="relative flex justify-between items-start mb-5">
-<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" data-alt="Corporate logo for Arus Elektrik Enterprise">
+<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" role="img" aria-label="Corporate logo for Arus Elektrik Enterprise">
 <span class="material-symbols-outlined !text-[32px]">bolt</span>
 </div>
 <div class="bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full flex items-center gap-1 border border-green-100 dark:border-green-800">
@@ -244,7 +245,7 @@
 <div class="group bg-white dark:bg-surface-dark rounded-2xl p-6 garden-border shadow-sm hover:shadow-hover hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
 <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700"></div>
 <div class="relative flex justify-between items-start mb-5">
-<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" data-alt="Corporate logo for CoolAir Solutions">
+<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" role="img" aria-label="Corporate logo for CoolAir Solutions">
 <span class="material-symbols-outlined !text-[32px]">ac_unit</span>
 </div>
 <div class="bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full flex items-center gap-1 border border-green-100 dark:border-green-800">
@@ -288,7 +289,7 @@
 <div class="group bg-white dark:bg-surface-dark rounded-2xl p-6 garden-border shadow-sm hover:shadow-hover hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
 <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700"></div>
 <div class="relative flex justify-between items-start mb-5">
-<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" data-alt="Corporate logo for CleanHome Services">
+<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" role="img" aria-label="Corporate logo for CleanHome Services">
 <span class="material-symbols-outlined !text-[32px]">cleaning_services</span>
 </div>
 </div>
@@ -328,7 +329,7 @@
 <div class="group bg-white dark:bg-surface-dark rounded-2xl p-6 garden-border shadow-sm hover:shadow-hover hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
 <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700"></div>
 <div class="relative flex justify-between items-start mb-5">
-<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" data-alt="Corporate logo for BuildRight Reno">
+<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" role="img" aria-label="Corporate logo for BuildRight Reno">
 <span class="material-symbols-outlined !text-[32px]">format_paint</span>
 </div>
 <div class="bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-300 px-3 py-1 rounded-full flex items-center gap-1 border border-green-100 dark:border-green-800">
@@ -372,7 +373,7 @@
 <div class="group bg-white dark:bg-surface-dark rounded-2xl p-6 garden-border shadow-sm hover:shadow-hover hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
 <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-150 duration-700"></div>
 <div class="relative flex justify-between items-start mb-5">
-<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" data-alt="Corporate logo for PlumbMaster Pro">
+<div class="w-16 h-16 rounded-2xl bg-surface-light dark:bg-surface-dark border border-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300" role="img" aria-label="Corporate logo for PlumbMaster Pro">
 <span class="material-symbols-outlined !text-[32px]">construction</span>
 </div>
 </div>
@@ -454,9 +455,9 @@
 <div>
 <h4 class="font-bold mb-5 text-[#111816] dark:text-white">Legal</h4>
 <ul class="text-sm space-y-3 text-gray-600 dark:text-gray-400 font-medium">
-<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Terms of Use</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Sitemap</a></li>
+<li><a class="hover:text-primary transition-colors" href="privasi.html">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="terma.html">Terms of Use</a></li>
+<li><a class="hover:text-primary transition-colors" href="peta_laman.html">Sitemap</a></li>
 </ul>
 </div>
 </div>

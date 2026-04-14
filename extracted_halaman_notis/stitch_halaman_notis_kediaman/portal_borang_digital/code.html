@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html class="light" lang="en"><head>
+<html class="light" lang="ms"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Banjaria Court Portal - Borang Digital</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../../../../assets/css/palette.css"/>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -52,7 +53,7 @@
 <body class="bg-background-light dark:bg-background-dark text-text-primary transition-colors duration-300">
 <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
 <div class="layout-container flex h-full grow flex-col">
-<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#eaf0ef] dark:border-[#3a4d49] px-6 lg:px-40 py-4 bg-background-light dark:bg-background-dark sticky top-0 z-50 transition-all duration-300 shadow-sm">
+<header class="flex items-center justify-between whitespace-nowrap sticky top-0 z-50 site-header bg-primary/5 dark:bg-[#213131]/90 backdrop-blur-md border-b border-primary/10 text-text-primary dark:text-white px-6 lg:px-40 py-4 transition-all duration-300 shadow-sm">
 <div class="flex items-center gap-8">
 <div class="flex items-center gap-3 text-primary cursor-pointer hover:opacity-90 transition-opacity">
 <div class="size-8">
@@ -84,16 +85,16 @@
 <div class="text-[#60857d] flex border-none bg-[#eaf0ef] dark:bg-[#2d3e3b] items-center justify-center pl-4 rounded-l-xl">
 <span class="material-symbols-outlined text-xl">search</span>
 </div>
-<input class="form-input flex w-full min-w-0 flex-1 border-none bg-[#eaf0ef] dark:bg-[#2d3e3b] text-text-primary dark:text-white focus:ring-0 h-full placeholder:text-[#60857d] rounded-r-xl pl-2 text-sm" placeholder="Search forms..."/>
+<input aria-label="Search forms" class="form-input flex w-full min-w-0 flex-1 border-none bg-[#eaf0ef] dark:bg-[#2d3e3b] text-text-primary dark:text-white focus:ring-0 h-full placeholder:text-[#60857d] rounded-r-xl pl-2 text-sm" placeholder="Search forms..."/>
 </div>
 </label>
-<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20 cursor-pointer hover:border-primary transition-colors shadow-sm" data-alt="Avatar of the logged in user" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDfxdka4S-O2D3XI-rdjYsCxTBEzvgwymKF7uKw-TILWmMh5wL4Bew3w29lZpFMm5uJu7Yp3FHxcr1A8ljXKlrN-ckBFVT_JNkr-Lu3t7KY2D9i160maXW1wFypAaUb33oA6LOWKL8zwx8cJRFSlVCJ8cw7tNswP3zTn6bluVvW5KMNTnP7STxgPDXXBJOUzGCfK45Cv01VnZBGWRg9-znk1Ob7N3wj8ZDc5zf1ERufYOjj8uiNZ9bbump4p-h9_iDe7JP4fh4LWZQ");'></div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20 cursor-pointer hover:border-primary transition-colors shadow-sm" role="img" aria-label="Avatar of the logged in user" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDfxdka4S-O2D3XI-rdjYsCxTBEzvgwymKF7uKw-TILWmMh5wL4Bew3w29lZpFMm5uJu7Yp3FHxcr1A8ljXKlrN-ckBFVT_JNkr-Lu3t7KY2D9i160maXW1wFypAaUb33oA6LOWKL8zwx8cJRFSlVCJ8cw7tNswP3zTn6bluVvW5KMNTnP7STxgPDXXBJOUzGCfK45Cv01VnZBGWRg9-znk1Ob7N3wj8ZDc5zf1ERufYOjj8uiNZ9bbump4p-h9_iDe7JP4fh4LWZQ");'></div>
 </div>
 </header>
 <main class="flex-1 bg-background-light dark:bg-background-dark">
 <div class="px-6 lg:px-40 py-10">
 <div class="@container">
-<div class="flex min-h-[360px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-2xl items-center justify-center p-10 relative overflow-hidden group shadow-xl" data-alt="Serene garden aerial view for background" style='background-image: linear-gradient(to bottom, rgba(35, 69, 61, 0.85), rgba(33, 49, 49, 0.9)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuA_e7qth9yjvpJaQ4rUeHzWrELBoL2VY9IkLMxE0XBR8JHRDF7_zu5iFIFePAVUiZG6jW25RqzZZnXCtwKdZSttbFe1mXsWuNC3PW-PkQvql95ss_wAWD3qFetU5UlsL8TT2EZJTQnssN-Jbzy_FwqhF9VmYKtOoQiNR8IMS6C1hZNfZWZYQEuan8LtwOW2DX5oerYG_BaWxpEIR3x13U2HdicJr_p1vF_SB0UCt_NHMGdA-Po17Bc4ijPLiXlqBiv447XNYcVdTEs");'>
+<div class="flex min-h-[360px] flex-col gap-6 bg-cover bg-center bg-no-repeat rounded-2xl items-center justify-center p-10 relative overflow-hidden group shadow-xl" role="img" aria-label="Serene garden aerial view for background" style='background-image: linear-gradient(to bottom, rgba(35, 69, 61, 0.85), rgba(33, 49, 49, 0.9)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuA_e7qth9yjvpJaQ4rUeHzWrELBoL2VY9IkLMxE0XBR8JHRDF7_zu5iFIFePAVUiZG6jW25RqzZZnXCtwKdZSttbFe1mXsWuNC3PW-PkQvql95ss_wAWD3qFetU5UlsL8TT2EZJTQnssN-Jbzy_FwqhF9VmYKtOoQiNR8IMS6C1hZNfZWZYQEuan8LtwOW2DX5oerYG_BaWxpEIR3x13U2HdicJr_p1vF_SB0UCt_NHMGdA-Po17Bc4ijPLiXlqBiv447XNYcVdTEs");'>
 <div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
 <div class="flex flex-col gap-4 text-center relative z-10 max-w-3xl">
 <span class="text-white/80 uppercase tracking-widest text-xs font-bold mb-2">Resident Services</span>
@@ -305,17 +306,17 @@
 <div class="flex flex-col gap-4">
 <h3 class="font-bold text-text-primary dark:text-white text-base">Quick Links</h3>
 <div class="flex flex-col gap-2">
-<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Directory</a>
-<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Events</a>
-<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Emergency</a>
-<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Feedback</a>
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="senarai_vendor_berdaftar.html">Directory</a>
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="aktiviti_komuniti_banjaria.html">Events</a>
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="hubungi_pengurusan_banjaria.html">Emergency</a>
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="hubungi_pengurusan_banjaria.html">Feedback</a>
 </div>
 </div>
 <div class="flex flex-col gap-4">
 <h3 class="font-bold text-text-primary dark:text-white text-base">Support</h3>
 <div class="flex flex-col gap-2">
-<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Help Center</a>
-<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Contact Office</a>
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="hubungi_pengurusan_banjaria.html">Help Center</a>
+<a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="hubungi_pengurusan_banjaria.html">Contact Office</a>
 <a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">Report Issue</a>
 <a class="text-text-secondary dark:text-[#a1b5b0] text-sm hover:text-primary hover:translate-x-1 transition-all" href="#">FAQs</a>
 </div>
