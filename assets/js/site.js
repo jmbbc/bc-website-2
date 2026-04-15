@@ -477,27 +477,9 @@
     });
   }
 
-  async function waitForCloudBootstrap() {
-    try {
-      if (window.BCDataReady) {
-        await window.BCDataReady;
-        return;
-      }
-
-      if (window.BCDataBridge && typeof window.BCDataBridge.ensureReady === "function") {
-        await window.BCDataBridge.ensureReady();
-      }
-    } catch (error) {
-      console.warn("[BC] Cloud bootstrap skipped for site.js", error);
-    }
-  }
-
   document.addEventListener("DOMContentLoaded", function () {
+    setupAnnouncementTicker();
     setupMobileMenu();
     markActiveLinks();
-
-    waitForCloudBootstrap().then(function () {
-      setupAnnouncementTicker();
-    });
   });
 })();
